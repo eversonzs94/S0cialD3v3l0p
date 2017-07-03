@@ -1,0 +1,12 @@
+com\socialdevelop\services\TaskService.class
+com\socialdevelop\services\UserService.class
+com\socialdevelop\mappers\TaskMapper.class
+com\socialdevelop\mappers\ProjectMapper.class
+com\socialdevelop\entities\Project.class
+com\socialdevelop\entities\Tasks.class
+com\socialdevelop\services\ProjectService.class
+utilities\UserSession.class
+com\socialdevelop\controllers\DefaultController.class
+com\socialdevelop\controllers\AppController.class
+com\socialdevelop\mappers\UserMapper.class
+com\socialdevelop\entities\Users.class

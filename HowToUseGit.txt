@@ -1,0 +1,25 @@
+Comandos en git shell
+
+Create a new repository on the command line
+
+echo "# AppName" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/Eversonzs/AppName.git
+git push -u origin master
+
+To start the project 
+In git shell go into the folfer where you want to have the all your project, then:
+git init
+
+Add a repository:
+git remote add origin "URL of the project on gitHub"
+
+Pull the files from gitHub (download):
+git pull origin master
+
+Push the files into gitHub (upload):
+git add .
+git commit -m "Write here a comment to descrive what you are uploading."
+git push origin master

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+</head>
+<body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+<!-- preloader section -->
+
+
+<!-- navigation section -->
+<section class="navbar navbar-fixed-top custom-navbar" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon icon-bar"></span>
+				<span class="icon icon-bar"></span>
+				<span class="icon icon-bar"></span>
+			</button>
+			<a href="index.html" class="navbar-brand">SocDev</a>
+		</div>
+		
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="index.html" class="smoothScroll">HOME</a></li>
+				<li><a href="index.html#work" class="smoothScroll">DEVELOPERS</a></li>
+				<li><a href="index.html#portfolio" class="smoothScroll">PROJECTS</a></li>
+				<li><a href="login.html" class="smoothScroll">MY PROFILE</a></li>
+				<li><a href="about.html" class="smoothScroll">ABOUT</a></li>
+				<li><a href="index.html#contact" class="smoothScroll">CONTACT</a></li>
+			</ul>
+		</div>
+	</div>
+</section>
+<div class="login-wrapper"></div>
+ 
+
+<div class="pen-title"></div>
+<!-- User Panels -->
+<section id="user-panel">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<div class="col-sm-12">
+					<div class="col-sm-12 profile-header">
+					<div class="column">
+						<img src="images/profile-image.png" class="profile-image">
+							<a href="add-project.html" style="margin-left: 10px;">Add project</a>
+							<a href="edit-profile.html" style="padding: 15px 10px;">Edit profile</a>
+								<button type="button" class="btn btn-default btn-sm">
+          						<span class="glyphicon glyphicon-log-out"></span> Log out
+       					   	    </button>
+							</div>
+							<div class="column">
+								<p style="margin-top: 15px;">Name:<span class="developer_name employer_name">Username</span></p>
+								<p>Email:<span>Email@gmail.com</span></p>
+								<p>Phone:<span>+39 39 39 39 39</span></p>
+								<p>Sex:<span>Male/Female</span></p>
+								<p>Skill:<span>Html</span></p>
+								<p>Level:<span>8</span></p>
+							</div>
+							<div class="column">
+								<p>About me</p>
+								<p style="font-style: italic;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+							</div>
+					</div>
+					<hr>
+				</div>
+				<div class="smallwrap"></div>
+
+				    <ul class="nav nav-tabs bold">
+    					<li class="active"><a data-toggle="tab" href="#coordinator-invitation">Invitation/Coordinator</a></li>
+    					<li><a data-toggle="tab" href="#app-coordinator">App/Coordinator</a></li>
+					    <li><a data-toggle="tab" href="#proposal-developer">Proposal/Developer</a></li>
+					    <li><a data-toggle="tab" href="#offers-developer">Offers/Developer</a></li>
+  					</ul>
+
+					  <div class="tab-content">
+					    <div id="coordinator-invitation" class="tab-pane fade in active">
+					      <h3>Invited developers</h3>
+					    	<table id="mytable" class="table table-bordred table-striped">
+                   		    	<thead>
+	                   		    	<th>Developer Name</th>
+	                    			<th>Project Name</th>
+	                       			<th>Delete</th>
+                   				</thead>
+    							<tbody>
+    								<tr>
+										<td><a href="user-profile-page.html" style="color: #666666; font-style: italic;">Developer 1</a></td>
+										<td><a href="project-page.html" style="color: #666666;">Project 1</a></td>
+										<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+									</tr>
+ 									<tr>
+									    <td><a href="user-profile-page.html" style="color: #666666; font-style: italic;">Developer 2</a></td>
+									    <td><a href="project-page.html" style="color: #666666;">Project 2</a></td>
+									    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+									</tr>
+									<tr>
+									    <td><a href="user-profile-page.html" style="color: #666666; font-style: italic;">Developer 3</a></td>
+									    <td><a href="project-page.html" style="color: #666666;">Project 3</a></td>
+									    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+									</tr>
+									<tr>
+										<td><a href="user-profile-page.html" style="color: #666666; font-style: italic;">Developer 4</a></td>
+									    <td><a href="project-page.html" style="color: #666666;">Project 4</a></td>
+									    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+									</tr>
+									<tr>
+									   <td><a href="user-profile-page.html" style="color: #666666; font-style: italic;">Developer 5</a></td>
+									   <td><a href="project-page.html" style="color: #666666;">Project 5</a></td>
+									   <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+									</tr>
+								</tbody>
+							</table>
+					    </div>
+					    <div id="app-coordinator" class="tab-pane fade">
+					      <h3>App Coordinator</h3>
+					    	<table id="mytable" class="table table-bordred table-striped">
+                   		    	<thead>
+	                   		    	<th>Project Name</th>
+	                    			<th>Status</th>
+	                       			<th>Delete</th>
+                   				</thead>
+    							<tbody>
+    								<tr>
+										<td><a href="project-page.html" style="color: #666666; font-style: italic;">Project 1</a></td>
+										<td>Open</td>
+										<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+									</tr>
+ 									<tr>
+										<td><a href="project-page.html" style="color: #666666; font-style: italic;">Project 2</a></td>
+										<td>Closed</td>
+										<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+									</tr>
+									<tr>
+										<td><a href="project-page.html" style="color: #666666; font-style: italic;">Project 3</a></td>
+										<td>Process</td>
+										<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+									</tr>
+									<tr>
+										<td><a href="project-page.html" style="color: #666666; font-style: italic;">Project 4</a></td>
+										<td>Closed</td>
+										<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+									</tr>
+									<tr>
+										<td><a href="project-page.html" style="color: #666666; font-style: italic;">Project 5</a></td>
+										<td>Open</td>
+										<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+									</tr>
+								</tbody>
+							</table>
+					    </div>
+					    <div id="proposal-developer" class="tab-pane fade">
+					      <h3>Developer proposal</h3>
+					    	<table id="mytable" class="table table-bordred table-striped">
+                   		    	<thead>
+	                   		    	<th>Project Name</th>
+	                    			<th>Project Coordinator</th>
+	                   				<th>Project Link</th>
+	                      			<th>Accept</th>
+	                       			<th>Delete</th>
+                   				</thead>
+    							<tbody>
+    								<tr>
+										<td>Project 1</td>
+										<td>Coordinator 1</td>
+										<td><a href="project-page.html" style="color: red;">Link</a></td>
+										<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-ok"></span></button></p></td>
+										<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+									</tr>
+ 									<tr>
+									    <td>Project 2</td>
+									    <td>Coordinator 2</td>
+									    <td><a href="project-page.html" style="color: red;">Link</a></td>
+
+									    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-ok"></span></button></p></td>
+									    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+									</tr>
+									<tr>
+									    <td>Project 3</td>
+									    <td>Coordinator 3</td>
+									    <td><a href="project-page.html" style="color: red;">Link</a></td>
+									    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-ok"></span></button></p></td>
+									    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+									</tr>
+									<tr>
+										<td>Project 4</td>
+									    <td>Coordinator 4</td>
+									    <td><a href="project-page.html" style="color: red;">Link</a></td>
+
+									    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-ok"></span></button></p></td>
+									    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+									</tr>
+									<tr>
+									   <td>Project 5</td>
+									   <td>Coordinator 5</td>
+									   <td><a href="project-page.html" style="color: red;">Link</a></td>
+									   <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-ok"></span></button></p></td>
+									   <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+									</tr>
+								</tbody>
+							</table>
+					    </div>
+					    <div id="offers-developer" class="tab-pane fade">
+					      <h3>Offers developer</h3>
+					      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+					    </div>
+					  </div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+
+<!-- footer section -->
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<p>Project for Web Engineering</p>
+				<hr>
+				<ul class="social-icon">
+					<li><a href="#" class="fa fa-facebook wow fadeIn" data-wow-delay="0.3s"></a></li>
+					<li><a href="#" class="fa fa-twitter wow fadeIn" data-wow-delay="0.6s"></a></li>
+					<li><a href="#" class="fa fa-dribbble wow fadeIn" data-wow-delay="0.9s"></a></li>
+					<li><a href="#" class="fa fa-behance wow fadeIn" data-wow-delay="0.9s"></a></li>
+					<li><a href="#" class="fa fa-tumblr wow fadeIn" data-wow-delay="0.9s"></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/custom.js"></script>
+
+</body>
+</html>

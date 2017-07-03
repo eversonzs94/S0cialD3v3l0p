@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    
+    <definition name="MasterPage" template="/WEB-INF/views_master/layout.jsp">
+        <!--<put-attribute name="stylecss" value="/WEB-INF/views_master/stylecss.jsp"></put-attribute>
+        <put-attribute name="header" value="/WEB-INF/views_master/header.jsp"></put-attribute>
+        <put-attribute name="footer" value="/WEB-INF/views_master/footer.jsp"></put-attribute>
+        <put-attribute name="scriptjs" value="/WEB-INF/views_master/scriptjs.jsp"></put-attribute>
+        <put-attribute name="nav" value="/WEB-INF/views_master/nav.jsp"></put-attribute>-->
+    </definition>
+    
+    <definition name="home-page" extends="MasterPage">
+        <put-attribute name="title" value="Home Page"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/index.jsp"></put-attribute>
+    </definition>
+    
+    
+    <definition name="login-page" extends="MasterPage">
+        <put-attribute name="title" value="Login Page"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/login-page.jsp"></put-attribute>
+    </definition>
+    
+    
+    <definition name="all-projects" extends="MasterPage">
+        <put-attribute name="title" value="All Projects Page"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/all-projects.jsp"></put-attribute>
+    </definition>
+    
+    <definition name="project-page" extends="MasterPage">
+        <put-attribute name="title" value="Project Information Page"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/project-page.jsp"></put-attribute>
+    </definition>
+    
+     <definition name="add-project" extends="MasterPage">
+        <put-attribute name="title" value="Add New Project Page"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/add-project.jsp"></put-attribute>
+    </definition>
+    
+    
+    <definition name="about-page" extends="MasterPage">
+        <put-attribute name="title" value="About"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/index.jsp"></put-attribute>
+    </definition>
+
+</tiles-definitions>
