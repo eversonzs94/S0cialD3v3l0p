@@ -6,6 +6,7 @@
 package com.socialdevelop.entities;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -17,6 +18,97 @@ public class Users {
     private String name;
     private String surname;
     private String password;
+    private String nickname;
+    private String email;
+    private String phoneNumber;
+    private MultipartFile curriculum;
+  //  private String profilePhoto;
+    private String gender;
+    private String aboutMe;
+   //private Date birthDate;
+    private String address;
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public MultipartFile getCurriculum() {
+        return curriculum;
+    }
+
+    public void setCurriculum(MultipartFile curriculum) {
+        this.curriculum = curriculum;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getAboutMe() {
+        return aboutMe;
+    }
+
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public Users(String name, String surname, String password, String nickname, String email, String phoneNumber, String gender, String aboutMe, String address) {
+        this.name = name;
+        this.surname = surname;
+        this.password = password;
+        this.nickname = nickname;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.aboutMe = aboutMe;
+        this.address = address;
+    }
+
+    public Users(String name, String surname, String password, String nickname, String email, String phoneNumber, MultipartFile curriculum, String gender, String aboutMe, String address) {
+        this.name = name;
+        this.surname = surname;
+        this.password = password;
+        this.nickname = nickname;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.curriculum = curriculum;
+        this.gender = gender;
+        this.aboutMe = aboutMe;
+        this.address = address;
+    }
+
+    
     
     public Users() {
     }

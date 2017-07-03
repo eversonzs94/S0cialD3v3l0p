@@ -24,22 +24,34 @@
         </form>
   </div>
   <div class="form">
-    <h2>Create an account</h2>
-    <form>
-      <input type="text" placeholder="Username" required/>
-      <input type="password" placeholder="Password" required/>
-      <input type="email" placeholder="Email Address" required/>
-      <input type="tel" placeholder="Phone Number" required/>
-      <textarea placeholder="Cirriculum" name="Cirriculum" rows="5" maxlength="250" style="width: 100%; border: 1px solid #d9d9d9;"></textarea>
-      <p>Upload Image</p>
-      <input type="file" accept="image/*" required />
-      <select required>
-      	  <option>Sex</option>
-		  <option value="male">Male</option>
-		  <option value="female">Female</option>
-	  </select>
+    <h2>Register</h2>
+   <form action="${contextPath}/app/register" method="POST">
+            <input type="text" name="name" placeholder="Name" required/>
+            <input type="text" name="surname" placeholder="Surname" required/>
+            <input type="text" name="nickname" placeholder="Username" required/>
+            <input type="password" name="password" placeholder="Password" required/>
+          <!--  <input type="text" name="birthDate" placeholder="Birth Date" required/>-->
+            <input type="text" name="address" placeholder="Address" required/>
+           <!-- <input type="text" name="country" placeholder="Country" required/>
+            <input type="text" name="city" placeholder="City" required/>-->
+            <input type="email" name="email" placeholder="Email Address" required/>
+            <input type="tel" name="phoneNumber" placeholder="Phone Number" required/>
+            <select name="gender" required>
+                <option>Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <textarea placeholder="About Me" name="aboutMe" rows="5" maxlength="250" style="width: 100%; border: 1px solid #d9d9d9;"></textarea>
+           <!-- <p>Upload Curriculum</p>
+            <input type="file" name="curriculum" accept="curriculum/*"  />
+            <!--<p>Upload Image</p>
+            <input type="file" name="profilePhoto" accept="image/*"  />-->
+            <button type="submit">Next</button>
+        </form>
+    </div>
       
-	  <div id="selections">
+ <div class="form">
+            <div id="selections">
 		  <div class="input-group" id="selection">
 		    <span class="input-group-addon" style="display: none;">
 		    <i class="icon wb-menu" aria-hidden="true"></i>
