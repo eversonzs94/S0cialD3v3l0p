@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `socialDevelop`.`tblUsers` (
   `profilePhoto` VARCHAR(45) NULL,
   `gender` VARCHAR(10) NULL,
   `aboutMe` VARCHAR(500) NULL,
-  `bornDate` DATE NOT NULL,
+  `birthDate` DATE NOT NULL,
   `address` VARCHAR(100) NULL,
   `idLocation` INT NOT NULL,
   PRIMARY KEY (`idUser`),
@@ -127,22 +127,22 @@ DROP TABLE IF EXISTS `socialDevelop`.`tblMessages` ;
 
 CREATE TABLE IF NOT EXISTS `socialDevelop`.`tblMessages` (
   `idMessage` INT NOT NULL AUTO_INCREMENT,
+  `idUser` INT NOT NULL,
+  `idProject` INT NOT NULL,
   `message` VARCHAR(500) NOT NULL,
-  `dateMessage` DATE NULL,
-  `idProject` INT NULL,
-  `idTask` INT NULL,
   `privacity` VARCHAR(15) NULL,
+  `dateMessage` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idMessage`),
   INDEX `fk_tblMessages_tblProjects1_idx` (`idProject` ASC),
-  INDEX `fk_tblMessages_tblTasks1_idx` (`idTask` ASC),
+  INDEX `fk_tblMessages_tblUsers1_idx` (`idUser` ASC),
   CONSTRAINT `fk_tblMessages_tblProjects1`
     FOREIGN KEY (`idProject`)
     REFERENCES `socialDevelop`.`tblProjects` (`idProject`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tblMessages_tblTasks1`
-    FOREIGN KEY (`idTask`)
-    REFERENCES `socialDevelop`.`tblTasks` (`idTask`)
+  CONSTRAINT `fk_tblMessages_tblUsers1`
+    FOREIGN KEY (`idUser`)
+    REFERENCES `socialDevelop`.`tblUsers` (`idUser`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -156,7 +156,14 @@ DROP TABLE IF EXISTS `socialDevelop`.`tblSkills` ;
 CREATE TABLE IF NOT EXISTS `socialDevelop`.`tblSkills` (
   `idSkill` INT NOT NULL AUTO_INCREMENT,
   `skillName` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idSkill`))
+  `idSkillFather` INT NULL,
+  PRIMARY KEY (`idSkill`),
+  INDEX `fk_tblSkills_tblSkills1_idx` (`idSkillFather` ASC),
+  CONSTRAINT `fk_tblSkills_tblSkills1`
+    FOREIGN KEY (`idSkillFather`)
+    REFERENCES `socialDevelop`.`tblSkills` (`idSkill`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -168,6 +175,7 @@ DROP TABLE IF EXISTS `socialDevelop`.`tblSkillsUsers` ;
 CREATE TABLE IF NOT EXISTS `socialDevelop`.`tblSkillsUsers` (
   `idUser` INT NOT NULL,
   `idSkill` INT NOT NULL,
+  `skillLevel` INT NULL,
   INDEX `fk_tblSkillsUsers_tblUsers1_idx` (`idUser` ASC),
   INDEX `fk_tblSkillsUsers_tblSkills1_idx` (`idSkill` ASC),
   CONSTRAINT `fk_tblSkillsUsers_tblUsers1`
@@ -202,29 +210,6 @@ CREATE TABLE IF NOT EXISTS `socialDevelop`.`tblTasksSkillsLevel` (
   CONSTRAINT `fk_tblTasksSkillsLevel_tblTasks1`
     FOREIGN KEY (`idTask`)
     REFERENCES `socialDevelop`.`tblTasks` (`idTask`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `socialDevelop`.`tblTypeSkills`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `socialDevelop`.`tblTypeSkills` ;
-
-CREATE TABLE IF NOT EXISTS `socialDevelop`.`tblTypeSkills` (
-  `idSkill` INT NOT NULL,
-  `idType` INT NOT NULL,
-  INDEX `fk_tblTypeSkills_tblSkills1_idx` (`idSkill` ASC),
-  INDEX `fk_tblTypeSkills_tblType1_idx` (`idType` ASC),
-  CONSTRAINT `fk_tblTypeSkills_tblSkills1`
-    FOREIGN KEY (`idSkill`)
-    REFERENCES `socialDevelop`.`tblSkills` (`idSkill`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tblTypeSkills_tblType1`
-    FOREIGN KEY (`idType`)
-    REFERENCES `socialDevelop`.`tblType` (`idType`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
