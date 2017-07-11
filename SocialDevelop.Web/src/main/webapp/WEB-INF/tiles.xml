@@ -43,5 +43,11 @@
         <put-attribute name="title" value="About"></put-attribute>
         <put-attribute name="content" value="/WEB-INF/jsp/general/index.jsp"></put-attribute>
     </definition>
+    
+        <definition name="message" extends="MasterPage">
+        <put-attribute name="title" value="message page"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/message.jsp"></put-attribute>
+    </definition>
+
 
 </tiles-definitions>
