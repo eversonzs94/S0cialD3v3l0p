@@ -1,12 +1,18 @@
-E:\WebEngineeringProjectworkspace\SocialDevelop.Web\src\main\java\com\socialdevelop\entities\Tasks.java
-E:\WebEngineeringProjectworkspace\SocialDevelop.Web\src\main\java\com\socialdevelop\services\ProjectService.java
-E:\WebEngineeringProjectworkspace\SocialDevelop.Web\src\main\java\com\socialdevelop\services\UserService.java
-E:\WebEngineeringProjectworkspace\SocialDevelop.Web\src\main\java\utilities\UserSession.java
-E:\WebEngineeringProjectworkspace\SocialDevelop.Web\src\main\java\com\socialdevelop\controllers\DefaultController.java
-E:\WebEngineeringProjectworkspace\SocialDevelop.Web\src\main\java\com\socialdevelop\entities\Project.java
-E:\WebEngineeringProjectworkspace\SocialDevelop.Web\src\main\java\com\socialdevelop\entities\Users.java
-E:\WebEngineeringProjectworkspace\SocialDevelop.Web\src\main\java\com\socialdevelop\mappers\ProjectMapper.java
-E:\WebEngineeringProjectworkspace\SocialDevelop.Web\src\main\java\com\socialdevelop\mappers\TaskMapper.java
-E:\WebEngineeringProjectworkspace\SocialDevelop.Web\src\main\java\com\socialdevelop\services\TaskService.java
-E:\WebEngineeringProjectworkspace\SocialDevelop.Web\src\main\java\com\socialdevelop\mappers\UserMapper.java
-E:\WebEngineeringProjectworkspace\SocialDevelop.Web\src\main\java\com\socialdevelop\controllers\AppController.java
+C:\Users\Credimas Tienda\Documents\GitHub\S0cialD3v3l0p\SocialDevelop.Web\src\main\java\com\socialdevelop\services\MessageService.java
+C:\Users\Credimas Tienda\Documents\GitHub\S0cialD3v3l0p\SocialDevelop.Web\src\main\java\com\socialdevelop\services\UserService.java
+C:\Users\Credimas Tienda\Documents\GitHub\S0cialD3v3l0p\SocialDevelop.Web\src\main\java\com\socialdevelop\services\RegisterService.java
+C:\Users\Credimas Tienda\Documents\GitHub\S0cialD3v3l0p\SocialDevelop.Web\src\main\java\com\socialdevelop\entities\Messages.java
+C:\Users\Credimas Tienda\Documents\GitHub\S0cialD3v3l0p\SocialDevelop.Web\src\main\java\com\socialdevelop\controllers\DefaultController.java
+C:\Users\Credimas Tienda\Documents\GitHub\S0cialD3v3l0p\SocialDevelop.Web\src\main\java\com\socialdevelop\mappers\UserMapper.java
+C:\Users\Credimas Tienda\Documents\GitHub\S0cialD3v3l0p\SocialDevelop.Web\src\main\java\utilities\UserSession.java
+C:\Users\Credimas Tienda\Documents\GitHub\S0cialD3v3l0p\SocialDevelop.Web\src\main\java\com\socialdevelop\mappers\TaskMapper.java
+C:\Users\Credimas Tienda\Documents\GitHub\S0cialD3v3l0p\SocialDevelop.Web\src\main\java\com\socialdevelop\services\TaskService.java
+C:\Users\Credimas Tienda\Documents\GitHub\S0cialD3v3l0p\SocialDevelop.Web\src\main\java\com\socialdevelop\mappers\MessageMapper.java
+C:\Users\Credimas Tienda\Documents\GitHub\S0cialD3v3l0p\SocialDevelop.Web\src\main\java\com\socialdevelop\mappers\registrationMapper.java
+C:\Users\Credimas Tienda\Documents\GitHub\S0cialD3v3l0p\SocialDevelop.Web\src\main\java\com\socialdevelop\entities\Project.java
+C:\Users\Credimas Tienda\Documents\GitHub\S0cialD3v3l0p\SocialDevelop.Web\src\main\java\com\socialdevelop\entities\Users.java
+C:\Users\Credimas Tienda\Documents\GitHub\S0cialD3v3l0p\SocialDevelop.Web\src\main\java\com\socialdevelop\mappers\ProjectMapper.java
+C:\Users\Credimas Tienda\Documents\GitHub\S0cialD3v3l0p\SocialDevelop.Web\src\main\java\com\socialdevelop\services\ProjectService.java
+C:\Users\Credimas Tienda\Documents\GitHub\S0cialD3v3l0p\SocialDevelop.Web\src\main\java\com\socialdevelop\controllers\AppController.java
+C:\Users\Credimas Tienda\Documents\GitHub\S0cialD3v3l0p\SocialDevelop.Web\src\main\java\com\socialdevelop\entities\Location.java
+C:\Users\Credimas Tienda\Documents\GitHub\S0cialD3v3l0p\SocialDevelop.Web\src\main\java\com\socialdevelop\entities\Tasks.java
