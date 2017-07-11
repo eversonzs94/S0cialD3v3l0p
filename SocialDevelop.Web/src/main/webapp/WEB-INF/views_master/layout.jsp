@@ -20,6 +20,9 @@
         <link rel="stylesheet" href="../resources/css/nivo-lightbox.css">
         <link rel="stylesheet" href="../resources/css/nivo_themes/default/default.css">
         <link rel="stylesheet" href="../resources/css/style.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="../resources/js/jquery.js"></script>
     </head>
 
     <body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
@@ -62,6 +65,7 @@
                         <li><a href="gotologinpage" class="smoothScroll">SIGN IN / SIGN UP</a></li>
                         <li><a href="about.html" class="smoothScroll">ABOUT</a></li>
                         <li><a href="index.html#contact" class="smoothScroll">CONTACT</a></li>
+                        <li><a href="${contextPath}/app/message" class="smoothScroll">MESSAGE</a></li>
                     </ul>
                 </div>
             </div>
@@ -88,9 +92,8 @@
             </div>
         </footer>
 
-        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        
         <script src="../resources/js/index.js"></script>
-        <script src="../resources/js/jquery.js"></script>
         <script src="../resources/js/bootstrap.min.js"></script>
         <script src="../resources/js/smoothscroll.js"></script>
         <script src="../resources/js/isotope.js"></script>
@@ -101,8 +104,5 @@
         <script src="../resources/js/custom.js"></script>
         <script src="../resources/js/login.js"></script>
         <script src="../resources/js/clonedivs.js"></script>
-        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     </body>
 </html>

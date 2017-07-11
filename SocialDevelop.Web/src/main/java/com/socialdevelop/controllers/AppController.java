@@ -5,13 +5,16 @@
  */
 package com.socialdevelop.controllers;
 
+import com.socialdevelop.entities.Messages;
 import com.socialdevelop.entities.Project;
 import com.socialdevelop.entities.Users;
+import com.socialdevelop.services.MessageService;
 import com.socialdevelop.services.ProjectService;
 import com.socialdevelop.services.RegisterService;
 import com.socialdevelop.services.UserService;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +25,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import com.google.gson.Gson;
 /**
  *
  * @author evers
@@ -35,6 +41,8 @@ public class AppController{
     @Autowired ProjectService service_project;
     @Autowired RegisterService service_register;
     @Autowired  private HttpServletRequest request;
+    @Autowired
+    MessageService service_message;
 
     @RequestMapping("/main")
     public String main(ModelMap model){
@@ -172,6 +180,58 @@ public class AppController{
         return "login-page";}
 
     
+    
+    
+    
+    
+    
+    ///-------MESSAGES----///
+    
+    @RequestMapping(value = "/message", method = RequestMethod.GET)
+    public String showMessages(@ModelAttribute("message") Messages message,
+            ModelMap model){
+        model.addAttribute("message",message.getMessage());
+        
+        return "message";
+    }
+
+    @RequestMapping(value = "/insertMessage", method = RequestMethod.GET)
+    public @ResponseBody
+    String insertMessage(@RequestParam("message") String message,
+            @RequestParam("idUser") Integer idUser,
+            @RequestParam("idProject") Integer idProject,
+            @RequestParam("privacy") String privacy, ModelMap model) {
+
+        int response;
+
+        if (message != null && idProject != 0 && idUser != 0 && privacy != null) {
+
+            Messages men = new Messages(message, idProject, idUser, privacy);
+
+            response = service_message.insertMessage(men);
+
+            if (response == 1) {
+                return "1";
+            } else if (response == 0) {
+                return "2";
+            } else {
+                return "3";
+            }
+        } else {
+            return "4";
+        }
+    }
+
+    @RequestMapping(value = "/getMessages", method = RequestMethod.GET, headers = "Accept=application/json")
+    public @ResponseBody String getMessages(@RequestParam("idUser") Integer idUser, ModelMap model) {
+
+        ArrayList<Messages> messages = new ArrayList<>();
+
+        messages = service_message.showMessage(idUser);
+
+        return new Gson().toJson(messages);
+
+    }
     
     
     
