@@ -29,115 +29,116 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
+
 /**
  *
  * @author evers
  */
 @Controller
 @RequestMapping("/app")
-public class AppController{
-    List<Project> projectList=null;
-    @Autowired UserService service_user;
-    @Autowired ProjectService service_project;
-    @Autowired RegisterService service_register;
-    @Autowired  private HttpServletRequest request;
+public class AppController {
+
+    List<Project> projectList = null;
+    @Autowired
+    UserService service_user;
+    @Autowired
+    ProjectService service_project;
+    @Autowired
+    RegisterService service_register;
+    @Autowired
+    private HttpServletRequest request;
     @Autowired
     MessageService service_message;
 
     @RequestMapping("/main")
-    public String main(ModelMap model){
-        projectList=service_project.browseProjects();
+    public String main(ModelMap model) {
+        projectList = service_project.browseProjects();
         model.put("projectlist", projectList);
         return "home-page";
     }
-    
+
     @RequestMapping("/gotologinpage")
-    public String goToLoginPage()
-    {
+    public String goToLoginPage() {
         return "login-page";
     }
-    
+
     @RequestMapping("/allprojects")
-    public String showAllProjects(ModelMap model)
-    {
+    public String showAllProjects(ModelMap model) {
         model.put("projectlist", projectList);
         /////here check the session then do this 
-        model.put("display","inline");
+        model.put("display", "inline");
         return "all-projects";
     }
-    
-    @RequestMapping(value="/projectpage", method = RequestMethod.GET)
-    public String viewProjectInfo(@RequestParam("name") String name,ModelMap model)
-    {
-        int id=1;
-        Project project=new Project();
+
+    @RequestMapping(value = "/projectpage", method = RequestMethod.GET)
+    public String viewProjectInfo(@RequestParam("name") String name, ModelMap model) {
+        int id = 1;
+        Project project = new Project();
         project.setName(name);
         //Project project=service_project.viewProjectInfo(id);
         model.put("project", project);
         return "project-page";
     }
-    @RequestMapping(value="/gotoaddproject")
-    public String goToAddProjectPage(){
+
+    @RequestMapping(value = "/gotoaddproject")
+    public String goToAddProjectPage() {
         return "add-project";
     }
-    
-    @RequestMapping(value="/addproject", method=RequestMethod.POST)
-    public String addProject(@RequestParam("name") String name){
-        Project project=new Project();
+
+    @RequestMapping(value = "/addproject", method = RequestMethod.POST)
+    public String addProject(@RequestParam("name") String name) {
+        Project project = new Project();
         project.setName(name);
         service_project.addProject(project);
         return "add-project";
     }
-    
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginUser(@RequestParam("name") String name, @RequestParam("password") String password, ModelMap model){
+    public String loginUser(@RequestParam("name") String name, @RequestParam("password") String password, ModelMap model) {
         Users user;
-        
-        if("".equals(name) || "".equals(password)){
+
+        if ("".equals(name) || "".equals(password)) {
             model.put("error", "You have to fill all the fields.");
             return "login-page";
         }
-        
+
         user = service_user.login(new Users(name, password));
-        
-        if(user!=null){
+
+        if (user != null) {
             utilities.UserSession.setUserData(user);
             model.put("SESSION", utilities.UserSession.getUserData());
             //projectList=service_project.browseProjects();
             model.put("projectlist", projectList);
             return "home-page";
         }
-        
+
         model.put("error", "User doesn't exist, please try again.");
         return "login-page";
     }
-    
+
     @RequestMapping("/logout")
-    public String logout(){
+    public String logout() {
         /*Clean the data of the user logged.*/
         return "login-page";
     }
-    
-    
-    
-       @RequestMapping(value ="/register", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
 //@RequestParam("birthDate")Date birthDate,,@RequestParam("profilePhoto")MultipartFile profilePhoto,
-    public String register(@RequestParam("name") String name, 
-            @RequestParam("password") String password, 
-            @RequestParam("surname") String surname, 
+    public String register(@RequestParam("name") String name,
+            @RequestParam("password") String password,
+            @RequestParam("surname") String surname,
             @RequestParam("nickname") String nickname,
-            @RequestParam("email")String email,
-            @RequestParam("phoneNumber")String phoneNumber,
-            @RequestParam("gender")String gender,
-            @RequestParam("aboutMe")String aboutMe,
-            @RequestParam("address")String address ,
-           
-            ModelMap model) throws IOException{
-       // Users user; @RequestParam("curriculum")MultipartFile curriculum,
+            @RequestParam("email") String email,
+            @RequestParam("phoneNumber") String phoneNumber,
+            @RequestParam("gender") String gender,
+            @RequestParam("aboutMe") String aboutMe,
+            @RequestParam("address") String address,
+            ModelMap model) throws IOException {
+        // Users user; @RequestParam("curriculum")MultipartFile curriculum,
         //|| "".equals(birthDate)|| "".equals(curriculum)|| "".equals(profilePhoto)
-        if("".equals(name) || "".equals(password)|| "".equals(surname)|| "".equals(nickname)|| "".equals(email)|| "".equals(phoneNumber)|| "".equals(gender)|| "".equals(aboutMe)|| "".equals(address)){
+        if ("".equals(name) || "".equals(password) || "".equals(surname) || "".equals(nickname) || "".equals(email) || "".equals(phoneNumber) || "".equals(gender) || "".equals(aboutMe) || "".equals(address)) {
             model.put("error", "You have to fill all the fields.");
-            return "login-page" ;
+            return "login-page";
         }
         //curriculum,profilePhoto,,birthDate
         /*
@@ -173,25 +174,19 @@ public class AppController{
                      }
         
         /*curriculum,profilePhoto,
-        */
-        service_register.register(new Users(name,surname,password,nickname,email,phoneNumber,gender,aboutMe,address));
+         */
+        service_register.register(new Users(name, surname, password, nickname, email, phoneNumber, gender, aboutMe, address));
         System.out.println("controller");
-        
-        return "login-page";}
 
-    
-    
-    
-    
-    
-    
+        return "login-page";
+    }
+
     ///-------MESSAGES----///
-    
     @RequestMapping(value = "/message", method = RequestMethod.GET)
     public String showMessages(@ModelAttribute("message") Messages message,
-            ModelMap model){
-        model.addAttribute("message",message.getMessage());
-        
+            ModelMap model) {
+        model.addAttribute("message", message.getMessage());
+
         return "message";
     }
 
@@ -223,16 +218,24 @@ public class AppController{
     }
 
     @RequestMapping(value = "/getMessages", method = RequestMethod.GET, headers = "Accept=application/json")
-    public @ResponseBody String getMessages(@RequestParam("idUser") Integer idUser, ModelMap model) {
+    public @ResponseBody
+    String getMessages(@RequestParam("idUser") Integer idUser,@RequestParam("idProject") Integer idProject,
+            ModelMap model) {
 
         ArrayList<Messages> messages = new ArrayList<>();
 
-        messages = service_message.showMessage(idUser);
+        messages = service_message.getMessages(idUser, idProject);
 
         return new Gson().toJson(messages);
 
     }
-    
-    
-    
+
+    @RequestMapping(value = "/isInvolvingInProject", method = RequestMethod.GET, headers = "Accept=application/json")
+    public @ResponseBody
+    String isInvolvingInProject(@RequestParam("idUser") Integer idUser,
+            @RequestParam("idProject") Integer idProject, ModelMap model) {
+
+        Integer response = service_project.isInvolvingInProject(idProject, idUser);
+        return new Gson().toJson(response);
+    }
 }

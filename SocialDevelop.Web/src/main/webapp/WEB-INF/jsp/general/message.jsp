@@ -21,8 +21,9 @@
 
     <div class="form-horizontal">
         <br>
-        <input type="hidden" name="idUser" id="idUser" value="1">
-        <input type="hidden" name="idProject" id="idProject" value="1">
+        <input type="hidden" name="idUser" id="idUser" value="">
+        <input type="hidden" name="idProject" id="idProject" value="">
+        <input type="hidden" name="involved" id="involved" value="">
         <div class="form-group">
             <div class="row col-sm-offset-1">
                 <label for="message" class="col-sm-2 control-label">Message: ${hola}</label>
@@ -34,8 +35,8 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+        <div class="form-group" style="text-align: center">
+            <div class="col-sm-12">
                 <div class="row">
                     <label class="radio-inline">
                         <input type="radio" name="privacy" id="privacy" value="public">public
@@ -79,11 +80,21 @@
 
     <script>
         $(document).ready(function () {
-        setInterval(function (){
-            showMessage();
-        }, 2000);    
+            $("#idProject").val(getUrlVars()["idProject"]);
+            $("#idUser").val(getUrlVars()["idUser"]);
+            isInvolved()
+            setInterval(function () {
+                showMessage();
+            }, 2000);
         });
 
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
 
         $("#btnPost").click(function () {
             if ($("#message").val().trim() == "") {
@@ -119,21 +130,47 @@
         function showMessage() {
             $.ajax(
                     {type: 'GET',
-                        url: "getMessages?idUser=" + $('#idUser').val(),
+                        url: "getMessages?idUser=" + $('#idUser').val() + "&idProject=" + $("#idProject").val(),
                         data: null,
                         success: function (data) {
-                            
+
                             $("#message-box").html("");
                             $("#load").hide();
                             if (data.length == 0) {
                                 $("#message-box").html("<p align='center' style='color: red;'>There is not any messages for this project...<p>");
                             } else {
                                 for (var i = 0; i < data.length; i++) {
-
-                                    $("#message-box").append("<div class='col-sm-1 col-sm-offset-2'><div class='thumbnail'><img class='img-responsive user-photo' src='https://ssl.gstatic.com/accounts/ui/avatar_2x.png'></div></div>\n\
-                                                            <div class='col-sm-7'><div class='panel panel-default'><div class='panel-heading'><strong>" + data[i].name +" "+data[i].surname +"</strong> \n\
+                                    if ($("#involved").val() == "involved") {
+                                        $("#message-box").append("<div class='col-sm-1 col-sm-offset-2'><div class='thumbnail'><img class='img-responsive user-photo' src='https://ssl.gstatic.com/accounts/ui/avatar_2x.png'></div></div>\n\
+                                                            <div class='col-sm-7'><div class='panel panel-default'><div class='panel-heading'><strong>" + data[i].name + " " + data[i].surname + "</strong> \n\
                                                             <span class='text-muted' style='display: block; float: right;'>" + data[i].dateMessage + "</span><div class='panel-body'>" + data[i].message + "</div></div></div>");
+                                    } else {
+                                        if (data[i].privacity == "public") {
+                                            $("#message-box").append("<div class='col-sm-1 col-sm-offset-2'><div class='thumbnail'><img class='img-responsive user-photo' src='https://ssl.gstatic.com/accounts/ui/avatar_2x.png'></div></div>\n\
+                                                            <div class='col-sm-7'><div class='panel panel-default'><div class='panel-heading'><strong>" + data[i].name + " " + data[i].surname + "</strong> \n\
+                                                            <span class='text-muted' style='display: block; float: right;'>" + data[i].dateMessage + "</span><div class='panel-body'>" + data[i].message + "</div></div></div>");
+                                        }
+                                    }
                                 }
+                            }
+                        }
+                    }
+            )
+        }
+
+        function isInvolved() {
+            $.ajax(
+                    {
+                        type: 'GET',
+                        url: "isInvolvingInProject?idProject=" + $('#idProject').val() + "&idUser=" + $('#idUser').val(),
+                        data: null,
+                        success: function (data) {
+                            if (data > 0) {
+                                $("#involved").val("involved")
+                            } else if (data == -1) {
+                                $("#involved").val("error")
+                            } else {
+                                $("#involved").val("no")
                             }
                         }
                     }

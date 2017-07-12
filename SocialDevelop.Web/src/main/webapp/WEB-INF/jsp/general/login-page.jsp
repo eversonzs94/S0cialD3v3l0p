@@ -7,7 +7,7 @@
 
 <div class="pen-title"></div>
 <!-- Form Module-->
-<div class="module form-module">
+<div class="module form-module form-login">
   <div class="toggle"><i class="fa fa-times fa-pencil"></i>
     <div class="tooltip">Click Me</div>
   </div>

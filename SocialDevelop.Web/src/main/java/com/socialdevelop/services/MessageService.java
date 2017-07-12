@@ -13,35 +13,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
-
-
 /**
  *
  * @author YoselineGuevara
  */
-
 @Service
-public class MessageService{
-    
-    @Autowired MessageMapper mapper;
-    
-    
-    public ArrayList<Messages> showMessage(Integer id){
-        try{
-            return mapper.showMessages(id);
-        }catch(DataAccessException ex){
+public class MessageService {
+
+    @Autowired
+    MessageMapper mapper;
+
+    public ArrayList<Messages> getMessages(Integer idUser, Integer idProject) {
+        try {
+            return mapper.getMessages(idUser, idProject);
+        } catch (DataAccessException ex) {
             //Save errors in log file.
+            return null;
         }
-        return null;
+
     }
-    
-    
-    public Integer insertMessage(Messages message){
-        try{
+
+    public Integer insertMessage(Messages message) {
+        try {
             return mapper.insertMesagges(message);
-        }catch(DataAccessException ex){
+        } catch (DataAccessException ex) {
             return -1;
         }
     }
-   
+
 }

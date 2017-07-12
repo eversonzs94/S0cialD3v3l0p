@@ -65,7 +65,7 @@
                         <li><a href="gotologinpage" class="smoothScroll">SIGN IN / SIGN UP</a></li>
                         <li><a href="about.html" class="smoothScroll">ABOUT</a></li>
                         <li><a href="index.html#contact" class="smoothScroll">CONTACT</a></li>
-                        <li><a href="${contextPath}/app/message" class="smoothScroll">MESSAGE</a></li>
+                        <li><a href="${contextPath}/app/message?idProject=3&idUser=1" class="smoothScroll">MESSAGE</a></li>
                     </ul>
                 </div>
             </div>
