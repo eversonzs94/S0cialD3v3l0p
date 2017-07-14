@@ -4,10 +4,10 @@
 
 <div class="login-wrapper"></div>
 
-
 <div class="pen-title"></div>
+
 <!-- Form Module-->
-<div class="module form-module">
+<div class="module form-module" style="max-width: 320px;">
     <div class="toggle"><i class="fa fa-times fa-pencil"></i>
         <div class="tooltip">Click Me</div>
     </div>
@@ -30,7 +30,7 @@
             <input type="text" name="surname" placeholder="Surname" required/>
             <input type="text" name="nickname" placeholder="Username" required/>
             <input type="password" name="password" placeholder="Password" required/>
-            <input type="date" name="birthDate" placeholder="Birth Date" required/>
+            <input type="date" name="birthDate" required/>
             <input type="text" name="address" placeholder="Address" required/>
             <!-- <input type="text" name="country" placeholder="Country" required/>
              <input type="text" name="city" placeholder="City" required/>-->
@@ -80,7 +80,6 @@
         </div>
         <button class="btn btn-primary" id="add_skill" type="button" style="border-radius: 0px;"> Add more skills</button>
         <button>Register</button>
-        </form>
     </div>
     <div class="cta"><a href="recovery-page.html">Forgot your password?</a></div>
 </div>

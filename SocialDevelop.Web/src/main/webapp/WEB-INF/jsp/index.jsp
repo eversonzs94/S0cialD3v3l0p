@@ -125,7 +125,7 @@
                                     <div class="project_description">
                                         <div class="des">
                                             <h1><c:out value="${item.getName()}" /></h1>
-                                            <a href="project-page-index.html">Read More</a>
+                                            <a href=projectpage?id=<c:out value="${item.getId()}" />>Read More</a>
                                         </div>
                                     </div>
                                 </div>

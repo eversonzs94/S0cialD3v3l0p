@@ -4,7 +4,7 @@ $(function() {
    
     var
     //get length of selections
-      length = $(".input-group").length,
+      length = $(".skill-select").length,
       //create new id
       newId = "selection-" + length,
       //clone first element with new id

@@ -25,7 +25,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
+import com.socialdevelop.entities.Type;
 import com.socialdevelop.services.SearchService;
+import com.socialdevelop.services.TypeService;
 import java.util.Properties;
 //import javax.websocket.Session;
 import javax.mail.Message;
@@ -58,6 +60,7 @@ public class AppController {
     @Autowired RegisterService service_register; 
     @Autowired private HttpServletRequest request;
     @Autowired MessageService service_message;
+    @Autowired TypeService service_type;
     
     
 
@@ -131,7 +134,9 @@ public class AppController {
         model.put("displaySession",displaySession);
         model.put("displayHomePage",displayHomePage);
         service_project.addProject(project);
-        return "add-project";
+        typeList=service_type.typeList();
+        model.put("typeList", typeList);
+        return "go-create-task";
     }
     
     @RequestMapping(value="/searchproject", method=RequestMethod.POST)
@@ -154,6 +159,20 @@ public class AppController {
         model.put("displayHomePage",displayHomePage);
         List<Project> subProjectList=projectList.subList(0, 5);
         model.put("projectlist", subProjectList);
+        return "home-page";
+    }
+    
+    @RequestMapping(value="/searchdevelopers")
+    public String searchDevelopers(@RequestParam("skill") String[] skills,@RequestParam("level") int[] levels){
+        for (String skill:skills)
+        {   
+                System.out.println("skill "+skill);  
+        }
+        
+        for (int level:levels)
+        {   
+                System.out.println("level "+level);  
+        }
         return "home-page";
     }
     
@@ -199,6 +218,8 @@ public class AppController {
     
     /* --------------- Start Everson -------------------- */
     
+    List<Type> typeList;
+    
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginUser(@RequestParam("name") String name, @RequestParam("password") String password, ModelMap model){
         Users user;
@@ -223,6 +244,13 @@ public class AppController {
         
         model.put("error", "User doesn't exist, please try again.");
         return "login-page";
+    }
+    
+    @RequestMapping("/goCreateTask")
+    public String goCreateTask(ModelMap model){
+        typeList=service_type.typeList();
+        model.put("typeList", typeList);
+        return "go-create-task";
     }
     
     /* --------------- End Everson -------------------- */

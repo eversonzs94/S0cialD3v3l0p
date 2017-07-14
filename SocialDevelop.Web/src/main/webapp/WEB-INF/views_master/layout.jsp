@@ -20,6 +20,9 @@
         <link rel="stylesheet" href="../resources/css/nivo-lightbox.css">
         <link rel="stylesheet" href="../resources/css/nivo_themes/default/default.css">
         <link rel="stylesheet" href="../resources/css/style.css">
+        <!--
+        <link rel="stylesheet" href="../resources/css/login.css">
+        -->
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -48,9 +51,9 @@
                         <li><a href="index.html#work" class="smoothScroll">DEVELOPERS</a></li>
                         <li><a href="allprojects" class="smoothScroll">PROJECTS</a></li>
                         <li><a href="gotologinpage" class="smoothScroll" style="display: <c:out value="${displayHomePage}"/>;">SIGN IN / SIGN UP</a></li>
-                        <li><a href="gotologinpage" class="smoothScroll" style="display: <c:out value="${displaySession}"/>;">MY PROFILE</a></li>                        
+                        <li><a href="profilepage?nickname=dimAya" class="smoothScroll" style="display: <c:out value="${displaySession}"/>;">MY PROFILE</a></li>                        
                         <li><a href="about.html" class="smoothScroll">ABOUT</a></li>
-                        <li><a href="index.html#contact" class="smoothScroll">CONTACT</a></li>
+                        <li><a href="goCreateTask" class="smoothScroll">CONTACT</a></li>
                         <li><a href="logout" class="smoothScroll" style="display: <c:out value="${displaySession}"/>;">SIGN OUT</a></li>
                     </ul>
                 </div>
@@ -64,7 +67,6 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <p>Social Develop 2017</p>
-                        <hr>
                         <ul class="social-icon">
                             <li><a href="#" class="fa fa-github wow fadeIn" data-wow-delay="0.9s"></a></li>
                             <li><a href="#" class="fa fa-youtube-play wow fadeIn" data-wow-delay="0.9s"></a></li>
@@ -81,8 +83,6 @@
         <script src="../resources/js/bootstrap.min.js"></script>
         <script src="../resources/js/clonedivs.js"></script>
         <script src="../resources/js/clonetaskdiv.js"></script>
-        <script src="../resources/js/custom.js"></script>
-        <script src="../resources/js/imagesloaded.min.js"></script>
         <script src="../resources/js/index.js"></script>
         <script src="../resources/js/isotope.js"></script>
         <script src="../resources/js/jquery.backstretch.min.js"></script>
@@ -90,8 +90,13 @@
         <script src="../resources/js/jssor.slider-23.1.6.min.js"></script>
         <script src="../resources/js/login.js"></script>
         <script src="../resources/js/nivo-lightbox.min.js"></script>
+        <!--
         <script src="../resources/js/skillvisibility.js"></script>
         <script src="../resources/js/skillvisibilitydeveloper.js"></script>
+        <script src="../resources/js/imagesloaded.min.js"></script>
+        <script src="../resources/js/custom.js"></script>
+        <script src="../resources/js/login.js"></script>
+        -->
         <script src="../resources/js/slider_carousel.js"></script>
         <script src="../resources/js/smoothscroll.js"></script>
         <script src="../resources/js/wow.min.js"></script>
