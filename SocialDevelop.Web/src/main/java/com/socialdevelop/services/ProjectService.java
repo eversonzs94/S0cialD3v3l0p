@@ -14,12 +14,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProjectService {
+    
+    /* --------------- Start Didi -------------------- */
 
-    @Autowired
-    ProjectMapper mapper;
-
-    public List<Project> browseProjects() {
-        return mapper.browseProjects();
+    @Autowired ProjectMapper mapper;
+    
+    public List<Project> browseProjects(){
+        return mapper.browseProjects();   
+    }
+    
+    public List<Project> browseProjectsByID(int id){
+        return mapper.browseProjectsByID(id);   
     }
 
     public Project viewProjectInfo(int id) {
@@ -27,9 +32,22 @@ public class ProjectService {
 
     }
 
-    public void addProject(Project project) {
+    public void addProject(Project project){
         mapper.addProject(project);
+        int id=lastProjectInserted();
+        int userId=utilities.UserSession.getUserData().getIdUser();
+        mapper.addProjectCoordinator(id,userId);
     }
+    
+    public int lastProjectInserted(){
+        try{
+            return mapper.lastProjectInserted();
+        }catch(DataAccessException ex){
+            return 0;
+        }
+    }
+    
+    /* --------------- End Didi -------------------- */
 
     public Integer isInvolvingInProject(Integer idProject, Integer idUser) {
         try {

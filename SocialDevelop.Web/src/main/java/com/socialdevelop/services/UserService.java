@@ -7,10 +7,10 @@ package com.socialdevelop.services;
 
 import com.socialdevelop.entities.Users;
 import com.socialdevelop.mappers.UserMapper;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
-
 
 /**
  *
@@ -18,14 +18,31 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserService {
-    @Autowired UserMapper mapper;
-    public Users login(Users user){
-        try{
+
+    @Autowired
+    UserMapper mapper;
+
+    public Users login(Users user) {
+        try {
             return mapper.login(user);
-        }catch(DataAccessException ex){
+        } catch (DataAccessException ex) {
             //Save errors in log file.
         }
         return null;
     }
-    
+
+    public List<Users> browseDevelopers() {
+        return mapper.browseDevelopers();
+    }
+
+    public Users viewDeveloperInfo(String nickname) {
+        return mapper.viewDeveloperInfo(nickname);
+
+    }
+    /*
+     public void addProject(Project project)
+    {
+        mapper.addProject(project);
+    }*/
+
 }

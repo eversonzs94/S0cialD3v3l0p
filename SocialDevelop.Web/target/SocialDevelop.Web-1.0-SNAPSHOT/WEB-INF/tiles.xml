@@ -11,17 +11,17 @@
         <put-attribute name="nav" value="/WEB-INF/views_master/nav.jsp"></put-attribute>-->
     </definition>
     
+    <!-- **************** Start Didi ****************** -->
+    
     <definition name="home-page" extends="MasterPage">
         <put-attribute name="title" value="Home Page"></put-attribute>
         <put-attribute name="content" value="/WEB-INF/jsp/index.jsp"></put-attribute>
     </definition>
     
-    
     <definition name="login-page" extends="MasterPage">
         <put-attribute name="title" value="Login Page"></put-attribute>
         <put-attribute name="content" value="/WEB-INF/jsp/general/login-page.jsp"></put-attribute>
     </definition>
-    
     
     <definition name="all-projects" extends="MasterPage">
         <put-attribute name="title" value="All Projects Page"></put-attribute>
@@ -33,21 +33,41 @@
         <put-attribute name="content" value="/WEB-INF/jsp/general/project-page.jsp"></put-attribute>
     </definition>
     
-     <definition name="add-project" extends="MasterPage">
+    <definition name="add-project" extends="MasterPage">
         <put-attribute name="title" value="Add New Project Page"></put-attribute>
         <put-attribute name="content" value="/WEB-INF/jsp/general/add-project.jsp"></put-attribute>
     </definition>
-    
     
     <definition name="about-page" extends="MasterPage">
         <put-attribute name="title" value="About"></put-attribute>
         <put-attribute name="content" value="/WEB-INF/jsp/general/index.jsp"></put-attribute>
     </definition>
     
-        <definition name="message" extends="MasterPage">
-        <put-attribute name="title" value="message page"></put-attribute>
-        <put-attribute name="content" value="/WEB-INF/jsp/general/message.jsp"></put-attribute>
+    <!-- **************** End Didi ****************** -->
+    
+    
+    <!-- **************** Start Tala ****************** -->
+    
+    <definition name="all-developers" extends="MasterPage">
+        <put-attribute name="title" value="All Developers Page"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/all-developers.jsp"></put-attribute>
     </definition>
+    
+    <definition name="profile-page" extends="MasterPage">
+        <put-attribute name="title" value="Developer Information Page"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/profile-page.jsp"></put-attribute>
+    </definition>
+    
+    <!-- **************** End Tala ****************** -->
+    
+    
+    <!-- **************** Start Everson ****************** -->
 
-
+    <definition name="go-create-task" extends="MasterPage">
+        <put-attribute name="title" value="create task"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/createTask.jsp"></put-attribute>
+    </definition>
+    
+    <!-- **************** End Everson ****************** -->
+    
 </tiles-definitions>

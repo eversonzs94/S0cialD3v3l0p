@@ -15,23 +15,47 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.dao.DataAccessException;
 
 public interface ProjectMapper {
-
+    /* --------------- Start Didi -------------------- */
     @Select("SELECT * FROM tblprojects")
     @Results(value = {
-        @Result(property = "name", column = "projectName")
-    }
+            @Result(property = "name", column = "projectName"),
+            @Result(property = "id", column = "idProject")
+        }
     )
     public List<Project> browseProjects() throws DataAccessException;
-
-    @Select("SELECT * FROM tblprojects")
+    
+    @Select("SELECT * from tblprojects inner join tblusersprojects "
+            + "where tblprojects.idProject=tblusersprojects.idProject "
+            + "and tblusersprojects.idUser=(#{id})")
     @Results(value = {
-        @Result(property = "name", column = "projectName")
-    }
+            @Result(property = "name", column = "projectName")
+        }
+    )
+    public List<Project> browseProjectsByID(int id) throws DataAccessException;
+
+    @Select("SELECT * FROM tblprojects where idProject=(#{id})")
+    @Results(value = {
+            @Result(property = "name", column = "projectName")
+        }
     )
     public Project viewProjectInfo(int id) throws DataAccessException;
 
-    @Insert("INSERT into tblprojects(projectName) VALUES(#{name})")
+    @Insert("INSERT into tblprojects(projectName,description,status,datePublish) "
+            + "VALUES(#{name},#{description},#{status},DATE_FORMAT(NOW(),'%Y-%c-%d'))")
     public void addProject(Project project) throws DataAccessException;
+    
+    @Insert("INSERT into tblusersprojects(idUser,idProject,idRole)"
+            + "VALUES(#{userId},#{idProject},1)")
+    public void addProjectCoordinator(@Param("idProject")int idProject,@Param("userId")int userId) throws DataAccessException;
+    
+    @Select("SELECT LAST_INSERT_ID(idProject) AS idProject FROM tblProjects ORDER BY idProject DESC LIMIT 1")
+    @Results(value = {
+            @Result(property = "idProject", column = "idProject")
+        }
+    )
+    public int lastProjectInserted() throws DataAccessException;
+
+    /* --------------- End Didi -------------------- */
 
     @Select("SELECT COUNT(*)\n"
             + "FROM tblusersprojects A\n"

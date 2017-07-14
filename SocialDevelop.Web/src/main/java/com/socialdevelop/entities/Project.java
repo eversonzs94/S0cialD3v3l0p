@@ -5,7 +5,6 @@
  */
 package com.socialdevelop.entities;
 
-import java.util.Date;
 import org.apache.ibatis.type.Alias;
 
 @Alias("Project")
@@ -13,13 +12,13 @@ public class Project {
     private int id;
     private String name;
     private String description;
-    private Date datePublish;
-     private String status;
+    private String datePublish;
+    private String status;
 
     public Project() {
     }
 
-    public Project(int id, String name, String description, Date datePublish, String status) {
+    public Project(int id, String name, String description, String datePublish, String status) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -51,11 +50,11 @@ public class Project {
         this.description = description;
     }
 
-    public Date getDatePublish() {
+    public String getDatePublish() {
         return datePublish;
     }
 
-    public void setDatePublish(Date datePublish) {
+    public void setDatePublish(String datePublish) {
         this.datePublish = datePublish;
     }
 
@@ -66,5 +65,4 @@ public class Project {
     public void setStatus(String status) {
         this.status = status;
     }
-    
 }

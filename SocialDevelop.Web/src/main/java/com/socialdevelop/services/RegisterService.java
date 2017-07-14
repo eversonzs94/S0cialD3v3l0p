@@ -19,14 +19,14 @@ import org.springframework.stereotype.Service;
 public class RegisterService {
      @Autowired registrationMapper mapper;
     public void register(Users user){
-        //try{
+        try{
             mapper.register(user);
             //System.out.println("hello");
          
-        //}catch(DataAccessException ex){
+        }catch(DataAccessException ex){
           //  System.out.println("errorrrrrr");
             //Save errors in log file.
-        //}
+        }
        // return null;
     }
 }

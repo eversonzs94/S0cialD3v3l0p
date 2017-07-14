@@ -22,23 +22,6 @@ import org.springframework.dao.DataAccessException;
  */
 public interface MessageMapper {
 
-    /*@Select("SELECT b.profilePhoto, b.name,b.surname, a.dateMessage, A.message, a.privacity, c.projectName"
-            + " FROM tblmessages A "
-            + "INNER JOIN tblusers B ON A.idUser = B.idUser "
-            + "INNER JOIN tblprojects C on a.idProject = c.idProject"
-            + "WHERE A.idUser = #{id}")
-    @Results(
-            value = {
-                @Result (property = "profilePhoto", column = "profilePhoto"),
-                @Result (property = "name", column = "name"),
-                @Result (property = "surname", column = "surname"),
-                @Result (property = "dateMessage", column = "dateMessage"),
-                @Result (property = "message", column = "message"),                
-                @Result (property ="privacity", column = "privacity"),
-                @Result (property ="projectName", column ="projectName")
-            }
-    )*/
-    //List<Messages> listMessage (@Param("id") Long projectId); 
     @Select("SELECT DISTINCT T1.message, T1.dateMessage, T2.name, T2.surname, T1.privacity\n" +
 "            FROM tblmessages T1\n" +
 "			left JOIN tblusers T2 ON T1.idUser = T2.idUser\n" +
@@ -60,7 +43,6 @@ public interface MessageMapper {
     public Integer insertMesagges(Messages msg) throws DataAccessException;
 
     @Delete("DELETE FROM tblmessages WHERE idMessage=#{idMessage}")
-
     public Messages deleteMesagges(Messages msg) throws DataAccessException;
 
 }

@@ -14,19 +14,42 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Alias("Users")
 public class Users {
-    private String idUser;
+
+    private int idUser;
     private String name;
+    private String address;
     private String surname;
     private String password;
     private String nickname;
     private String email;
     private String phoneNumber;
     private MultipartFile curriculum;
-  //  private String profilePhoto;
+    //  private String profilePhoto;
     private String gender;
     private String aboutMe;
-   //private Date birthDate;
-    private String address;
+    private String birthDate;
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public Users(String name, String surname, String password, String nickname, String email, String phoneNumber, String gender, String aboutMe, String birthDate, String address) {
+        this.name = name;
+        this.surname = surname;
+        this.password = password;
+        this.nickname = nickname;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        //    this.curriculum = curriculum;
+        this.gender = gender;
+        this.aboutMe = aboutMe;
+        this.birthDate = birthDate;
+        this.address = address;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
 
     public String getNickname() {
         return nickname;
@@ -83,6 +106,7 @@ public class Users {
     public void setAddress(String address) {
         this.address = address;
     }
+
     public Users(String name, String surname, String password, String nickname, String email, String phoneNumber, String gender, String aboutMe, String address) {
         this.name = name;
         this.surname = surname;
@@ -95,7 +119,7 @@ public class Users {
         this.address = address;
     }
 
-    public Users(String name, String surname, String password, String nickname, String email, String phoneNumber, MultipartFile curriculum, String gender, String aboutMe, String address) {
+    /*  public Users(String name, String surname, String password, String nickname, String email, String phoneNumber, MultipartFile curriculum, String gender, String aboutMe, String address) {
         this.name = name;
         this.surname = surname;
         this.password = password;
@@ -106,30 +130,27 @@ public class Users {
         this.gender = gender;
         this.aboutMe = aboutMe;
         this.address = address;
-    }
-
-    
-    
+    }*/
     public Users() {
     }
-    
-    public Users(String name, String password) {
-        this.name = name;
+
+    public Users(String nickname, String password) {
+        this.nickname = nickname;
         this.password = password;
     }
 
-    public Users(String idUser, String name, String surname, String password) {
+    public Users(int idUser, String name, String surname, String password) {
         this.idUser = idUser;
         this.name = name;
         this.surname = surname;
         this.password = password;
     }
 
-    public String getIdUser() {
+    public int getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(String idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 

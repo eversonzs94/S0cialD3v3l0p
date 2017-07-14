@@ -20,30 +20,15 @@
         <link rel="stylesheet" href="../resources/css/nivo-lightbox.css">
         <link rel="stylesheet" href="../resources/css/nivo_themes/default/default.css">
         <link rel="stylesheet" href="../resources/css/style.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="../resources/js/jquery.js"></script>
     </head>
 
     <body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
-
-        <!-- preloader section -->
-        <div class="preloader">
-            <div class="sk-spinner sk-spinner-circle">
-                <div class="sk-circle1 sk-circle"></div>
-                <div class="sk-circle2 sk-circle"></div>
-                <div class="sk-circle3 sk-circle"></div>
-                <div class="sk-circle4 sk-circle"></div>
-                <div class="sk-circle5 sk-circle"></div>
-                <div class="sk-circle6 sk-circle"></div>
-                <div class="sk-circle7 sk-circle"></div>
-                <div class="sk-circle8 sk-circle"></div>
-                <div class="sk-circle9 sk-circle"></div>
-                <div class="sk-circle10 sk-circle"></div>
-                <div class="sk-circle11 sk-circle"></div>
-                <div class="sk-circle12 sk-circle"></div>
-            </div>
-        </div>
 
         <!-- navigation section -->
         <section class="navbar navbar-fixed-top custom-navbar" >
@@ -54,18 +39,19 @@
                         <span class="icon icon-bar"></span>
                         <span class="icon icon-bar"></span>
                     </button>
-                    <a href="index.html" class="navbar-brand">SocDev</a>
+                    <a href="main" class="navbar-brand">SocDev</a>
                 </div>
 
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="index.html" class="smoothScroll">HOME</a></li>
+                        <li><a href="main" class="smoothScroll">HOME</a></li>
                         <li><a href="index.html#work" class="smoothScroll">DEVELOPERS</a></li>
-                        <li><a href="index.html#portfolio" class="smoothScroll">PROJECTS</a></li>
-                        <li><a href="gotologinpage" class="smoothScroll">SIGN IN / SIGN UP</a></li>
+                        <li><a href="allprojects" class="smoothScroll">PROJECTS</a></li>
+                        <li><a href="gotologinpage" class="smoothScroll" style="display: <c:out value="${displayHomePage}"/>;">SIGN IN / SIGN UP</a></li>
+                        <li><a href="gotologinpage" class="smoothScroll" style="display: <c:out value="${displaySession}"/>;">MY PROFILE</a></li>                        
                         <li><a href="about.html" class="smoothScroll">ABOUT</a></li>
                         <li><a href="index.html#contact" class="smoothScroll">CONTACT</a></li>
-                        <li><a href="${contextPath}/app/message?idProject=3&idUser=1" class="smoothScroll">MESSAGE</a></li>
+                        <li><a href="logout" class="smoothScroll" style="display: <c:out value="${displaySession}"/>;">SIGN OUT</a></li>
                     </ul>
                 </div>
             </div>
@@ -73,36 +59,45 @@
         
         <tiles:insertAttribute name="content"/>
         
-        <!-- footer section -->
         <footer>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
-                        <p>Project for Web Engineering</p>
+                        <p>Social Develop 2017</p>
                         <hr>
                         <ul class="social-icon">
-                            <li><a href="#" class="fa fa-facebook wow fadeIn" data-wow-delay="0.3s"></a></li>
+                            <li><a href="#" class="fa fa-github wow fadeIn" data-wow-delay="0.9s"></a></li>
+                            <li><a href="#" class="fa fa-youtube-play wow fadeIn" data-wow-delay="0.9s"></a></li>
+                            <li><a href="#" class="fa fa-google-plus wow fadeIn" data-wow-delay="0.3s"></a></li>
                             <li><a href="#" class="fa fa-twitter wow fadeIn" data-wow-delay="0.6s"></a></li>
-                            <li><a href="#" class="fa fa-dribbble wow fadeIn" data-wow-delay="0.9s"></a></li>
-                            <li><a href="#" class="fa fa-behance wow fadeIn" data-wow-delay="0.9s"></a></li>
-                            <li><a href="#" class="fa fa-tumblr wow fadeIn" data-wow-delay="0.9s"></a></li>
+                            <li><a href="#" class="fa fa-facebook wow fadeIn" data-wow-delay="0.3s"></a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </footer>
 
-        
-        <script src="../resources/js/index.js"></script>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <script src="../resources/js/bootstrap.min.js"></script>
-        <script src="../resources/js/smoothscroll.js"></script>
-        <script src="../resources/js/isotope.js"></script>
-        <script src="../resources/js/imagesloaded.min.js"></script>
-        <script src="../resources/js/nivo-lightbox.min.js"></script>
-        <script src="../resources/js/jquery.backstretch.min.js"></script>
-        <script src="../resources/js/wow.min.js"></script>
-        <script src="../resources/js/custom.js"></script>
-        <script src="../resources/js/login.js"></script>
         <script src="../resources/js/clonedivs.js"></script>
+        <script src="../resources/js/clonetaskdiv.js"></script>
+        <script src="../resources/js/custom.js"></script>
+        <script src="../resources/js/imagesloaded.min.js"></script>
+        <script src="../resources/js/index.js"></script>
+        <script src="../resources/js/isotope.js"></script>
+        <script src="../resources/js/jquery.backstretch.min.js"></script>
+        <script src="../resources/js/jquery.js"></script>
+        <script src="../resources/js/jssor.slider-23.1.6.min.js"></script>
+        <script src="../resources/js/login.js"></script>
+        <script src="../resources/js/nivo-lightbox.min.js"></script>
+        <script src="../resources/js/skillvisibility.js"></script>
+        <script src="../resources/js/skillvisibilitydeveloper.js"></script>
+        <script src="../resources/js/slider_carousel.js"></script>
+        <script src="../resources/js/smoothscroll.js"></script>
+        <script src="../resources/js/wow.min.js"></script>
+        
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     </body>
 </html>
