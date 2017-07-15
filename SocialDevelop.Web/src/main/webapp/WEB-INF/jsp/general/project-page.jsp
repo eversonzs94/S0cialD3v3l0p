@@ -193,7 +193,7 @@
                     </div><!-- /row -->
                 </div>
 
-                <c:if test="${error!=null}">
+                <c:if test="${error!=null}">    
                     <p style="color: red">${error}<p>
                     </c:if>
 

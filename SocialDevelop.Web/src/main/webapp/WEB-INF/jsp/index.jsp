@@ -74,7 +74,9 @@
                     <!-- <span data-u="arrowleft" class="jssora03l" style="top:0px;left:8px;width:55px;height:55px;" data-autocenter="2"></span>
                     <span data-u="arrowright" class="jssora03r" style="top:0px;right:8px;width:55px;height:55px;" data-autocenter="2"></span> -->
                 </div>
+                <!--
                 <script type="text/javascript">jssor_1_slider_init();</script>
+                -->
                 <!-- #endregion Jssor Slider End -->
             </div>
         </div>

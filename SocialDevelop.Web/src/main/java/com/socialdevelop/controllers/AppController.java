@@ -112,7 +112,9 @@ public class AppController {
         model.put("displaySession",displaySession);
         model.put("displayHomePage",displayHomePage);
         model.put("project", project);
-        model.put("idUser", utilities.UserSession.getUserData().getIdUser());
+        if(utilities.UserSession.getUserData() != null){
+            model.put("idUser", utilities.UserSession.getUserData().getIdUser());
+        }
         return "project-page";
     }
     
