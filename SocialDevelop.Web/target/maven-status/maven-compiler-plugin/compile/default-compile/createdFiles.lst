@@ -1,6 +1,7 @@
 com\socialdevelop\services\TaskService.class
 com\socialdevelop\services\UserService.class
 com\socialdevelop\entities\Location.class
+com\socialdevelop\mappers\SkillMapper.class
 com\socialdevelop\services\TypeService.class
 com\socialdevelop\mappers\ProjectMapper.class
 com\socialdevelop\controllers\DefaultController.class
@@ -10,10 +11,12 @@ com\socialdevelop\mappers\MessageMapper.class
 com\socialdevelop\entities\Type.class
 com\socialdevelop\mappers\UserMapper.class
 com\socialdevelop\controllers\AppController$1.class
+com\socialdevelop\entities\Skills.class
 com\socialdevelop\entities\Users.class
 com\socialdevelop\mappers\SearchMapper.class
 com\socialdevelop\services\MessageService.class
 com\socialdevelop\mappers\TaskMapper.class
+com\socialdevelop\services\SkillService.class
 com\socialdevelop\entities\Project.class
 com\socialdevelop\entities\Tasks.class
 com\socialdevelop\services\ProjectService.class

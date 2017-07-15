@@ -6,6 +6,7 @@
 package com.socialdevelop.mappers;
 
 import com.socialdevelop.entities.Project;
+import com.socialdevelop.entities.Users;
 import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -28,7 +29,8 @@ public interface ProjectMapper {
             + "where tblprojects.idProject=tblusersprojects.idProject "
             + "and tblusersprojects.idUser=(#{id})")
     @Results(value = {
-            @Result(property = "name", column = "projectName")
+            @Result(property = "name", column = "projectName"),
+            @Result(property = "id", column = "idProject")
         }
     )
     public List<Project> browseProjectsByID(int id) throws DataAccessException;
@@ -54,8 +56,39 @@ public interface ProjectMapper {
         }
     )
     public int lastProjectInserted() throws DataAccessException;
+    
+    @Select("SELECT * from tblprojects where idProject NOT IN "
+            + "(SELECT tblprojects.idProject from tblprojects u "
+            + "inner join tblusersprojects "
+            + "where tblprojects.idProject=tblusersprojects.idProject and tblusersprojects.idUser=(#{id}))")
+    @Results(value = {
+            @Result(property = "name", column = "projectName"),
+            @Result(property = "id", column = "idProject")
+        }
+    )
+    public List<Project> browseOtherProjects(int id) throws DataAccessException;
 
     /* --------------- End Didi -------------------- */
+    
+    
+    /* --------------- Start Everson -------------------- */
+    
+    @Select("SELECT * FROM tblUsersProjects INNER JOIN tblUsers ON tblUsersProjects.idUser = tblUsers.idUser WHERE tblUsersProjects.idProject = #{idProject}")
+    @Results(value = {
+        @Result(property = "name", column = "name"),
+        @Result(property = "surname", column = "surname"),
+        @Result(property = "email", column = "email"),
+        @Result(property = "nickname", column = "nickname"),
+        @Result(property = "phoneNumber", column = "phoneNumber"),
+        @Result(property = "gender", column = "gender"),
+        @Result(property = "aboutMe", column = "aboutMe"),
+        @Result(property = "birthDate", column = "birthDate"),
+        @Result(property = "address", column = "address")
+        }
+    )
+    public Users projectCoordinator(int idProject) throws DataAccessException;
+    
+    /* --------------- End Everson -------------------- */
 
     @Select("SELECT COUNT(*)\n"
             + "FROM tblusersprojects A\n"

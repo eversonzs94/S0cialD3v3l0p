@@ -16,12 +16,10 @@ import org.springframework.dao.DataAccessException;
  */
 public interface TaskMapper {
     
-    @Insert("INSERT INTO tblTasks() VALUES()")
-    
-    public Tasks addTask(Tasks task) throws DataAccessException;
+   @Insert("INSERT INTO tblTasks(taskName, description, status, collaboratorsNum, idType, idProject, startDate, dueDate) VALUES(#{taskName}, #{description}, #{status}, #{collaboratorsNum}, #{idType}, 1, #{startDate}, #{dueDate})")
+    public int addTask(Tasks task) throws DataAccessException;
     
     @Select("SELECT * FROM tblTasks")
-    
     public Tasks viewTasks(Tasks task) throws DataAccessException;
     
 }

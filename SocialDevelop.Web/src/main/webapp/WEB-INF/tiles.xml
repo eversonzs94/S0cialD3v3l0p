@@ -43,6 +43,11 @@
         <put-attribute name="content" value="/WEB-INF/jsp/general/index.jsp"></put-attribute>
     </definition>
     
+    <definition name="developers-search" extends="MasterPage">
+        <put-attribute name="title" value="Developers Search Page"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/developers-search.jsp"></put-attribute>
+    </definition>
+    
     <!-- **************** End Didi ****************** -->
     
     

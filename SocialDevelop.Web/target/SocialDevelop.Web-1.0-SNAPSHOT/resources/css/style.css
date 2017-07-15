@@ -67,7 +67,6 @@ hr {
   padding-bottom: 100px;
 }
 
-
 /* ==========================================================================
 preloader section
 ========================================================================== */
@@ -1159,6 +1158,17 @@ body {
 .form-group .form-control:last-child {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
+}
+
+.form-horizontal .form-group .write-message-form{
+    padding-left: 10%;
+    max-width: 90%;
+}
+
+.form-horizontal .form-group .btn-publish-message{
+    border: 1px;
+    background: #3fb1db;
+    color: #ffffff;
 }
 
 @media screen and (min-width: 768px) {

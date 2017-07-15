@@ -18,13 +18,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class TaskService {
     @Autowired TaskMapper mapper;
-    public Tasks addTask(Tasks task){
+    public int addTask(Tasks task){
         try{
             return mapper.addTask(task);
         }catch(DataAccessException ex){
             //Log file
+            return 0;
         }
-        return null;
     }
     
     public Tasks viewTasks(Tasks task){

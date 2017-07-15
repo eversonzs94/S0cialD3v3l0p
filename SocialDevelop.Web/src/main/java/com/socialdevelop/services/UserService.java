@@ -37,12 +37,6 @@ public class UserService {
 
     public Users viewDeveloperInfo(String nickname) {
         return mapper.viewDeveloperInfo(nickname);
-
     }
-    /*
-     public void addProject(Project project)
-    {
-        mapper.addProject(project);
-    }*/
 
 }

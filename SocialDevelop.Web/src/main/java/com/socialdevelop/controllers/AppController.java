@@ -25,8 +25,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
+import com.socialdevelop.entities.Tasks;
 import com.socialdevelop.entities.Type;
 import com.socialdevelop.services.SearchService;
+import com.socialdevelop.services.TaskService;
 import com.socialdevelop.services.TypeService;
 import java.util.Properties;
 //import javax.websocket.Session;
@@ -61,6 +63,7 @@ public class AppController {
     @Autowired private HttpServletRequest request;
     @Autowired MessageService service_message;
     @Autowired TypeService service_type;
+    @Autowired TaskService service_task;
     
     
 
@@ -97,16 +100,33 @@ public class AppController {
     }
     
     @RequestMapping("/allprojects")
-    public String showAllProjects(ModelMap model){
-        model.put("projectlist", projectList);
+    public String showAllProjects(ModelMap model)
+    {  
         checkSession();
         model.put("displaySession",displaySession);
         model.put("displayHomePage",displayHomePage);
+        if (displaySession.equals("none"))
+        {
+            model.put("showall","");
+            model.put("showparts","none");
+            model.put("projectlist", projectList);
+        }
+        else
+        {
+            model.put("showall","none");
+            model.put("showparts","");
+            int id=utilities.UserSession.getUserData().getIdUser();
+            List<Project> projectListByID=service_project.browseProjectsByID(id);
+            model.put("projectlist", projectListByID);
+            List<Project> otherProjectList=service_project.browseOtherProjects(id);
+            model.put("otherprojectlist", otherProjectList);
+        }
         return "all-projects";
     }
     
     @RequestMapping(value="/projectpage", method = RequestMethod.GET)
     public String viewProjectInfo(@RequestParam("id") int id,ModelMap model){
+        Users coordinatorProject = new Users();
         Project project=service_project.viewProjectInfo(id);
         checkSession();
         model.put("displaySession",displaySession);
@@ -115,6 +135,8 @@ public class AppController {
         if(utilities.UserSession.getUserData() != null){
             model.put("idUser", utilities.UserSession.getUserData().getIdUser());
         }
+        coordinatorProject = service_project.projectCoordinator(id);
+        model.put("coordinatorProject", coordinatorProject);
         return "project-page";
     }
     
@@ -124,6 +146,14 @@ public class AppController {
         model.put("displaySession",displaySession);
         model.put("displayHomePage",displayHomePage);
         return "add-project";
+    }
+    
+    @RequestMapping(value="/gotosearchdeveloperspage")
+    public String goToSearchDevelopersPage(ModelMap model){
+        checkSession();
+        model.put("displaySession",displaySession);
+        model.put("displayHomePage",displayHomePage);
+        return "developers-search";
     }
     
     @RequestMapping(value="/addproject", method=RequestMethod.POST)
@@ -146,6 +176,8 @@ public class AppController {
         String[] keywords = keyword.split(" +");
         List<Project>  projectResult=service_search.searchProjectMultipleKeywords(keywords);
         checkSession();
+        model.put("showall","");
+        model.put("showparts","none");
         model.put("displaySession",displaySession);
         model.put("displayHomePage",displayHomePage);
         model.put("projectlist",projectResult);
@@ -166,15 +198,13 @@ public class AppController {
     
     @RequestMapping(value="/searchdevelopers")
     public String searchDevelopers(@RequestParam("skill") String[] skills,@RequestParam("level") int[] levels){
-        for (String skill:skills)
-        {   
-                System.out.println("skill "+skill);  
-        }
         
-        for (int level:levels)
-        {   
-                System.out.println("level "+level);  
+        List<Users> search=service_search.searchDevelopers(skills, levels);
+        for(Users user:search)
+        {
+            System.out.println(user.getName());
         }
+            
         return "home-page";
     }
     
@@ -252,6 +282,24 @@ public class AppController {
     public String goCreateTask(ModelMap model){
         typeList=service_type.typeList();
         model.put("typeList", typeList);
+        return "go-create-task";
+    }
+    
+    @RequestMapping(value="/createTask", method=RequestMethod.POST)
+    public String createTask(@RequestParam("taskName") String taskName, @RequestParam("description") String description,
+            @RequestParam("collaboratorsNum") int collaboratorsNum, @RequestParam("startDate") String startDate, @RequestParam("dueDate") String dueDate,
+            @RequestParam("type") int idType, ModelMap model){
+        
+        int resultAddTask;
+        
+        if("".equals(taskName) || "".equals(description) || "".equals(collaboratorsNum) || "".equals(startDate) || "".equals(dueDate) || "".equals(idType)){
+            model.put("message", "You have to fill all the fields.");
+            return "go-create-task";
+        }
+        
+        resultAddTask = service_task.addTask(new Tasks(taskName, description, "Open", collaboratorsNum, idType, startDate, dueDate));
+
+        model.put("message", "You have created a new task.");
         return "go-create-task";
     }
     

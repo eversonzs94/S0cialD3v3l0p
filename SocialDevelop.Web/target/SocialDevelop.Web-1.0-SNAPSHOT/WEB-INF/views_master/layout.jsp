@@ -48,7 +48,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="main" class="smoothScroll">HOME</a></li>
-                        <li><a href="index.html#work" class="smoothScroll">DEVELOPERS</a></li>
+                        <li><a href="alldevelopers" class="smoothScroll">DEVELOPERS</a></li>
                         <li><a href="allprojects" class="smoothScroll">PROJECTS</a></li>
                         <li><a href="gotologinpage" class="smoothScroll" style="display: <c:out value="${displayHomePage}"/>;">SIGN IN / SIGN UP</a></li>
                         <li><a href="profilepage?nickname=dimAya" class="smoothScroll" style="display: <c:out value="${displaySession}"/>;">MY PROFILE</a></li>                        

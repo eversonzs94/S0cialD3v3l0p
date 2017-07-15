@@ -5,23 +5,35 @@
  */
 package com.socialdevelop.entities;
 
-import java.util.Date;
+import org.apache.ibatis.type.Alias;
 
 /**
  *
  * @author evers
  */
+@Alias("Tasks")
 public class Tasks {
     private int idTask;
     private String taskName;
     private String description;
     private String status;
     private int collaboratorsNum;
-    //****************** Add here idType, idProject
-    private Date startDate;
-    private Date dueDate;   
+    private int idType;
+    //****************** Add here idProject
+    private String startDate;
+    private String dueDate;   
     
     public Tasks(){}
+
+    public Tasks(String taskName, String description, String status, int collaboratorsNum, int idType, String startDate, String dueDate) {
+        this.taskName = taskName;
+        this.description = description;
+        this.status = status;
+        this.collaboratorsNum = collaboratorsNum;
+        this.idType = idType;
+        this.startDate = startDate;
+        this.dueDate = dueDate;
+    }
 
     public int getIdTask() {
         return idTask;
@@ -63,20 +75,28 @@ public class Tasks {
         this.collaboratorsNum = collaboratorsNum;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
-    }    
+    } 
+
+    public int getIdType() {
+        return idType;
+    }
+
+    public void setIdType(int idType) {
+        this.idType = idType;
+    }
     
 }

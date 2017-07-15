@@ -6,6 +6,7 @@
 package com.socialdevelop.services;
 
 import com.socialdevelop.entities.Project;
+import com.socialdevelop.entities.Users;
 import com.socialdevelop.mappers.ProjectMapper;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,6 @@ public class ProjectService {
 
     public Project viewProjectInfo(int id) {
         return mapper.viewProjectInfo(id);
-
     }
 
     public void addProject(Project project){
@@ -47,8 +47,21 @@ public class ProjectService {
         }
     }
     
+    public List<Project> browseOtherProjects(int id){
+        return mapper.browseOtherProjects(id);
+    }
+    
     /* --------------- End Didi -------------------- */
-
+    
+    
+    /* --------------- Start Everson -------------------- */
+    
+    public Users projectCoordinator(int idProject){
+        return mapper.projectCoordinator(idProject);
+    }
+    
+    /* --------------- End Everson -------------------- */
+    
     public Integer isInvolvingInProject(Integer idProject, Integer idUser) {
         try {
             return mapper.isInvolvingInProject(idProject, idUser);

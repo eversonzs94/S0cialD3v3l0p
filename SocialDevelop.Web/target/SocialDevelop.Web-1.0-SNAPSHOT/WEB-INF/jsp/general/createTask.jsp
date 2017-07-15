@@ -33,12 +33,6 @@
                     <option value="${item.getIdType()}">${item.getTypeName()}</option>
                     </c:forEach>
                 </select>
-                 
-                <label>Status</label> 
-                <select name="status" required>
-                    <option value="open">Open</option>
-                    <option value="closed">Closed</option>
-                </select>
                 
                 <label>Skills</label>
                 <div class="row" id="selections">

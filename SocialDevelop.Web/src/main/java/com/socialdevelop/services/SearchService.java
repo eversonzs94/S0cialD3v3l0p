@@ -1,6 +1,7 @@
 package com.socialdevelop.services;
 
 import com.socialdevelop.entities.Project;
+import com.socialdevelop.entities.Users;
 import com.socialdevelop.mappers.SearchMapper;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +29,34 @@ public class SearchService {
             for (String keyword:keywords)
             {   
                 try{
-                   mapper.addKeyword(keyword);
+                   mapper.addKeyword(keyword,0);
                 }catch(DataAccessException ex){
-                    continue;
                 }     
             }
             List<Project> projects=mapper.searchProjectMultipleKeywords();
             mapper.deleteKeywords();
             return projects;
         }
+    }
+    
+    public  List<Users> searchDevelopers(String[] skills,int[] levels)
+    {
+        for (int i = 0; i < skills.length; i++)
+        {
+            ////here check if it is empty 
+            if (!skills[i].isEmpty())
+            {    
+                try{
+                   mapper.addKeyword(skills[i],levels[i]);
+                }catch(DataAccessException ex){
+                   
+                }     
+            }
+                
+        }
+        List<Users> users=mapper.searchDevelopers();
+        mapper.deleteKeywords();
+        return users;
     }
     
 }
