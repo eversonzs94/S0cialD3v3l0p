@@ -139,9 +139,10 @@ public class AppController {
         model.put("coordinatorProject", service_project.projectCoordinator(id));
         model.put("tasksList", service_task.getProjectTasks(id));
         
-        //List<Tasks> taskSkills = service_task.getListSkillsTask(id);
+        List<Tasks> taskSkills = service_task.getListSkillsTask(id);
+        System.out.println(taskSkills.get(0).getSkillList().get(0).getSkillName());
         
-        //model.put("taskSkills", taskSkills);
+        model.put("taskSkills", taskSkills);
         
         return "project-page";
     }
@@ -174,6 +175,7 @@ public class AppController {
         service_project.addProject(project);
         typeList=service_type.typeList();
         model.put("typeList", typeList);
+        model.put("skillList", service_skill.showSkillsList());
         model.put("project", service_project.viewProjectInfo(service_project.lastProjectInserted()));
         return "go-create-task";
     }

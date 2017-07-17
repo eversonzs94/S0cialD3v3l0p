@@ -59,7 +59,7 @@ public class TaskService {
             System.out.println("Error: ---> " + ex.getMessage());
             return null;
         }catch(Exception e){
-            System.out.println("Error: ---> " + e.getMessage());
+            System.out.println("Error: ---> " + e.getCause().getMessage() + " 3" + e.getMessage());
             return null;
         }
     }

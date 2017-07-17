@@ -7,10 +7,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12">
-                <h3>Social Development Platform</h3>
-                <h1>SocDev</h1>
+                <h2>Social Development Platform</h2>
+                <h1><b>SocDev</b></h1>
                 <a href="#work" class="smoothScroll btn btn-danger">Browse for Developers</a>
-                <a href="#portfolio" class="smoothScroll btn btn-default">Browse for Projects</a>
+                <a href="#portfolio" class="smoothScroll btn btn-danger">Browse for Projects</a>
             </div>
         </div>
     </div>

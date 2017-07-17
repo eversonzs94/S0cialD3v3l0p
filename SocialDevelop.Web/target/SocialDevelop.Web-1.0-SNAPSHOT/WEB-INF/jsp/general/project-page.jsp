@@ -51,15 +51,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach items="${tasksList}" var="item">
+                            <c:forEach items="${taskSkills}" var="item">
                                 <tr>
                                     <td><a href="#">${item.getTaskName()}</a></td>
                                     <td>${item.getStatus()}</td>
-                                    <c:forEach items="${taskSkills}" var="skills">
-                                        <td>
-                                            ${skills.getSkillList().getSkillName()}<br>
-                                        </td>
-                                    </c:forEach>
+                                    <td>
+                                        <c:forEach items="${item.getSkillList()}" var="skills">
+                                            ${skills.getSkillName()}<br>
+                                        </c:forEach>    
+                                    </td>
                                     <td><a href="#">Developer</a></td>
                                 </tr>
                             </c:forEach>

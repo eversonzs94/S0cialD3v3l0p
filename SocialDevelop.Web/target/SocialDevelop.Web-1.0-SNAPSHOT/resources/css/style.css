@@ -76,7 +76,7 @@ Start of my styles
     background: #3fb1db;
     color: #ffffff;
 }
-
+/*
 .backstretch{
     left: 0px; 
     top: 0px; 
@@ -98,8 +98,8 @@ Start of my styles
     max-width: none; 
     z-index: -999999;
     left: 0px; 
-    /*top: -354.628px;*/
-}
+    top: -354.628px;
+} */
 
 /* ==========================================================================
 End of my styles
@@ -311,6 +311,7 @@ home section
       align-items: center;
   height: 100vh;
   text-align: center;
+  background-image: url(../images/background-index.jpg)
 }
 #home h1 {
   font-size: 40px;
@@ -339,7 +340,7 @@ home section
   border-color: transparent;
 }
 #home .btn-danger {
-  background: #00c6d7;
+  background: #0081ca;
   border-color: transparent;
 }
 #home .btn-danger:hover {

@@ -23,6 +23,13 @@
         <!--
         <link rel="stylesheet" href="../resources/css/login.css">
         -->
+        
+        <!-- Js only for Slider -->
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
+	<script src="../resources/js/jssor.slider-23.1.6.min.js" type="text/javascript"></script>
+	<script src="../resources/js/slider_carousel.js" type="text/javascript"></script>
+	<!-- End Of Js Only for Slider -->
+        
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -34,7 +41,7 @@
     <body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
         <!-- navigation section -->
-        <section class="navbar navbar-fixed-top custom-navbar" >
+        <section class="navbar navbar-fixed-top custom-navbar" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -87,17 +94,16 @@
         <script src="../resources/js/isotope.js"></script>
         <script src="../resources/js/jquery.backstretch.min.js"></script>
         <script src="../resources/js/jquery.js"></script>
-        <script src="../resources/js/jssor.slider-23.1.6.min.js"></script>
         <script src="../resources/js/login.js"></script>
         <script src="../resources/js/nivo-lightbox.min.js"></script>
+        
         <!--
-        <script src="../resources/js/skillvisibility.js"></script>
-        <script src="../resources/js/skillvisibilitydeveloper.js"></script>
         <script src="../resources/js/imagesloaded.min.js"></script>
         <script src="../resources/js/custom.js"></script>
+        <script src="../resources/js/skillvisibility.js"></script>
+        <script src="../resources/js/skillvisibilitydeveloper.js"></script>
         <script src="../resources/js/login.js"></script>
         -->
-        <script src="../resources/js/slider_carousel.js"></script>
         <script src="../resources/js/smoothscroll.js"></script>
         <script src="../resources/js/wow.min.js"></script>
         
