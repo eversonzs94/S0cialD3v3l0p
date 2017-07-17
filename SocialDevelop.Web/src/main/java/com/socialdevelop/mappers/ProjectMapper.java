@@ -37,7 +37,8 @@ public interface ProjectMapper {
 
     @Select("SELECT * FROM tblprojects where idProject=(#{id})")
     @Results(value = {
-            @Result(property = "name", column = "projectName")
+            @Result(property = "name", column = "projectName"),
+            @Result(property = "id", column = "idProject")
         }
     )
     public Project viewProjectInfo(int id) throws DataAccessException;

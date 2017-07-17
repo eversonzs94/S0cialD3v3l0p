@@ -36,37 +36,33 @@
         <div class="w3-twothird">
             <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
                 <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-tasks fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Tasks</h2>
+                <form action="${contextPath}/app/goCreateTask" method="POST">
+                    <input type="hidden" name="idProject" value=${project.getId()} required=""/>
+                    <button type="submit" class="btn btn-add-new-task" />+ Add new task</button>
+                </form>
                 <div class="w3-container">
                     <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>Name</th>
                                 <th>Status</th>
+                                <th>Skills</th>
                                 <th>Developers</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Task</td>
-                                <td><a href="project-page.html">Project Name</a></td>
-                                <td><a href="#">Developer1</a></td>
-                            </tr>
-                            <tr>
-                                <td>Task</td>
-                                <td><a href="project-page.html">${project.getName()}</a></td>
-                                <td>
-                                    <a href="#">Developer1</a><br>
-                                    <a href="#">Developer2</a><br>
-                                    <a href="#">Developer2</a><br>  
-                                    <a href="#">Developer2</a><br>  
-                                    <a href="#">Developer2</a><br>  
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Task</td>
-                                <td><a href="project-page.html">Project Name</a></td>
-                                <td><a href="#">Developer1</a></td>
-                            </tr>
+                            <c:forEach items="${tasksList}" var="item">
+                                <tr>
+                                    <td><a href="#">${item.getTaskName()}</a></td>
+                                    <td>${item.getStatus()}</td>
+                                    <c:forEach items="${taskSkills}" var="skills">
+                                        <td>
+                                            ${skills.getSkillList().getSkillName()}<br>
+                                        </td>
+                                    </c:forEach>
+                                    <td><a href="#">Developer</a></td>
+                                </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                     <!-- <button class="w3-button w3-black">View</button>-->

@@ -16,11 +16,11 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.dao.DataAccessException;
 
-
 public interface SearchMapper {
     @Select("SELECT * FROM tblprojects where projectName like (#{keyword}) or description like (#{keyword})" )
     @Results(value = {
-            @Result(property = "name", column = "projectName")
+            @Result(property = "name", column = "projectName"),
+            @Result(property = "id", column = "idProject")
         }
     )
     public List<Project> searchProject(String keyword) throws DataAccessException;
@@ -28,7 +28,8 @@ public interface SearchMapper {
     @Select("SELECT I.* FROM tblprojects I INNER JOIN (SELECT keyword FROM tblkeywords) "
             + "E ON I.projectName LIKE CONCAT('%',E.keyword,'%') or I.description LIKE CONCAT('%',E.keyword,'%')")
     @Results(value = {
-            @Result(property = "name", column = "projectName")
+            @Result(property = "name", column = "projectName"),
+            @Result(property = "id", column = "idProject")
         }
     )
     public List<Project> searchProjectMultipleKeywords() throws DataAccessException;

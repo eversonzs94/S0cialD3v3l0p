@@ -7,6 +7,7 @@ package com.socialdevelop.services;
 
 import com.socialdevelop.entities.Tasks;
 import com.socialdevelop.mappers.TaskMapper;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -27,12 +28,48 @@ public class TaskService {
         }
     }
     
-    public Tasks viewTasks(Tasks task){
+    public int insertTaskSkills(int[] idSkills, int[] levels){
+        int idTask = lastTaskInserted();
+        for (int i = 0; i < idSkills.length; i++){
+            if (!"".equals(idSkills[i])){
+                try{
+                   mapper.insertTaskSkills(idSkills[i], idTask, levels[i]);
+                }catch(DataAccessException ex){
+                    System.out.println("Error: ---> " + ex.getMessage());
+                    return 0;
+                } 
+            }
+        }
+        return 1;
+    }
+    
+    public List<Tasks> getProjectTasks(int idProject){
         try{
-            return mapper.viewTasks(task);
+            return mapper.getProjectTasks(idProject);
         }catch(DataAccessException ex){
             //Log file
+            return null;
         }
-        return null;
     }
+    
+    public List<Tasks> getListSkillsTask(int idProject){
+        try{
+            return mapper.getListSkillsTask(idProject);
+        }catch(DataAccessException ex){
+            System.out.println("Error: ---> " + ex.getMessage());
+            return null;
+        }catch(Exception e){
+            System.out.println("Error: ---> " + e.getMessage());
+            return null;
+        }
+    }
+    
+    public int lastTaskInserted(){
+        try{
+            return mapper.lastTaskInserted();
+        }catch(DataAccessException ex){
+            return 0;
+        }
+    }
+        
 }

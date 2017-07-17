@@ -18,6 +18,7 @@ public class Skills {
     private String skillName;
     private int idSkillFather;
     private String[] skills;
+    private int level;
         
     public Skills(){}  
     
@@ -63,4 +64,13 @@ public class Skills {
     public void setSkills(String[] skills) {
         this.skills = skills;
     }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+    
 }

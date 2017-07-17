@@ -16,7 +16,10 @@
     <div></div>
     <div class="form">
         <form action="${contextPath}/app/createTask" method="POST">
-            <h2>Create a new task for project: </h2><br>
+            <h2>Create a new task for project: ${project.getName()}</h2><br>
+                <c:if test="${message!=null}">
+                    <p style="color: blue; float: right;">${message}</p><br>
+                </c:if>
                 <label>Task name</label><input type="text" name="taskName" placeholder="task name" required/>
                 <label>Task description</label><textarea name="description" class="form-control" id="tasktDescription" placeholder="Task description" required=""></textarea><br>
                 <label>Collaborators number</label><input type="number" name="collaboratorsNum" placeholder="collaborators number" required=""/>
@@ -28,27 +31,27 @@
                 
                 <label>Type</label> 
                 <select name="type" required>
-                    <option disabled="true" selected="true">Select the type of this task.</option>
+                    <option disabled="true" selected="true" value="">Select the type of this task.</option>
                     <c:forEach items="${typeList}" var="item">
-                    <option value="${item.getIdType()}">${item.getTypeName()}</option>
+                        <option value="${item.getIdType()}">${item.getTypeName()}</option>
                     </c:forEach>
                 </select>
+                <input type="hidden" name="idProject" value=${project.getId()} required=""/>
                 
                 <label>Skills</label>
                 <div class="row" id="selections">
                     <div class="skill-select" id="selection">
-                        <div class="col-sm-6 form-group">
-                            <select class="show-tick" id="select" name="Skill" required>
-                                <option disabled="true" selected="true">Select a skill for this task.</option>
-                                <option value="HTML">HTML</option>
-                                <option value="CSS">CSS</option>
-                                <option value="JAVA">JAVA</option>
-                                <option value="MySQL">MySQL</option>
+                        <div class="col-sm-8 form-group">
+                            <select class="show-tick" id="select" name="idSkill" required>
+                                <option disabled="true" selected="true" value="">Select a skill for this task.</option>
+                                <c:forEach items="${skillList}" var="item">
+                                    <option value="${item.getIdSkill()}">${item.getSkillName()}</option>
+                                </c:forEach>
                             </select>
                         </div>
-                        <div class="col-sm-6 form-group">
+                        <div class="col-sm-4 form-group">
                             <select class="show-tick" id="select" name="skillLevel" required>
-                                <option disabled="true" selected="true">Skill level required.</option>
+                                <option disabled="true" selected="true" value="">Skill level required.</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -66,15 +69,10 @@
                 <a class="btn btn-primary" id="add_skill" type="button" >Add other skill</a><br>
                 
                 <button type="submit" />Create task</button><br><br>
-                <c:if test="${message!=null}">
-                    <p style="color: red">${message}</p>
+                
+                <c:if test="${error!=null}">
+                    <p style="color: red">${error}</p>
                 </c:if>
-                <c:if test="${startDate!=null}">
-                    <p style="color: blue">${startDate}</p>
-                </c:if>
-            <c:if test="${error!=null}">
-                <p style="color: blue">${error}</p>
-            </c:if>
         </form>
     </div>
 </div>

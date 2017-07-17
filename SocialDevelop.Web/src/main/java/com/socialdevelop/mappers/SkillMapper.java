@@ -11,7 +11,6 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 import org.springframework.dao.DataAccessException;
 
 /**
@@ -36,6 +35,7 @@ public interface SkillMapper {
     /* SHOW tblSkills */
     @Select("SELECT * FROM tblSkills")
     @Results( value = {
+        @Result(property = "idSkill", column = "idSkill"),
         @Result(property = "skillName", column = "skillName"), 
         @Result(property = "idSkillFather", column = "idSkillFather")                    
     })

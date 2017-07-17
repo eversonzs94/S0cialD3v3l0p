@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 import com.socialdevelop.entities.Tasks;
 import com.socialdevelop.entities.Type;
 import com.socialdevelop.services.SearchService;
+import com.socialdevelop.services.SkillService;
 import com.socialdevelop.services.TaskService;
 import com.socialdevelop.services.TypeService;
 import java.util.Properties;
@@ -64,6 +65,7 @@ public class AppController {
     @Autowired MessageService service_message;
     @Autowired TypeService service_type;
     @Autowired TaskService service_task;
+    @Autowired SkillService service_skill;
     
     
 
@@ -101,7 +103,7 @@ public class AppController {
     
     @RequestMapping("/allprojects")
     public String showAllProjects(ModelMap model)
-    {  
+    {
         checkSession();
         model.put("displaySession",displaySession);
         model.put("displayHomePage",displayHomePage);
@@ -126,7 +128,6 @@ public class AppController {
     
     @RequestMapping(value="/projectpage", method = RequestMethod.GET)
     public String viewProjectInfo(@RequestParam("id") int id,ModelMap model){
-        Users coordinatorProject = new Users();
         Project project=service_project.viewProjectInfo(id);
         checkSession();
         model.put("displaySession",displaySession);
@@ -135,8 +136,13 @@ public class AppController {
         if(utilities.UserSession.getUserData() != null){
             model.put("idUser", utilities.UserSession.getUserData().getIdUser());
         }
-        coordinatorProject = service_project.projectCoordinator(id);
-        model.put("coordinatorProject", coordinatorProject);
+        model.put("coordinatorProject", service_project.projectCoordinator(id));
+        model.put("tasksList", service_task.getProjectTasks(id));
+        
+        //List<Tasks> taskSkills = service_task.getListSkillsTask(id);
+        
+        //model.put("taskSkills", taskSkills);
+        
         return "project-page";
     }
     
@@ -168,6 +174,7 @@ public class AppController {
         service_project.addProject(project);
         typeList=service_type.typeList();
         model.put("typeList", typeList);
+        model.put("project", service_project.viewProjectInfo(service_project.lastProjectInserted()));
         return "go-create-task";
     }
     
@@ -197,7 +204,7 @@ public class AppController {
     }
     
     @RequestMapping(value="/searchdevelopers")
-    public String searchDevelopers(@RequestParam("skill") String[] skills,@RequestParam("level") int[] levels){
+    public String searchDevelopers(@RequestParam("skill") String[] skills, @RequestParam("level") int[] levels){
         
         List<Users> search=service_search.searchDevelopers(skills, levels);
         for(Users user:search)
@@ -278,27 +285,44 @@ public class AppController {
         return "login-page";
     }
     
-    @RequestMapping("/goCreateTask")
-    public String goCreateTask(ModelMap model){
+    @RequestMapping(value="/goCreateTask", method=RequestMethod.POST)
+    public String goCreateTask(@RequestParam("idProject") int idProject, ModelMap model){
         typeList=service_type.typeList();
         model.put("typeList", typeList);
+        model.put("project", service_project.viewProjectInfo(idProject));
+        model.put("skillList", service_skill.showSkillsList());
         return "go-create-task";
     }
     
     @RequestMapping(value="/createTask", method=RequestMethod.POST)
-    public String createTask(@RequestParam("taskName") String taskName, @RequestParam("description") String description,
-            @RequestParam("collaboratorsNum") int collaboratorsNum, @RequestParam("startDate") String startDate, @RequestParam("dueDate") String dueDate,
-            @RequestParam("type") int idType, ModelMap model){
+    public String createTask(@RequestParam("taskName") String taskName,
+            @RequestParam("description") String description,
+            @RequestParam("collaboratorsNum") int collaboratorsNum,
+            @RequestParam("startDate") String startDate,
+            @RequestParam("dueDate") String dueDate,
+            @RequestParam("type") int idType,
+            @RequestParam("idProject") int idProject,
+            @RequestParam("idSkill") int[] idSkills,
+            @RequestParam("skillLevel") int[] levels,
+            ModelMap model){
         
         int resultAddTask;
+        typeList = service_type.typeList();
         
         if("".equals(taskName) || "".equals(description) || "".equals(collaboratorsNum) || "".equals(startDate) || "".equals(dueDate) || "".equals(idType)){
-            model.put("message", "You have to fill all the fields.");
+            model.put("error", "You have to fill all the fields. *");
+            model.put("project", service_project.viewProjectInfo(idProject));
+            model.put("typeList", typeList);
+            model.put("skillList", service_skill.showSkillsList());
             return "go-create-task";
         }
         
-        resultAddTask = service_task.addTask(new Tasks(taskName, description, "Open", collaboratorsNum, idType, startDate, dueDate));
-
+        resultAddTask = service_task.addTask(new Tasks(taskName, description, "Open", collaboratorsNum, idType, idProject, startDate, dueDate));
+        service_task.insertTaskSkills(idSkills, levels);
+        
+        model.put("project", service_project.viewProjectInfo(idProject));
+        model.put("typeList", typeList);
+        model.put("skillList", service_skill.showSkillsList());
         model.put("message", "You have created a new task.");
         return "go-create-task";
     }

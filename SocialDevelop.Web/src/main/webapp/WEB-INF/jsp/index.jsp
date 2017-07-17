@@ -13,7 +13,8 @@
                 <a href="#portfolio" class="smoothScroll btn btn-default">Browse for Projects</a>
             </div>
         </div>
-    </div>		
+    </div>
+    
 </section>
 
 <!-- work section -->
@@ -81,6 +82,7 @@
             </div>
         </div>
         <h3><a href="alldevelopers" style="margin-top: 12px; color: #00C6D7; text-decoration: none;">See More Developers</a></h3>
+    </div>
 </section>
 
 <!-- portfolio section -->
@@ -95,16 +97,6 @@
                 <!-- ISO section -->
                 <div class="iso-section">
                     <ul class="filter-wrapper clearfix">
-                        <li><a href="#" data-filter="*" class="selected opc-main-bg">All</a></li>
-                        <li><a href="#" class="opc-main-bg" data-filter=".html">HTML</a></li>
-                        <li><a href="#" class="opc-main-bg" data-filter=".photoshop">Photoshop</a></li>
-                        <li><a href="#" class="opc-main-bg" data-filter=".wordpress">Wordpress</a></li>
-                        <li><a href="#" class="opc-main-bg" data-filter=".mobile">Mobile</a></li>
-                        <li><a href="#" data-filter="*" class="selected opc-main-bg">All</a></li>
-                        <li><a href="#" class="opc-main-bg" data-filter=".html">HTML</a></li>
-                        <li><a href="#" class="opc-main-bg" data-filter=".photoshop">Photoshop</a></li>
-                        <li><a href="#" class="opc-main-bg" data-filter=".wordpress">Wordpress</a></li>
-                        <li><a href="#" class="opc-main-bg" data-filter=".mobile">Mobile</a></li>
                         <li><a href="#" data-filter="*" class="selected opc-main-bg">All</a></li>
                         <li><a href="#" class="opc-main-bg" data-filter=".html">HTML</a></li>
                         <li><a href="#" class="opc-main-bg" data-filter=".photoshop">Photoshop</a></li>

@@ -5,6 +5,7 @@
  */
 package com.socialdevelop.entities;
 
+import java.util.List;
 import org.apache.ibatis.type.Alias;
 
 /**
@@ -19,22 +20,46 @@ public class Tasks {
     private String status;
     private int collaboratorsNum;
     private int idType;
-    //****************** Add here idProject
+    private int idProject;
     private String startDate;
-    private String dueDate;   
+    private String dueDate;
+    private Skills skill;
+    private List<Skills> skillList;
     
     public Tasks(){}
 
-    public Tasks(String taskName, String description, String status, int collaboratorsNum, int idType, String startDate, String dueDate) {
+    public Tasks(String taskName, String description, String status, int collaboratorsNum, int idType, int idProject, String startDate, String dueDate) {
         this.taskName = taskName;
         this.description = description;
         this.status = status;
         this.collaboratorsNum = collaboratorsNum;
         this.idType = idType;
+        this.idProject = idProject;
         this.startDate = startDate;
         this.dueDate = dueDate;
     }
 
+    public Tasks(int idTask, String taskName, String description, String status, int collaboratorsNum, int idType, int idProject, String startDate, String dueDate, List<Skills> skillList) {
+        this.idTask = idTask;
+        this.taskName = taskName;
+        this.description = description;
+        this.status = status;
+        this.collaboratorsNum = collaboratorsNum;
+        this.idType = idType;
+        this.idProject = idProject;
+        this.startDate = startDate;
+        this.dueDate = dueDate;
+        this.skillList = skillList;
+    }
+    
+    public int getIdProject() {
+        return idProject;
+    }
+
+    public void setIdProject(int idProject) {
+        this.idProject = idProject;
+    }
+    
     public int getIdTask() {
         return idTask;
     }
@@ -97,6 +122,22 @@ public class Tasks {
 
     public void setIdType(int idType) {
         this.idType = idType;
+    }
+
+    public List<Skills> getSkillList() {
+        return skillList;
+    }
+
+    public void setSkillList(List<Skills> skillList) {
+        this.skillList = skillList;
+    }
+
+    public Skills getSkill() {
+        return skill;
+    }
+
+    public void setSkill(Skills skill) {
+        this.skill = skill;
     }
     
 }

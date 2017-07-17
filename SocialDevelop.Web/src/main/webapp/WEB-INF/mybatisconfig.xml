@@ -13,7 +13,7 @@
        <package name="com.security.domain"/>
        -->
        <package name="com.socialdevelop.entities"/>
- 
+
       <!--  to specify alias explicitly
         <typeAlias alias="Parent" type="com.hmkcode.spring.mybatis.vo.Parent"/>
         <typeAlias alias="Child" type="com.hmkcode.spring.mybatis.vo.Child"/>
