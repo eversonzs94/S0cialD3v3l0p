@@ -37,6 +37,24 @@ public class UserService {
 
     public Users viewDeveloperInfo(String nickname) {
         return mapper.viewDeveloperInfo(nickname);
+
+    }
+
+    public Users viewMyProfile(String nickname) {
+        return mapper.viewDeveloperInfo(nickname);
+
+    }
+
+    public int updateMyProfile(Users user) {
+        try {
+            return mapper.updateMyProfile(user);
+            //System.out.println("hello");
+
+        } catch (DataAccessException ex) {
+            //  System.out.println("errorrrrrr");
+            //Save errors in log file.
+        }
+        return 0;
     }
 
 }

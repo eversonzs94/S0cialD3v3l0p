@@ -47,6 +47,22 @@ public class Users {
         this.address = address;
     }
 
+    public Users(int idUser, String name, String address, String surname, String password, String nickname, String email, String phoneNumber, String gender, String aboutMe, String birthDate) {
+        this.idUser = idUser;
+        this.name = name;
+        this.address = address;
+        this.surname = surname;
+        this.password = password;
+        this.nickname = nickname;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.aboutMe = aboutMe;
+        this.birthDate = birthDate;
+    }
+    
+    
+
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
@@ -104,18 +120,6 @@ public class Users {
     }
 
     public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Users(String name, String surname, String password, String nickname, String email, String phoneNumber, String gender, String aboutMe, String address) {
-        this.name = name;
-        this.surname = surname;
-        this.password = password;
-        this.nickname = nickname;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.gender = gender;
-        this.aboutMe = aboutMe;
         this.address = address;
     }
 

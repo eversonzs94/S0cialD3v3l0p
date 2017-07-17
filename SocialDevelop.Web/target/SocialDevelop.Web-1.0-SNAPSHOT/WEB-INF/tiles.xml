@@ -63,6 +63,15 @@
         <put-attribute name="content" value="/WEB-INF/jsp/general/profile-page.jsp"></put-attribute>
     </definition>
     
+      <definition name="my-profile" extends="MasterPage">
+        <put-attribute name="title" value="Developer Information Page"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/my-profile.jsp"></put-attribute>
+    </definition>
+      
+    <definition name="update-profile" extends="MasterPage">
+        <put-attribute name="title" value="Developer Information Page"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/update-profile.jsp"></put-attribute>
+    </definition>
     <!-- **************** End Tala ****************** -->
     
     

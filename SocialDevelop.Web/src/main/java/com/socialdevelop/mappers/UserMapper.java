@@ -10,6 +10,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.dao.DataAccessException;
 
 /**
@@ -35,7 +36,6 @@ public interface UserMapper {
 
     public Users login(Users usr) throws DataAccessException;
 
-    
     @Select("SELECT * FROM tblUsers")
     @Results(value = {
         @Result(property = "name", column = "name"),
@@ -50,7 +50,6 @@ public interface UserMapper {
     )
     public List<Users> browseDevelopers() throws DataAccessException;
 
-    
     @Select("SELECT * FROM tblUsers WHERE nickname=#{nickname}")
     @Results(value = {
         @Result(property = "name", column = "name"),
@@ -65,17 +64,16 @@ public interface UserMapper {
     )
     public Users viewDeveloperInfo(String nickname) throws DataAccessException;
 
-    @Select("SELECT * FROM tblUsers WHERE nickname=#{nickname} AND password=#{password}")
+    @Update("UPDATE tblUsers SET name = #{name}, surname = #{surname},email=#{email}, phoneNumber=#{phoneNumber},gender=#{gender},aboutMe=#{aboutMe},address=#{address}  WHERE idUser=#{idUser}")
+    public int updateMyProfile(Users user) throws DataAccessException;
+    
+
+    @Select("SELECT * FROM tblUsers")
     @Results(value = {
-        @Result(property = "name", column = "name"),
-        @Result(property = "surname", column = "surname"),
-        @Result(property = "nickname", column = "nickname"),
-        @Result(property = "email", column = "email"),
-        @Result(property = "phoneNumber", column = "phoneNumber"),
-        @Result(property = "gender", column = "gender"),
-        @Result(property = "aboutMe", column = "aboutMe"),
-        @Result(property = "address", column = "address")
-    }
+        @Result(property = "nickname", column = "nickname"),}
     )
-    public Users viewMyProfile(Users user) throws DataAccessException;
+    public List<String> checkNickname() throws DataAccessException;
+
+    //SELECT * FROM `tbltasks` INNER JOIN `tblusers` INNER JOIN `tbltasksdevelopers` on `tbltasks`.`idTask`=`tbltasksdevelopers`.`idTask` AND `tblusers`.`idUser`=`tbltasksdevelopers`.`idUser` INNER JOIN `tblprojects` ON `tbltasks`.`idProject`=`tblprojects`.`idProject`
+    //@Select(SELECT * FROM tbltasls INNER JOIN tblUsers INNER JOIN tbltasksdevelopers ON )
 }

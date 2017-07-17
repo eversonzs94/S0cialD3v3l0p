@@ -58,7 +58,8 @@
                         <li><a href="alldevelopers" class="smoothScroll">DEVELOPERS</a></li>
                         <li><a href="allprojects" class="smoothScroll">PROJECTS</a></li>
                         <li><a href="gotologinpage" class="smoothScroll" style="display: <c:out value="${displayHomePage}"/>;">SIGN IN / SIGN UP</a></li>
-                        <li><a href="profilepage?nickname=dimAya" class="smoothScroll" style="display: <c:out value="${displaySession}"/>;">MY PROFILE</a></li>                        
+                        <li><a href="viewMyProfile?nickname=<c:out value="${displaySession}"/>" class="smoothScroll" style="display: <c:out value="${displaySession}"/>;">MY PROFILE</a></li>                       
+                     <!--   <li><a href="profilepage?nickname=dimAya" class="smoothScroll" style="display: <c:out value="${displaySession}"/>;">MY PROFILE</a></li>                        -->
                         <li><a href="about.html" class="smoothScroll">ABOUT</a></li>
                         <li><a href="goCreateTask" class="smoothScroll">CONTACT</a></li>
                         <li><a href="logout" class="smoothScroll" style="display: <c:out value="${displaySession}"/>;">SIGN OUT</a></li>
