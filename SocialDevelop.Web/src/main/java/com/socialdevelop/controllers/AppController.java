@@ -83,7 +83,7 @@ public class AppController {
         checkSession();
         model.put("displaySession", displaySession);
         model.put("displayHomePage", displayHomePage);
-        List<Project> subProjectList = projectList.subList(0, 3);
+        List<Project> subProjectList = projectList.subList(0, 6);
         model.put("projectlist", subProjectList);
         return "home-page";
     }
@@ -138,10 +138,9 @@ public class AppController {
             model.put("idUser", utilities.UserSession.getUserData().getIdUser());
         }
         model.put("coordinatorProject", service_project.projectCoordinator(id));
-        model.put("tasksList", service_task.getProjectTasks(id));
+        //model.put("tasksList", service_task.getProjectTasks(id));
 
         List<Tasks> taskSkills = service_task.getListSkillsTask(id);
-        System.out.println(taskSkills.get(0).getSkillList().get(0).getSkillName());
 
         model.put("taskSkills", taskSkills);
 
@@ -201,13 +200,16 @@ public class AppController {
         checkSession();
         model.put("displaySession", displaySession);
         model.put("displayHomePage", displayHomePage);
-        List<Project> subProjectList = projectList.subList(0, 5);
+        List<Project> subProjectList = projectList.subList(0, 6);
         model.put("projectlist", subProjectList);
         return "home-page";
     }
 
     @RequestMapping(value = "/searchdevelopers")
-    public String searchDevelopers(@RequestParam("skill") String[] skills, @RequestParam("level") int[] levels) {
+    public String searchDevelopers(@RequestParam("skill") String[] skills, @RequestParam("level") int[] levels, ModelMap model) {
+        checkSession();
+        model.put("displaySession", displaySession);
+        model.put("displayHomePage", displayHomePage);
 
         List<Users> search = service_search.searchDevelopers(skills, levels);
         for (Users user : search) {
@@ -286,6 +288,9 @@ public class AppController {
 
     @RequestMapping(value = "/goCreateTask", method = RequestMethod.POST)
     public String goCreateTask(@RequestParam("idProject") int idProject, ModelMap model) {
+        checkSession();
+        model.put("displaySession", displaySession);
+        model.put("displayHomePage", displayHomePage);
         typeList = service_type.typeList();
         model.put("typeList", typeList);
         model.put("project", service_project.viewProjectInfo(idProject));
@@ -318,6 +323,10 @@ public class AppController {
 
         resultAddTask = service_task.addTask(new Tasks(taskName, description, "Open", collaboratorsNum, idType, idProject, startDate, dueDate));
         service_task.insertTaskSkills(idSkills, levels);
+        
+        checkSession();
+        model.put("displaySession", displaySession);
+        model.put("displayHomePage", displayHomePage);
 
         model.put("project", service_project.viewProjectInfo(idProject));
         model.put("typeList", typeList);

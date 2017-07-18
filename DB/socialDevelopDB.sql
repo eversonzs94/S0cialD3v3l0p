@@ -16,19 +16,6 @@ CREATE SCHEMA IF NOT EXISTS `socialDevelop` DEFAULT CHARACTER SET utf8 COLLATE u
 USE `socialDevelop` ;
 
 -- -----------------------------------------------------
--- Table `socialDevelop`.`tblLocations`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `socialDevelop`.`tblLocations` ;
-
-CREATE TABLE IF NOT EXISTS `socialDevelop`.`tblLocations` (
-  `idLocation` INT NOT NULL AUTO_INCREMENT,
-  `country` VARCHAR(80) NOT NULL,
-  `city` VARCHAR(80) NOT NULL,
-  PRIMARY KEY (`idLocation`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `socialDevelop`.`tblUsers`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `socialDevelop`.`tblUsers` ;
@@ -47,16 +34,9 @@ CREATE TABLE IF NOT EXISTS `socialDevelop`.`tblUsers` (
   `aboutMe` VARCHAR(500) NULL,
   `birthDate` DATE NOT NULL,
   `address` VARCHAR(100) NULL,
-  `idLocation` INT NOT NULL,
   PRIMARY KEY (`idUser`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
-  UNIQUE INDEX `nickname_UNIQUE` (`nickname` ASC),
-  INDEX `fk_tblUsers_tblLocations_idx` (`idLocation` ASC),
-  CONSTRAINT `fk_tblUsers_tblLocations`
-    FOREIGN KEY (`idLocation`)
-    REFERENCES `socialDevelop`.`tblLocations` (`idLocation`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  UNIQUE INDEX `nickname_UNIQUE` (`nickname` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = big5;
 
@@ -155,7 +135,7 @@ DROP TABLE IF EXISTS `socialDevelop`.`tblSkills` ;
 
 CREATE TABLE IF NOT EXISTS `socialDevelop`.`tblSkills` (
   `idSkill` INT NOT NULL AUTO_INCREMENT,
-  `skillName` VARCHAR(45) NOT NULL,
+  `skillName` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NOT NULL,
   `idSkillFather` INT NULL,
   PRIMARY KEY (`idSkill`),
   INDEX `fk_tblSkills_tblSkills1_idx` (`idSkillFather` ASC),
@@ -316,6 +296,49 @@ CREATE TABLE IF NOT EXISTS `socialDevelop`.`tblUsersProjects` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `socialDevelop`.`tblTypesSkill`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `socialDevelop`.`tblTypesSkill` ;
+
+CREATE TABLE IF NOT EXISTS `socialDevelop`.`tblTypesSkill` (
+  `idSkill` INT NOT NULL,
+  `idType` INT NOT NULL,
+  PRIMARY KEY (`idSkill`, `idType`),
+  INDEX `fk_tblTypesSkill_tblType1_idx` (`idType` ASC),
+  CONSTRAINT `fk_tblTypesSkill_tblSkills1`
+    FOREIGN KEY (`idSkill`)
+    REFERENCES `socialDevelop`.`tblSkills` (`idSkill`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tblTypesSkill_tblType1`
+    FOREIGN KEY (`idType`)
+    REFERENCES `socialDevelop`.`tblType` (`idType`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `socialDevelop`.`tblkeywords`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `socialDevelop`.`tblkeywords` ;
+
+CREATE TABLE IF NOT EXISTS `socialDevelop`.`tblkeywords` (
+  `keyword` VARCHAR(200) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL,
+  `level` INT NULL)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+ALTER TABLE `socialdevelop`.`tblskills` 
+CHANGE COLUMN `skillName` `skillName` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NOT NULL ;
+
+ALTER TABLE `socialdevelop`.`tblprojects` 
+COLLATE = utf8_general_ci ,
+CHANGE COLUMN `projectName` `projectName` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL DEFAULT NULL ,
+CHANGE COLUMN `description` `description` VARCHAR(500) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL DEFAULT NULL ;
