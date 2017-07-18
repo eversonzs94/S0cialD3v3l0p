@@ -73,3 +73,14 @@ INSERT INTO `tblusersprojects` (`idUser`, `idProject`, `idRole`) VALUES
 (2, 9, 1),
 (1, 13, 1),
 (1, 14, 1);
+
+INSERT INTO `socialdevelop`.`tblskills` (`skillName`) VALUES ('HTML');
+INSERT INTO `socialdevelop`.`tblskills` (`skillName`) VALUES ('CSS');
+INSERT INTO `socialdevelop`.`tblskills` (`skillName`) VALUES ('Java');
+INSERT INTO `socialdevelop`.`tblskills` (`skillName`) VALUES ('JavaScript');
+INSERT INTO `socialdevelop`.`tblskills` (`skillName`) VALUES ('PHP');
+INSERT INTO `socialdevelop`.`tblskills` (`skillName`) VALUES ('MySQL');
+INSERT INTO `socialdevelop`.`tblskills` (`skillName`) VALUES ('Oracle');
+INSERT INTO `socialdevelop`.`tblskills` (`skillName`) VALUES ('MongoDB');
+INSERT INTO `socialdevelop`.`tblskills` (`skillName`) VALUES ('Photoshop');
+INSERT INTO `socialdevelop`.`tblskills` (`skillName`) VALUES ('Mobile');
