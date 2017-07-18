@@ -84,3 +84,14 @@ INSERT INTO `socialdevelop`.`tblskills` (`skillName`) VALUES ('Oracle');
 INSERT INTO `socialdevelop`.`tblskills` (`skillName`) VALUES ('MongoDB');
 INSERT INTO `socialdevelop`.`tblskills` (`skillName`) VALUES ('Photoshop');
 INSERT INTO `socialdevelop`.`tblskills` (`skillName`) VALUES ('Mobile');
+
+INSERT INTO `socialdevelop`.`tbltypesskill` (`idSkill`, `idType`) VALUES ('1', '1');
+INSERT INTO `socialdevelop`.`tbltypesskill` (`idSkill`, `idType`) VALUES ('2', '1');
+INSERT INTO `socialdevelop`.`tbltypesskill` (`idSkill`, `idType`) VALUES ('3', '1');
+INSERT INTO `socialdevelop`.`tbltypesskill` (`idSkill`, `idType`) VALUES ('4', '1');
+INSERT INTO `socialdevelop`.`tbltypesskill` (`idSkill`, `idType`) VALUES ('5', '1');
+INSERT INTO `socialdevelop`.`tbltypesskill` (`idSkill`, `idType`) VALUES ('6', '2');
+INSERT INTO `socialdevelop`.`tbltypesskill` (`idSkill`, `idType`) VALUES ('7', '2');
+INSERT INTO `socialdevelop`.`tbltypesskill` (`idSkill`, `idType`) VALUES ('8', '2');
+INSERT INTO `socialdevelop`.`tbltypesskill` (`idSkill`, `idType`) VALUES ('9', '3');
+INSERT INTO `socialdevelop`.`tbltypesskill` (`idSkill`, `idType`) VALUES ('10', '3');

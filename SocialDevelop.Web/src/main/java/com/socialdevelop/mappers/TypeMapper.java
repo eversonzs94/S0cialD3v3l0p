@@ -26,4 +26,6 @@ public interface TypeMapper {
     )
     public List<Type> typeList() throws DataAccessException;
     
+    public List<Type> typeSkillList() throws DataAccessException;
+    
 }

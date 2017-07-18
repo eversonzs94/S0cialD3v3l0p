@@ -294,7 +294,7 @@ public class AppController {
         typeList = service_type.typeList();
         model.put("typeList", typeList);
         model.put("project", service_project.viewProjectInfo(idProject));
-        model.put("skillList", service_skill.showSkillsList());
+        model.put("typeSkillList", service_type.typeSkillList());
         return "go-create-task";
     }
 

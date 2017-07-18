@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.socialdevelop.mappers.TypeMapper" >
+    
+    <resultMap id="resultTypeSkillList" type="com.socialdevelop.entities.Type">
+        <result property="idType" column="idType"/>
+        <result property="typeName" column="typeName"/>
+        <collection property="skillList" column="idSkill" ofType="com.socialdevelop.entities.Skills" javaType="ArrayList">
+            <result property="idSkill" column="idSkill"/>
+            <result property="skillName" column="skillName"/>
+            <result property="idSkillFather" column="idSkillFather"/>
+        </collection>
+    </resultMap>
+    
+    <select id="typeSkillList" resultMap="resultTypeSkillList">
+        SELECT * FROM tblType 
+        INNER JOIN tblTypesSkill ON tblType.idType=tblTypesSkill.idType 
+        INNER JOIN tblSkills ON tblTypesSkill.idSkill=tblSkills.idSkill
+    </select>
+    
+</mapper>

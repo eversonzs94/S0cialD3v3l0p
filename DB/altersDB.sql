@@ -1,6 +1,2 @@
-ALTER TABLE `socialdevelop`.`tblusers` 
-CHANGE COLUMN `bornDate` `birthDate` DATE NOT NULL ;
-
-ALTER TABLE `socialdevelop`.`tblskillsusers` 
-ADD COLUMN `skillLevel` INT NULL AFTER `idSkill`;
-
+ALTER TABLE `socialdevelop`.`tblcollaborationsdocs` 
+CHANGE COLUMN `submissionDate` `submissionDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;

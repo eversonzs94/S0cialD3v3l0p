@@ -22,4 +22,8 @@ public class TypeService {
         return mapper.typeList();   
     }
     
+    public List<Type> typeSkillList(){
+        return mapper.typeList();   
+    }
+    
 }
