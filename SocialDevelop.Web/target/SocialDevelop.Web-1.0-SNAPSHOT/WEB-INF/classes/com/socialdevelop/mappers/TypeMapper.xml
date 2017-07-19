@@ -14,9 +14,9 @@
     </resultMap>
     
     <select id="typeSkillList" resultMap="resultTypeSkillList">
-        SELECT * FROM tblType 
-        INNER JOIN tblTypesSkill ON tblType.idType=tblTypesSkill.idType 
-        INNER JOIN tblSkills ON tblTypesSkill.idSkill=tblSkills.idSkill
+        SELECT A.idType, A.typeName, C.idSkill, C.skillName, C.idSkillFather FROM tblType A 
+        INNER JOIN tblTypesSkill B ON A.idType=B.idType 
+        INNER JOIN tblSkills C ON B.idSkill=C.idSkill
     </select>
     
 </mapper>

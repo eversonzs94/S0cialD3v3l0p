@@ -294,10 +294,15 @@ public class AppController {
         typeList = service_type.typeList();
         model.put("typeList", typeList);
         model.put("project", service_project.viewProjectInfo(idProject));
-        model.put("typeSkillList", service_type.typeSkillList());
         return "go-create-task";
     }
 
+    @RequestMapping(value = "/getTypeSkills", method = RequestMethod.GET, headers = "Accept=Applications/json")
+    public @ResponseBody String getTypeSkills(ModelMap model) {
+        List<Type> typeSkillList=service_type.typeSkillList();
+        return new Gson().toJson(typeSkillList);
+    }
+    
     @RequestMapping(value = "/createTask", method = RequestMethod.POST)
     public String createTask(@RequestParam("taskName") String taskName,
             @RequestParam("description") String description,
@@ -330,7 +335,6 @@ public class AppController {
 
         model.put("project", service_project.viewProjectInfo(idProject));
         model.put("typeList", typeList);
-        model.put("skillList", service_skill.showSkillsList());
         model.put("message", "You have created a new task.");
         return "go-create-task";
     }

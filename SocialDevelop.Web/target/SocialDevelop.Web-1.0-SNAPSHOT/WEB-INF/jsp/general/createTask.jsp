@@ -53,19 +53,35 @@
 </div>
 
 <script>
+var typeSkillsList;
+$(document).ready(function (){
+    $.ajax({
+        url:"${contextPath}/app/getTypeSkills",
+        success:function(data){
+            typeSkillsList=data;
+        },
+        error(error){}
+    });
+});
+    
 $("#typeList").change(function(){
     $("div").remove("#selections");
     var typeSelected = $('#typeList option:selected').val();
-    var skillList = ""+
+    var skillListPart1 = ""+
         "<div class='row' id='selections'>"+
             "<div class='skill-select' id='selection'>"+
                 "<div class='col-sm-8 form-group'>"+
                     "<select class='show-tick' id='select' name='idSkill' required>"+
-                        "<option disabled='true' selected='true' value=''>Select a skill for this task.</option>"+
-                        "<c:forEach items='${typeSkillList}' var='item'>"+
-                        "<option value='${item.getTypeName()}'>${item.getTypeName()}</option>"+
-                        "</c:forEach>"+
-                    "</select>"+
+                        "<option disabled='true' selected='true' value=''>Select a skill for this task.</option>";
+                        var skillListPart2;
+                        for (var i=0; i<typeSkillsList.length; i++) {
+                            if(typeSkillsList[i].idType == typeSelected){
+                                for(var j=0; j<typeSkillsList[i].skillList.length; j++){
+                                    skillListPart2 = skillListPart2 + "<option value='"+typeSkillsList[i].skillList[j].idSkill+"'>"+typeSkillsList[i].skillList[j].skillName+"</option>";
+                                };
+                            };
+                        };
+ var skillListPart3="</select>"+
                 "</div>"+
                 "<div class='col-sm-4 form-group'>"+
                     "<select class='show-tick' id='select' name='skillLevel' required>"+
@@ -84,6 +100,7 @@ $("#typeList").change(function(){
                 "</div>"+
             "</div>"+
         "</div>" ;
+var skillList = skillListPart1 + skillListPart2 + skillListPart3;
     $("#skillList").after(skillList);
 });
 </script>

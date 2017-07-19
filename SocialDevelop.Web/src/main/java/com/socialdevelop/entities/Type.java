@@ -18,7 +18,7 @@ public class Type {
     private String typeName;
     private List<Skills> skillList;
 
-    public Type() {
+    public Type(){
     }
 
     public Type(int idType, String typeName, List<Skills> skillList) {
