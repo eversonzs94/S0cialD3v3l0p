@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.socialdevelop.mappers.UserMapper" >
+    
+    <resultMap id="resultDeveloperProjects" type="com.socialdevelop.entities.Project">
+        <result property="id" column="idProject"/>
+        <result property="name" column="projectName"/>
+        
+      <association property="coordinator" javaType="com.socialdevelop.entities.Users">
+        <result property="idUser" column="idUser"/>
+        <result property="name" column="name"/>
+        <result property="surname" column="surname"/>
+        <result property="email" column="email"/>
+      </association>
+      
+        <collection property="listTasks" column="idTask" ofType="com.socialdevelop.entities.Tasks" javaType="ArrayList">
+            <result property="idTask" column="idTask"/>
+            <result property="taskName" column="taskName"/>
+            <result property="description" column="description"/>
+            <result property="status" column="status"/>
+            <result property="startDate" column="startDate"/>
+            <result property="dueDate" column="dueDate"/>
+            <result property="collaboratorsNum" column="collaboratorsNum"/>
+            
+        </collection>
+    </resultMap>
+    
+    <select id="getDeveloperProjects" resultMap="resultDeveloperProjects">
+        <!-- SELECT * FROM `tbltasks` 
+        INNER JOIN `tblusers` 
+        INNER JOIN `tbltasksdevelopers` 
+        ON `tbltasks`.`idTask`=`tbltasksdevelopers`.`idTask` 
+        AND `tblusers`.`idUser`=`tbltasksdevelopers`.`idUser` 
+        INNER JOIN `tblprojects` 
+        ON `tbltasks`.`idProject`=`tblprojects`.`idProject`
+        WHERE `tbltasksdevelopers`.`idUser`=#{idUser}-->
+        
+        <!--   SELECT * FROM `tblusers` 
+        INNER JOIN `tblusersprojects`
+        INNER JOIN `tblprojects` 
+        INNER JOIN `tbltasks` 
+        INNER JOIN `tbltasksdevelopers` 
+        ON `tblusers`.`idUser`=`tblusersprojects`.`idUser` 
+        AND `tblusersprojects`.`idProject`=`tblprojects`.`idProject` 
+        AND`tbltasks`.`idTask`=`tbltasksdevelopers`.`idUser` 
+        AND `tbltasksdevelopers`.`idUser`=`tblusers`.`idUser` 
+        WHERE `tblusersprojects`.`idRole`=2 AND `tblusers`.`idUser`=#{idUser}-->
+    
+        SELECT * FROM tbltasks T 
+        INNER JOIN tbltasksdevelopers TD 
+        ON T.idTask=TD.idTask
+        INNER JOIN tblprojects P ON P.idProject=T.idProject INNER JOIN tblusersprojects UP ON UP.idProject=P.idProject
+        INNER JOIN tblusers U ON U.idUser=UP.idUser
+        WHERE TD.idUser=#{idUser}
+    </select>
+    
+    <resultMap id="resultMyprojectsCoord" type="com.socialdevelop.entities.Project">
+        <result property="id" column="idProject"/>
+        <result property="name" column="projectName"/>
+                     
+        <collection property="listTasks" column="idTask" ofType="com.socialdevelop.entities.Tasks" javaType="ArrayList">
+            <result property="idTask" column="idTask"/>
+            <result property="taskName" column="taskName"/>
+            <result property="description" column="description"/>
+            <result property="status" column="status"/>
+            <result property="startDate" column="startDate"/>
+            <result property="dueDate" column="dueDate"/>
+            <result property="collaboratorsNum" column="collaboratorsNum"/>
+            
+        </collection>
+    </resultMap>
+    
+    <select id="getCoordProjects" resultMap="resultMyprojectsCoord">
+        <!-- SELECT * FROM `tbltasks` 
+        INNER JOIN `tblusers` 
+        INNER JOIN `tbltasksdevelopers` 
+        ON `tbltasks`.`idTask`=`tbltasksdevelopers`.`idTask` 
+        AND `tblusers`.`idUser`=`tbltasksdevelopers`.`idUser` 
+        INNER JOIN `tblprojects` 
+        ON `tbltasks`.`idProject`=`tblprojects`.`idProject`
+        WHERE `tbltasksdevelopers`.`idUser`=#{idUser}-->
+        
+        <!--   SELECT * FROM `tblusers` 
+        INNER JOIN `tblusersprojects`
+        INNER JOIN `tblprojects` 
+        INNER JOIN `tbltasks` 
+        INNER JOIN `tbltasksdevelopers` 
+        ON `tblusers`.`idUser`=`tblusersprojects`.`idUser` 
+        AND `tblusersprojects`.`idProject`=`tblprojects`.`idProject` 
+        AND`tbltasks`.`idTask`=`tbltasksdevelopers`.`idUser` 
+        AND `tbltasksdevelopers`.`idUser`=`tblusers`.`idUser` 
+        WHERE `tblusersprojects`.`idRole`=2 AND `tblusers`.`idUser`=#{idUser}-->
+    
+        SELECT * FROM tblprojects P INNER JOIN tblusersprojects UP ON P.idProject=UP.idProject
+        INNER JOIN tbltasks T ON P.idProject=T.idProject WHERE UP.idUser=#{idUser}
+    </select>
+    
+</mapper>

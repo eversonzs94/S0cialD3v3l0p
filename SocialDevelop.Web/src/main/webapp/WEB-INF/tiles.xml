@@ -18,6 +18,26 @@
         <put-attribute name="content" value="/WEB-INF/jsp/index.jsp"></put-attribute>
     </definition>
     
+    <definition name="register-page" extends="MasterPage">
+        <put-attribute name="title" value="Register Page"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/register-page.jsp"></put-attribute>
+    </definition>
+    
+    <definition name="error-page" extends="MasterPage">
+        <put-attribute name="title" value="Error Page"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/error-page.jsp"></put-attribute>
+    </definition>
+    
+    <definition name="about-us" extends="MasterPage">
+        <put-attribute name="title" value="About Us Page"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/about-us.jsp"></put-attribute>
+    </definition>
+    
+    <definition name="developers-for-task" extends="MasterPage">
+        <put-attribute name="title" value="Reference For Developers"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/developers-for-task.jsp"></put-attribute>
+    </definition>
+    
     <definition name="login-page" extends="MasterPage">
         <put-attribute name="title" value="Login Page"></put-attribute>
         <put-attribute name="content" value="/WEB-INF/jsp/general/login-page.jsp"></put-attribute>
@@ -72,6 +92,17 @@
         <put-attribute name="title" value="Developer Information Page"></put-attribute>
         <put-attribute name="content" value="/WEB-INF/jsp/general/update-profile.jsp"></put-attribute>
     </definition>
+    
+    <definition name="mytasks-projects" extends="MasterPage">
+        <put-attribute name="title" value="Developer Information Page"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/mytasks-projects.jsp"></put-attribute>
+    </definition>
+    
+    <definition name="getCoordProjects" extends="MasterPage">
+        <put-attribute name="title" value="Developer Information Page"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/myprojectsCoord.jsp"></put-attribute>
+    </definition>
+    
     <!-- **************** End Tala ****************** -->
     
     
@@ -82,6 +113,32 @@
         <put-attribute name="content" value="/WEB-INF/jsp/general/createTask.jsp"></put-attribute>
     </definition>
     
+    <definition name="task-page" extends="MasterPage">
+        <put-attribute name="title" value="Task Information Page"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/task-page.jsp"></put-attribute>
+    </definition>
+    
     <!-- **************** End Everson ****************** -->
+    
+    <!-- **************** Start Hilda ****************** -->
+
+    
+    
+    <!-- **************** End Hilda ****************** -->
+    
+    <!-- **************** Start Deya ****************** -->
+    
+    <definition name="goToAdministrator" extends="MasterPage">
+        <put-attribute name="title" value="create task"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/administrator.jsp"></put-attribute>
+    </definition>
+    
+    <definition name="goToRegisterUserSkills" extends="MasterPage">
+        <put-attribute name="title" value="create task"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/user-skills.jsp"></put-attribute>
+    </definition>
+    
+    <!-- **************** End Deya ****************** -->
+
     
 </tiles-definitions>

@@ -38,22 +38,22 @@
                     <div class="team">
                         <div class="iso-box-section wow fadeIn" data-wow-delay="0.9s">                                     
                             <div class="iso-box-wrapper col4-iso-box">
-                                <c:forEach items="${developerlist}" var="item">       
+                                <c:forEach items="${developerlist}" var="developers">
                                     <div class="iso-box html photoshop hover_text col-lg-4 col-md-4 col-sm-6 ">
 
-                                        <c:if test="${item.getGender()=='female'}">
+                                        <c:if test="${developers.getGender()=='female'}">
                                             <a href="../resources/images/developer2.png" data-lightbox-gallery="portfolio-gallery"><img src="../resources/images/developer2.png" alt="portfolio img"></a>
 
                                         </c:if>
-                                        <c:if test="${item.getGender()=='male'}">
+                                        <c:if test="${developers.getGender()=='male'}">
                                             <a href="../resources/images/developer_1.png" data-lightbox-gallery="portfolio-gallery"><img src="../resources/images/developer_1.png" alt="portfolio img"></a>
                                             </c:if>
 
                                         <div class="project_description">
                                             <div class="des">
                                                 <!-- Here add the info and description for a developer--> 
-                                                <h1><c:out value="${item.getName()} ${item.getSurname()}" /></h1>
-                                                <a href=profilepage?nickname=<c:out value="${item.getNickname()}" /> style="color: #fff; text-decoration: none; padding: 8px 16px; background-color: #00c6d7;">Read More</a> 
+                                                <h1><c:out value="${developers.getName()} ${developers.getSurname()}" /></h1>
+                                                <a href=profilepage?nickname=<c:out value="${developers.getNickname()}" /> style="color: #fff; text-decoration: none; padding: 8px 16px; background-color: #00c6d7;">Read More</a> 
                                             </div>
                                         </div>
                                     </div>
@@ -134,7 +134,6 @@
     <div class="read-more"><a href="allprojects">See more...</a></div>
 </div>		
 
-
 <!-- contact section -->
 <section id="contact">
     <div class="container">
@@ -142,7 +141,7 @@
             <div class="col-md-12 col-sm-12 text-center">
                 <div class="section-title">
                     <strong>03</strong>
-                    <h1 class="heading bold">CONTACT US</h1>
+                    <h1 class="heading bold">ABOUT US</h1>
                 </div>
             </div>
             <div class="col-md-6 col-sm-12 contact-info">
@@ -158,7 +157,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
-                <form action="#" method="get" class="wow fadeInUp" data-wow-delay="0.6s">
+                <form action="contactus" method="post" class="wow fadeInUp" data-wow-delay="0.6s">
                     <div class="col-md-6 col-sm-6">
                         <input type="text" class="form-control" placeholder="Name" name="name">
                     </div>

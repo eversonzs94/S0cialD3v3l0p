@@ -17,7 +17,7 @@
     <div></div>
     <div class="form">
         <form action="${contextPath}/app/createTask" method="POST">
-            <h2>Create a new task for project: ${project.getName()}</h2><br>
+            <h2>Create a new task for project: <a href=projectpage?id=<c:out value="${project.getId()}" /> >${project.getName()}</a></h2><br>
                 <c:if test="${message!=null}">
                     <p style="color: blue; float: right;">${message}</p><br>
                 </c:if>

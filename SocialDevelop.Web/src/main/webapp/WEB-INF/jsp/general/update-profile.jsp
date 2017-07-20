@@ -14,7 +14,7 @@
 
 <div class="form">
     <h2>Update You Form</h2>
-    <form action="${contextPath}/app/updateMyProfile" method="POST">
+    <form action="${contextPath}/app/updateMyProfile" method="POST" enctype="multipart/form-data">
         <input type="text" name="name" placeholder="Name" value="${user.getName()}" required/>
         <input type="text" name="surname" placeholder="Surname" value="${user.getSurname()}" required/>
         <input type="password" name="password" placeholder="Password" required/>
@@ -33,13 +33,11 @@
             </c:if>
         </select>
         <textarea placeholder="About Me" name="aboutMe"  rows="5" maxlength="250" style="width: 100%; border: 1px solid #d9d9d9;">${user.getAboutMe()}</textarea>
-        <!-- <p>Upload Curriculum</p>
-         <input type="file" name="curriculum" accept="curriculum/*"  />
-        -->
+        <p>Upload Curriculum</p>
+             <input type="file" name="curriculum" accept="curriculum/*" value="${user.getCurriculum()}"/>
         <button type="submit">Next</button>
     </form>
 </div>
-
 <div class="form">
     <div id="selections">
         <div class="input-group" id="selection">

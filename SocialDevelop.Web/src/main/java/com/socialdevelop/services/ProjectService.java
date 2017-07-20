@@ -60,6 +60,10 @@ public class ProjectService {
         return mapper.projectCoordinator(idProject);
     }
     
+    public Project getProjectOfTask(int idTask){
+        return mapper.getProjectOfTask(idTask);
+    }
+    
     /* --------------- End Everson -------------------- */
     
     public Integer isInvolvingInProject(Integer idProject, Integer idUser) {

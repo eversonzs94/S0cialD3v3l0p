@@ -5,6 +5,7 @@
  */
 package com.socialdevelop.entities;
 
+import java.util.List;
 import org.apache.ibatis.type.Alias;
 
 @Alias("Project")
@@ -14,6 +15,24 @@ public class Project {
     private String description;
     private String datePublish;
     private String status;
+    List<Tasks> listTasks;
+    private Users coordinator;
+
+    public Users getCoordinator() {
+        return coordinator;
+    }
+
+    public void setCoordinator(Users coordinator) {
+        this.coordinator = coordinator;
+    }
+
+    public List<Tasks> getListTasks() {
+        return listTasks;
+    }
+
+    public void setListTasks(List<Tasks> listTasks) {
+        this.listTasks = listTasks;
+    }
 
     public Project() {
     }

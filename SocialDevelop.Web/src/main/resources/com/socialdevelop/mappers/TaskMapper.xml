@@ -18,13 +18,54 @@
             <result property="skillName" column="skillName"/>
             <result property="level" column="level"/>
         </collection>
+        <collection property="usersList" column="idUser" ofType="com.socialdevelop.entities.Users" javaType="ArrayList">
+            <result property="idUser" column="idUser"/>
+            <result property="nickname" column="nickname"/>
+        </collection>
     </resultMap>
     
     <select id="getListSkillsTask" resultMap="resultListSkillsTask">
-        SELECT * FROM tblTasks 
-        INNER JOIN tblTasksSkillsLevel ON tblTasks.idTask=tblTasksSkillsLevel.idTask 
-        INNER JOIN tblSkills ON tblSkills.idSkill=tblTasksSkillsLevel.idSkill 
-        WHERE tblTasks.idProject=#{idProject}
+        SELECT * FROM tblTasks A
+        INNER JOIN tblTasksSkillsLevel B ON A.idTask=B.idTask 
+        INNER JOIN tblSkills C ON C.idSkill=B.idSkill
+        LEFT JOIN tblTasksDevelopers D ON A.idTask=D.idTask
+        LEFT JOIN tblUsers E ON D.idUser= E.idUser
+        WHERE A.idProject=#{idProject}
+    </select>
+    
+    <resultMap id="taskInfo" type="com.socialdevelop.entities.Tasks">
+        <result property="idTask" column="idTask"/>
+        <result property="idProject" column="idProject"/>
+        <result property="taskName" column="taskName"/>
+        <result property="description" column="description"/>
+        <result property="status" column="status"/>
+        <result property="collaboratorsNumber" column="collaboratorsNumber"/>
+        <result property="idType" column="idType"/>
+        <result property="startDate" column="startDate"/>
+        <result property="dueDate" column="dueDate"/>
+        <association property="type" javaType="com.socialdevelop.entities.Type">
+            <result property="idType" column="idType"/>
+            <result property="typeName" column="typeName"/>
+        </association>
+        <collection property="skillList" column="idSkill" ofType="com.socialdevelop.entities.Skills" javaType="ArrayList">
+            <result property="idSkill" column="idSkill"/>
+            <result property="skillName" column="skillName"/>
+            <result property="level" column="level"/>
+        </collection>
+        <collection property="usersList" column="idUser" ofType="com.socialdevelop.entities.Users" javaType="ArrayList">
+            <result property="idUser" column="idUser"/>
+            <result property="nickname" column="nickname"/>
+        </collection>
+    </resultMap>
+    
+    <select id="getTaskInfo" resultMap="taskInfo">
+        SELECT * FROM tblTasks A
+        INNER JOIN tblTasksSkillsLevel B ON A.idTask=B.idTask 
+        INNER JOIN tblSkills C ON C.idSkill=B.idSkill
+        LEFT JOIN tblTasksDevelopers D ON A.idTask=D.idTask
+        LEFT JOIN tblUsers E ON D.idUser= E.idUser
+        INNER JOIN tblType F ON A.idType=F.idType
+        WHERE A.idTask=#{idTask}
     </select>
     
 </mapper>

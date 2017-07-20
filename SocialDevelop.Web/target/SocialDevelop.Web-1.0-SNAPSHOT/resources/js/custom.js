@@ -9,10 +9,7 @@ jQuery(document).ready(function($){
 
       $container.imagesLoaded(function () {
 
-        $container.isotope({
-        layoutMode: 'fitRows',
-        itemSelector: '.iso-box'
-        });
+        
 
         $imgs.load(function(){
           $container.isotope('reLayout');
@@ -85,23 +82,6 @@ $(function(){
   $('.navbar-collapse a').click(function(){
         $(".navbar-collapse").collapse('hide');
     });
-
-
-  // NIVO LIGHTBOX
-  $('.iso-box-section a').nivoLightbox({
-        effect: 'fadeScale',
-    });
-
-
-  // HOME BACKGROUND SLIDESHOW
-  $(function(){
-    jQuery(document).ready(function() {
-    $('#home').backstretch([
-       "images/home-bg-slideshow1.jpg", 
-       "images/home-bg-slideshow2.jpg",
-        ],  {duration: 2000, fade: 750});
-    });
-  })
 
 });
 

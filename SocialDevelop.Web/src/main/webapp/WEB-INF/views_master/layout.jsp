@@ -13,6 +13,7 @@
         <meta name="keywords" content="">
         <meta name="description" content="">
         <link rel="stylesheet" href="../resources/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../resources/css/jquery.dataTables.min.css">
         <link rel="stylesheet" href="../resources/css/slider_css.css">
         <link rel="stylesheet" href="../resources/css/font-awesome.min.css">
         <link rel="stylesheet" href="../resources/css/animate.min.css">
@@ -36,6 +37,11 @@
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="../resources/js/jquery.js"></script>
+        <style>
+            .hide_column{
+                display : none;
+            }
+        </style>
     </head>
 
     <body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
@@ -58,10 +64,10 @@
                         <li><a href="alldevelopers" class="smoothScroll">DEVELOPERS</a></li>
                         <li><a href="allprojects" class="smoothScroll">PROJECTS</a></li>
                         <li><a href="gotologinpage" class="smoothScroll" style="display: <c:out value="${displayHomePage}"/>;">SIGN IN / SIGN UP</a></li>
-                        <li><a href="viewMyProfile?nickname=<c:out value="${displaySession}"/>" class="smoothScroll" style="display: <c:out value="${displaySession}"/>;">MY PROFILE</a></li>                       
+                        <li><a href="viewMyProfile" class="smoothScroll" style="display: <c:out value="${displaySession}"/>;">MY PROFILE</a></li>                       
                      <!--   <li><a href="profilepage?nickname=dimAya" class="smoothScroll" style="display: <c:out value="${displaySession}"/>;">MY PROFILE</a></li>                        -->
-                        <li><a href="about.html" class="smoothScroll">ABOUT</a></li>
-                        <li><a href="goCreateTask" class="smoothScroll">CONTACT</a></li>
+                        <li><a href="gotoaboutus" class="smoothScroll">ABOUT US</a></li>
+                        <li><a href="goToAdministrator" class="smoothScroll">ADMINISTRATOR</a></li>
                         <li><a href="logout" class="smoothScroll" style="display: <c:out value="${displaySession}"/>;">SIGN OUT</a></li>
                     </ul>
                 </div>
@@ -98,18 +104,17 @@
         <script src="../resources/js/login.js"></script>
         <script src="../resources/js/nivo-lightbox.min.js"></script>
         
-        <!--
+        
         <script src="../resources/js/imagesloaded.min.js"></script>
         <script src="../resources/js/custom.js"></script>
-        <script src="../resources/js/skillvisibility.js"></script>
-        <script src="../resources/js/skillvisibilitydeveloper.js"></script>
         <script src="../resources/js/login.js"></script>
-        -->
+        
         <script src="../resources/js/smoothscroll.js"></script>
         <script src="../resources/js/wow.min.js"></script>
         
         <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="../resources/js/jquery.dataTables.min.js"></script>
     </body>
 </html>

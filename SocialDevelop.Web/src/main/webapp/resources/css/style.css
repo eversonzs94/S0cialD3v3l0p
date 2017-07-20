@@ -76,6 +76,13 @@ Start of my styles
     background: #3fb1db;
     color: #ffffff;
 }
+
+.btn-primary{
+    color: #fff;
+    height: 34px;
+    border-color: #2e6da4;
+    background-color: #00c6d7;
+}
 /*
 .backstretch{
     left: 0px; 
@@ -340,7 +347,7 @@ home section
   border-color: transparent;
 }
 #home .btn-danger {
-  background: #0081ca;
+  background: #00c6d7;
   border-color: transparent;
 }
 #home .btn-danger:hover {
@@ -414,7 +421,7 @@ about section
 }
 
 .tab-content a:hover, .tab-content a:link {
-	color: #FF0;
+	color: white;
 	text-decoration: none;
 }
 

@@ -31,6 +31,10 @@ public class Type {
         this.idType = idType;
         this.typeName = typeName;
     }
+    
+    public Type(String typeName) {
+        this.typeName = typeName;
+    }
 
     public int getIdType() {
         return idType;

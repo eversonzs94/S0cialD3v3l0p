@@ -53,14 +53,18 @@
                         <tbody>
                             <c:forEach items="${taskSkills}" var="item">
                                 <tr>
-                                    <td><a href="#">${item.getTaskName()}</a></td>
+                                    <td><a href=taskPage?idTask=<c:out value="${item.getIdTask()}"/>>${item.getTaskName()}</a></td>
                                     <td>${item.getStatus()}</td>
                                     <td>
                                         <c:forEach items="${item.getSkillList()}" var="skills">
                                             ${skills.getSkillName()}<br>
                                         </c:forEach>    
                                     </td>
-                                    <td><a href="#">Developer</a></td>
+                                    <td>
+                                        <c:forEach items="${item.getUsersList()}" var="users">
+                                            <a href=profilepage?nickname=<c:out value="${users.getNickname()}" />>${users.getNickname()}</a><br>
+                                        </c:forEach>
+                                    </td>
                                 </tr>
                             </c:forEach>
                         </tbody>

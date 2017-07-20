@@ -17,7 +17,7 @@ import org.springframework.dao.DataAccessException;
 
 public interface ProjectMapper {
     /* --------------- Start Didi -------------------- */
-    @Select("SELECT * FROM tblprojects")
+    @Select("SELECT * FROM tblprojects ORDER BY idProject DESC")
     @Results(value = {
             @Result(property = "name", column = "projectName"),
             @Result(property = "id", column = "idProject")
@@ -27,7 +27,8 @@ public interface ProjectMapper {
     
     @Select("SELECT * from tblprojects inner join tblusersprojects "
             + "where tblprojects.idProject=tblusersprojects.idProject "
-            + "and tblusersprojects.idUser=(#{id})")
+            + "and tblusersprojects.idUser=(#{id}) "
+            + "ORDER BY tblprojects.idProject DESC")
     @Results(value = {
             @Result(property = "name", column = "projectName"),
             @Result(property = "id", column = "idProject")
@@ -88,6 +89,19 @@ public interface ProjectMapper {
         }
     )
     public Users projectCoordinator(int idProject) throws DataAccessException;
+    
+    @Select("SELECT * FROM tblProjects A INNER JOIN tblTasks B ON A.idProject=B.idProject WHERE B.idTask=#{idProject}")
+    @Results(value = {
+        @Result(property = "id", column = "idProject"),
+        @Result(property = "name", column = "projectName"),
+        @Result(property = "description", column = "description"),
+        @Result(property = "datePublish", column = "datePublish"),
+        @Result(property = "status", column = "status")
+        }
+    )
+    public Project getProjectOfTask(int idTask) throws DataAccessException;
+    
+    
     
     /* --------------- End Everson -------------------- */
 

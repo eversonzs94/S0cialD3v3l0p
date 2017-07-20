@@ -9,6 +9,7 @@ import com.socialdevelop.entities.Type;
 import com.socialdevelop.mappers.TypeMapper;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,6 +25,15 @@ public class TypeService {
     
     public List<Type> typeSkillList(){
         return mapper.typeSkillList();   
+    }
+    
+    public Integer insertType(Type type){
+        try{
+            return mapper.insertType(type);
+        }catch(DataAccessException ex){
+            // save errors in log file.
+        }
+        return 0;    
     }
     
 }

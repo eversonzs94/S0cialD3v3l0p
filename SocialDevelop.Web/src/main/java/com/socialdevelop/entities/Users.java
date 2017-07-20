@@ -5,6 +5,7 @@
  */
 package com.socialdevelop.entities;
 
+import java.util.Date;
 import org.apache.ibatis.type.Alias;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,16 +24,26 @@ public class Users {
     private String nickname;
     private String email;
     private String phoneNumber;
-    private MultipartFile curriculum;
+    private String curriculum;
     //  private String profilePhoto;
     private String gender;
     private String aboutMe;
     private String birthDate;
-
-    public String getBirthDate() {
-        return birthDate;
-    }
-
+    
+    /* --------------- Start Hilda -------------------- */
+    //proof
+    private String taskName;
+    private String projectName;
+    private String status;
+    private String skill;
+    private Date submissionDate;
+    private String description;
+    private Integer idTask;
+    private Integer idUserSender;
+    private Integer idUserReceiver;
+    private Integer idProject;
+    /* --------------- End Hilda -------------------- */
+    
     public Users(String name, String surname, String password, String nickname, String email, String phoneNumber, String gender, String aboutMe, String birthDate, String address) {
         this.name = name;
         this.surname = surname;
@@ -61,7 +72,55 @@ public class Users {
         this.birthDate = birthDate;
     }
     
+    public Users(int idUser, String name, String address, String surname, String password, String nickname, String email, String phoneNumber, String curriculum, String gender, String aboutMe, String birthDate) {
+        this.idUser = idUser;
+        this.name = name;
+        this.address = address;
+        this.surname = surname;
+        this.password = password;
+        this.nickname = nickname;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.curriculum = curriculum;
+        this.gender = gender;
+        this.aboutMe = aboutMe;
+        this.birthDate = birthDate;
+   //     this.role = role;
+    }
+   
+    public Users(String name, String surname, String password, String nickname, String email, String phoneNumber, String curriculum,String gender, String aboutMe, String birthDate, String address) {
+        this.name = name;
+        this.surname = surname;
+        this.password = password;
+        this.nickname = nickname;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.curriculum = curriculum;
+        this.gender = gender;
+        this.aboutMe = aboutMe;
+        this.birthDate = birthDate;
+        this.address = address;
+    }
     
+    /* --------------- Start Hilda -------------------- */
+    public Users(Integer idTask,Integer idProject, Integer idUserSender, Integer idUserReceiver, String status) {
+        this.status = status;
+        this.idUserSender = idUserSender;
+        this.idUserReceiver = idUserReceiver;
+        this.idTask = idTask;
+        this.idProject = idProject;
+    }
+    
+    public Users(Integer idUser, Integer idTask) {
+        this.idUser = idUser;
+        this.idTask = idTask;
+    }
+    
+    public String getBirthDate() {
+        return birthDate;
+    }
+    
+    /* --------------- End Hilda -------------------- */
 
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
@@ -91,11 +150,11 @@ public class Users {
         this.phoneNumber = phoneNumber;
     }
 
-    public MultipartFile getCurriculum() {
+    public String getCurriculum() {
         return curriculum;
     }
 
-    public void setCurriculum(MultipartFile curriculum) {
+    public void setCurriculum(String curriculum) {
         this.curriculum = curriculum;
     }
 
@@ -123,18 +182,6 @@ public class Users {
         this.address = address;
     }
 
-    /*  public Users(String name, String surname, String password, String nickname, String email, String phoneNumber, MultipartFile curriculum, String gender, String aboutMe, String address) {
-        this.name = name;
-        this.surname = surname;
-        this.password = password;
-        this.nickname = nickname;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.curriculum = curriculum;
-        this.gender = gender;
-        this.aboutMe = aboutMe;
-        this.address = address;
-    }*/
     public Users() {
     }
 
@@ -180,6 +227,86 @@ public class Users {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getSkill() {
+        return skill;
+    }
+
+    public void setSkill(String skill) {
+        this.skill = skill;
+    }
+
+    public Date getSubmissionDate() {
+        return submissionDate;
+    }
+
+    public void setSubmissionDate(Date submissionDate) {
+        this.submissionDate = submissionDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getIdTask() {
+        return idTask;
+    }
+
+    public void setIdTask(Integer idTask) {
+        this.idTask = idTask;
+    }
+
+    public Integer getIdUserSender() {
+        return idUserSender;
+    }
+
+    public void setIdUserSender(Integer idUserSender) {
+        this.idUserSender = idUserSender;
+    }
+
+    public Integer getIdUserReceiver() {
+        return idUserReceiver;
+    }
+
+    public void setIdUserReceiver(Integer idUserReceiver) {
+        this.idUserReceiver = idUserReceiver;
+    }
+
+    public Integer getIdProject() {
+        return idProject;
+    }
+
+    public void setIdProject(Integer idProject) {
+        this.idProject = idProject;
     }
 
 }

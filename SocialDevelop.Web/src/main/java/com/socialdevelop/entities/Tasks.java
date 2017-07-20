@@ -25,6 +25,8 @@ public class Tasks {
     private String dueDate;
     private Skills skill;
     private List<Skills> skillList;
+    private List<Users> usersList;
+    private Type type;
     
     public Tasks(){}
 
@@ -138,6 +140,22 @@ public class Tasks {
 
     public void setSkill(Skills skill) {
         this.skill = skill;
+    }
+
+    public List<Users> getUsersList() {
+        return usersList;
+    }
+
+    public void setUsersList(List<Users> usersList) {
+        this.usersList = usersList;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
     
 }

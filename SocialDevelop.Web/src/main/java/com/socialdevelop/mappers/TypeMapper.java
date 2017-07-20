@@ -7,6 +7,7 @@ package com.socialdevelop.mappers;
 
 import com.socialdevelop.entities.Type;
 import java.util.List;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -27,5 +28,8 @@ public interface TypeMapper {
     public List<Type> typeList() throws DataAccessException;
     
     public List<Type> typeSkillList() throws DataAccessException;
+    
+    @Insert("INSERT INTO tblType(typeName) VALUES(#{typeName})") 
+    public int insertType(Type type) throws DataAccessException;
     
 }

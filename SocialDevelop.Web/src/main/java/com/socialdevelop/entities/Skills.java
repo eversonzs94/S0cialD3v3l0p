@@ -19,6 +19,7 @@ public class Skills {
     private int idSkillFather;
     private String[] skills;
     private int level;
+    private int[] types;
         
     public Skills(){}  
     
@@ -31,6 +32,15 @@ public class Skills {
     public Skills(String skillName, int idSkillFather) {
         this.skillName = skillName;
         this.idSkillFather = idSkillFather;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+    }
+    
+    public Skills(String skillName, int[] types) {
+        this.skillName = skillName;
+        this.types = types;
+    }
+    
+    public Skills(String skillName) {
+        this.skillName = skillName;
     }
         
     public int getIdSkill() {
@@ -71,6 +81,14 @@ public class Skills {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public int[] getTypes() {
+        return types;
+    }
+
+    public void setTypes(int[] types) {
+        this.types = types;
     }
     
 }

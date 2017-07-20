@@ -50,4 +50,6 @@ public interface TaskMapper {
     
     public List<Tasks> getListSkillsTask(@Param("idProject")int idProject) throws DataAccessException;
     
+    public Tasks getTaskInfo(@Param("idTask")int idTask) throws DataAccessException;
+    
 }

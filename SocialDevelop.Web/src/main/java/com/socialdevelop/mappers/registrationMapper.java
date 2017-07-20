@@ -18,7 +18,7 @@ import org.springframework.dao.DataAccessException;
 public interface registrationMapper {
     
 //curriculum,profilePhoto, birthDate  curriculum     ,#{curriculum}   #{birthDate},#{curriculum},#{profilePhoto}
-    @Insert("INSERT INTO tblusers (name,surname,password,nickname,email,phoneNumber,birthDate,gender,aboutMe,address,idLocation) values(#{name},#{surname},#{password},#{nickname},#{email},#{phoneNumber},#{birthDate}, #{gender},#{aboutMe},#{address},1)")
+    @Insert("INSERT INTO tblusers (name,surname,password,nickname,email,phoneNumber,birthDate,curriculum,gender,aboutMe,address,idLocation) values(#{name},#{surname},#{password},#{nickname},#{email},#{phoneNumber},#{birthDate},#{curriculum}, #{gender},#{aboutMe},#{address},1)")
    /* @Results(value = {
             @Result(property = "idUser", column = "idUser"),
             @Result(property = "name", column = "name"),

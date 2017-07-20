@@ -52,6 +52,15 @@ public class TaskService {
         }
     }
     
+    public Tasks getTaskInfo(int idTask){
+        try{
+            return mapper.getTaskInfo(idTask);
+        }catch(DataAccessException ex){
+            //Log file
+            return null;
+        }
+    }
+    
     public List<Tasks> getListSkillsTask(int idProject){
         try{
             return mapper.getListSkillsTask(idProject);
