@@ -32,8 +32,8 @@
                                 <th>Due Date</th>
                                 <th>Status</th>
                                 <th>Collaborators</th>
-                                <th>Skills</th>
-                                <th>Finished?</th>
+                             <!--   <th>Skills</th>-->
+                             <!--   <th>Finished?</th>-->
                                 <!-- continue the attributes-->
 
                             </tr>
@@ -42,7 +42,7 @@
                             <c:forEach items="${item.getListTasks()}" var="tasks">
                                 <tr>  <td> 
 
-                                        ${tasks.getTaskName()}<br>
+                                        <a href=taskPage?idTask=<c:out value="${tasks.getIdTask()}"/>> ${tasks.getTaskName()}</a><br>
 
                                     </td>
                                     <td>
@@ -75,16 +75,16 @@
                                             ${tasks.getSkill()}<br></a>
                                     </td>
                                     <td><c:if test="${tasks.getStatus()=='Open'}">
-                                          <!--  <form action="${contextPath}/app/finishedTask" method="POST">
-                                            <input type="hidden" name="idProject" value=${project.getId()} required=""/>
-                                            <button type="submit" class="btn btn-add-new-task" />Finished</button>
-                                            <!--</form>-->
+                                            <form action="${contextPath}/app/alldevelopersfortask" method="POST">
+                                                <input type="hidden" name="coordinatorEmail" value=${item.getCoordinator().getEmail()} required=""/>
+                                                <button type="submit" class="btn btn-add-new-task" />Finished</button>
+                                            </form>
                                         </c:if>
                                         <c:if test="${tasks.getStatus()=='Closed'}">
-                                          <!--  <form action="${contextPath}/app/goCreateTask" method="POST">
-                                            <input type="hidden" name="idProject" value=${project.getId()} required=""/>
-                                            <button type="submit" class="btn btn-add-new-task" />Finished</button>
-                                            <!-- </form>-->
+                                            <form action="${contextPath}/app/alldevelopersfortask" method="POST">
+                                                <input type="hidden" name="coordinatorEmail" value=${item.getCoordinator().getEmail()} required=""/>
+                                                <button type="submit" class="btn btn-add-new-task" />Task Closed</button>
+                                            </form>
                                         </c:if>
                                     </td>
 

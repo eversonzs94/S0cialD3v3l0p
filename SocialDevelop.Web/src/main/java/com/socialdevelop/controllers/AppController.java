@@ -58,6 +58,7 @@ public class AppController {
     List<Users> developerList = null;
     List<String> nicknamesList = null;
     List<String> emailsList = null;
+    List<Integer> coordList=null;
 
     String displaySession = "";
     String displayHomePage = "";
@@ -174,11 +175,13 @@ public class AppController {
             return "add-project";
     }
 
-    @RequestMapping(value = "/gotosearchdeveloperspage")
+@RequestMapping(value = "/gotosearchdeveloperspage")
     public String goToSearchDevelopersPage(ModelMap model) {
         checkSession();
         model.put("displaySession", displaySession);
         model.put("displayHomePage", displayHomePage);
+        List<Skills> leafSkills=service_skill.showSkillsList();
+        model.put("skills",leafSkills);
         return "developers-search";
     }
 
@@ -233,19 +236,19 @@ public class AppController {
         return "home-page";
     }
 
-    @RequestMapping(value = "/searchdevelopers")
+     @RequestMapping(value = "/searchdevelopers")
     public String searchDevelopers(@RequestParam("skill") String[] skills, @RequestParam("level") int[] levels, ModelMap model) {
         checkSession();
         model.put("displaySession", displaySession);
         model.put("displayHomePage", displayHomePage);
-
         List<Users> search = service_search.searchDevelopers(skills, levels);
         for (Users user : search) {
             System.out.println(user.getName());
         }
-
-        return "home-page";
+        model.put("developerlist", search);
+        return "all-developers";
     }
+
     
     @RequestMapping(value = "/contactus", method = RequestMethod.POST)
     public String contactUs(@RequestParam("name") String name, 
@@ -268,7 +271,7 @@ public class AppController {
         model.put("projectlist", subProjectList);
         String msg="The user with the name: "+name+"and the email: "+email+" sends this question:\n"+
                 message;
-        sendMessage(msg, "dimaayash91@hotmail.com", "Get Information");
+        sendMessage(msg, "socialdevelopteam@gmail.com", "Get Information");
         return "home-page";
     }
     
@@ -311,8 +314,8 @@ public class AppController {
     }
 
     private void sendMessage(String msg, String email,String subject) {
-        final String username = "dimaayash91@gmail.com";
-        final String password = "";
+        final String username = "socialdevelopteam@gmail.com";
+        final String password = "socialdevelop123456";
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -460,7 +463,7 @@ public class AppController {
             ModelMap model) throws IOException {
         // Users user; @RequestParam("curriculum")MultipartFile curriculum,
         //|| "".equals(birthDate)|| "".equals(curriculum)|| "".equals(profilePhoto), || "".equals(aboutMe)
-        if ("".equals(name) || "".equals(password) || "".equals(birthDate) || "".equals(surname) || "".equals(nickname) || "".equals(email) || "".equals(file)) {
+        if ("".equals(name) || "".equals(password) || "".equals(birthDate) || "".equals(surname) || "".equals(nickname) || "".equals(email)) {
             model.put("error", "You have to fill all the fields.");
             return "login-page";
         }
@@ -535,6 +538,9 @@ public class AppController {
 
         List<Project> developerProject = service_user.getDeveloperProjects(developer.getIdUser());
         model.put("developerProject", developerProject);
+        
+        List<Skills> skillsList = service_skill.showSkillsList();
+        model.put("skillsList", skillsList);
 
       /*  List<Project> myprojectsCoord = service_user.getCoordProjects(developer.getIdUser());
         model.put("myprojectsCoord", myprojectsCoord);
@@ -561,10 +567,23 @@ public class AppController {
         applicationPanel = service_user.applicationPanel(utilities.UserSession.getUserData().getIdUser());
         invitationPanel = service_user.invitationPanel(utilities.UserSession.getUserData().getIdUser());
 
+        List<Skills> skillsList = service_skill.showSkillsList();
+        model.put("skillsList", skillsList);
+        
         model.put("applicationPanel", applicationPanel);
         model.put("offerPanel", panel);
         model.put("invitationPanel", invitationPanel);
         
+        return "my-profile";
+    }
+    
+    @RequestMapping(value = "/finishedTask" ,method = RequestMethod.POST)
+    public String finishedTask(@RequestParam("coordinatorEmail") String cordEmail, ModelMap model) {
+        String name= utilities.UserSession.getUserData().getName();
+        String surname= utilities.UserSession.getUserData().getSurname();
+        String email=utilities.UserSession.getUserData().getEmail();
+        String msg = "The developer with the name: " + name +" "+ surname+ "and the email: " + email + " has finished his task";
+        sendMessage(msg, cordEmail, "Task Finished!");
         return "my-profile";
     }
 
@@ -697,7 +716,9 @@ public class AppController {
     public String finishedTask(@RequestParam("name") String name, @RequestParam("email") String email, @RequestParam("cordEmail") String cordEmail, ModelMap model) {
         String msg = "The developer with the name: " + name + "and the email: " + email + " has finished his task";
         sendMessage(msg, cordEmail, "Get Information");
-        return null;
+        Users developer = utilities.UserSession.getUserData();
+        model.put("developer", developer);
+        return "my-profile";
     }
 
 
@@ -845,6 +866,14 @@ public class AppController {
             return "4";
         }
     }
+    
+    @RequestMapping("/gotoregistrationpage")
+    public String goToRegistration(ModelMap model) {
+        checkSession();
+        model.put("displaySession", displaySession);
+        model.put("displayHomePage", displayHomePage);
+        return "registration-page";
+    }
 
     @RequestMapping(value = "/insertTaskDevelopersFromApplicationPanel", method = RequestMethod.GET)
     //inser to tblTaskDevelopers
@@ -873,27 +902,53 @@ public class AppController {
             return "4";
         }
     }
-
-    @RequestMapping(value = "/updateCollaborationPanel", method = RequestMethod.GET)
+    
+    @RequestMapping(value = "/insertTaskDevelopersFromProposalPanel", method = RequestMethod.GET)
     //inser to tblTaskDevelopers
     public @ResponseBody
-    String updateCollaborationPanel(
-            @RequestParam("idUserReceiver") Integer idUserReceiver,
-            @RequestParam("idUserSender") Integer idUserSender,
+    String insertTaskDevelopersFromProposalPanel(
+            @RequestParam("idTask") Integer idTask,
+            ModelMap model) {
+
+        int response;
+
+        if (idTask != 0) {
+
+           // Users taskDeveloper = new Users(idTask, utilities.UserSession.getUserData().getIdUser());
+            int idUser;
+            idUser =  utilities.UserSession.getUserData().getIdUser();
+            response = service_user.insertTaskDevelopersFromProposalPanel(idUser, idTask);
+
+            if (response == 1) {
+                return "1";
+            } else if (response == 0) {
+                return "2";
+            } else {
+                return "3";
+            }
+        } else {
+            return "4";
+        }
+    }
+
+    @RequestMapping(value = "/updateCollaborationPanel", method = RequestMethod.GET)
+    public String updateCollaborationPanel(
+            @RequestParam("idUser") Integer idUserSender,
             @RequestParam("status") String status,
+            @RequestParam("idTask") Integer idTask,
             ModelMap model) {
             
-       // int response;
-        //    Users updateCollaborationDocs = new Users(idUserReceiver,idUserSender);
-            
-        return null;
+        Users user = new Users(status, idTask, idUserSender, utilities.UserSession.getUserData().getIdUser());
+        service_user.updateCollaborationPanel(user);
+        
+        return "my-profile";
     }
 
     /* --------------- End Hilda -------------------- */
     
  /* --------------- Start Deyanira -------------------- */
     
-        @RequestMapping("/goToAdministrator")
+    @RequestMapping("/goToAdministrator")
     public String goToAdministrator(ModelMap model) {
         List<Skills> skillsList = service_skill.showSkillsList();
         model.put("skillsList", skillsList);
@@ -907,6 +962,35 @@ public class AppController {
         List<Skills> skillsList = service_skill.showSkillsList();
         model.put("skillsList", skillsList);
         return "goToRegisterUserSkills";
+    }
+    
+    @RequestMapping(value="/registerUserSkills", method = RequestMethod.POST)
+    public String registerUserSkills(@RequestParam("idSkill") int[] idSkills, @RequestParam("skillLevel") int[] levels, ModelMap model){
+        int resultAddUserSkills;
+        List<Skills> skillsList = service_skill.showSkillsList();
+        model.put("skillsList", skillsList);        
+        typeList=service_type.typeList();
+        model.put("typesList", typeList);
+        int idUser = service_user.lastUserInserted();
+        model.put("user", service_user.viewUserInfo(idUser));
+        model.put("typeList", typeList);
+        model.put("skillList", service_skill.showSkillsList());
+
+        service_user.insertUserSkills(idSkills, levels);
+
+        model.put("user", service_user.viewUserInfo(idUser));
+        model.put("skillsList", skillsList);
+        model.put("message", "You have created a new task.");
+        return "login-page";
+    }
+    
+    @RequestMapping("/goToUserSkills")
+    public String goToUserSkills(ModelMap model) {
+        List<Skills> skillsList = service_skill.showSkillsList();
+        model.put("skillsList", skillsList);
+        typeList=service_type.typeList();
+        model.put("typesList", typeList);
+        return "goToUserSkills";
     }
          
     // Skill Controller        
@@ -955,17 +1039,7 @@ public class AppController {
         model.put("typesList", typeList);
         return "goToAdministrator";
     } 
-    
-    // User Skill controller
-    @RequestMapping("/goToUserSkills")
-    public String goToUserSkills(ModelMap model) {
-        //List<Skills> skillsList = service_skill.showSkillsList();
-        //model.put("skillsList", skillsList);
-        // select 
-        typeList=service_type.typeList();
-        model.put("typesList", typeList);
-        return "goToUserSkills";
-    }
+
     
  /* --------------- End Deyanira -------------------- */
 }

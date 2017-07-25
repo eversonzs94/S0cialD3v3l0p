@@ -30,25 +30,62 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><input type="name" name="skill" class="form-control" placeholder="Enter name" ></td>
-                                <td><input type="number" name="level" min="0" max="10" value="0"></textarea></td>
+                                <td><select name="skill" value="">
+                                    <option value=""></option>
+                                    <c:forEach items="${skills}" var="item">
+
+                                    <option value="<c:out value="${item.getSkillName()}" />"><c:out value="${item.getSkillName()}" /></option>
+                                    
+                                    </c:forEach>
+                                    </select>
+                                </td>
+                                <td><input type="number" name="level" min="0" max="10" value="0"></td>
                             </tr>
                             <tr>
-                                <td><input type="name" name="skill" class="form-control" placeholder="Enter name" ></td>
-                                <td><input type="number" name="level" min="0" max="10" value="0"></textarea></td>
+                                <td><select name="skill">
+                                    <option value=""></option>
+                                    <c:forEach items="${skills}" var="item">
+
+                                    <option value="<c:out value="${item.getSkillName()}" />"><c:out value="${item.getSkillName()}" /></option>
+                                    
+                                    </c:forEach>
+                                    </select>
+                                </td>
+                                <td><input type="number" name="level" min="0" max="10" value="0"></td>
                             </tr>
                             <tr>
-                                <td><input type="name" name="skill" class="form-control" placeholder="Enter name" ></td>
-                                <td><input type="number" name="level" min="0" max="10" value="0"></textarea></td>
-                            </tr>
+                                <td><select name="skill">
+                                    <option value=""></option>
+                                    <c:forEach items="${skills}" var="item">
+
+                                    <option value="<c:out value="${item.getSkillName()}" />"><c:out value="${item.getSkillName()}" /></option>
+                                    
+                                    </c:forEach>
+                                    </select>
+                                </td>
+                                <td><input type="number" name="level" min="0" max="10" value="0"></td>                            </tr>
                             <tr>
-                                <td><input type="name" name="skill" class="form-control" placeholder="Enter name" ></td>
-                                <td><input type="number" name="level" min="0" max="10" value="0"></textarea></td>
-                            </tr>
+                                <td><select name="skill">
+                                    <option value=""></option>
+                                    <c:forEach items="${skills}" var="item">
+
+                                    <option value="<c:out value="${item.getSkillName()}" />"><c:out value="${item.getSkillName()}" /></option>
+                                    
+                                    </c:forEach>
+                                    </select>
+                                </td>
+                                <td><input type="number" name="level" min="0" max="10" value="0"></td>                            </tr>
                             <tr>
-                                <td><input type="name" name="skill" class="form-control" placeholder="Enter name" ></td>
-                                <td><input type="number" name="level" min="0" max="10" value="0"></textarea></td>
-                            </tr>
+                                <td><select name="skill">
+                                    <option value=""></option>
+                                    <c:forEach items="${skills}" var="item">
+
+                                    <option value="<c:out value="${item.getSkillName()}" />"><c:out value="${item.getSkillName()}" /></option>
+                                    
+                                    </c:forEach>
+                                    </select>
+                                </td>
+                                <td><input type="number" name="level" min="0" max="10" value="0"></td>                            </tr>
                         </tbody>
                     </table>
                     <!-- <button class="w3-button w3-black">View</button>-->

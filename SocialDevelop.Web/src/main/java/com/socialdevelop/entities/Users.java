@@ -58,6 +58,13 @@ public class Users {
         this.address = address;
     }
 
+    public Users(String status, Integer idTask, Integer idUserSender, Integer idUserReceiver) {
+        this.status = status;
+        this.idTask = idTask;
+        this.idUserSender = idUserSender;
+        this.idUserReceiver = idUserReceiver;
+    }
+
     public Users(int idUser, String name, String address, String surname, String password, String nickname, String email, String phoneNumber, String gender, String aboutMe, String birthDate) {
         this.idUser = idUser;
         this.name = name;

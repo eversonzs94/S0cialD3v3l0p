@@ -102,6 +102,11 @@
         <put-attribute name="title" value="Developer Information Page"></put-attribute>
         <put-attribute name="content" value="/WEB-INF/jsp/general/myprojectsCoord.jsp"></put-attribute>
     </definition>
+
+    <definition name="registration-page" extends="MasterPage">
+        <put-attribute name="title" value="Developer Information Page"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/jsp/general/register-page.jsp"></put-attribute>
+    </definition>
     
     <!-- **************** End Tala ****************** -->
     

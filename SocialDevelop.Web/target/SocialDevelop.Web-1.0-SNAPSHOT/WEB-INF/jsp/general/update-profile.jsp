@@ -39,33 +39,8 @@
     </form>
 </div>
 <div class="form">
-    <div id="selections">
-        <div class="input-group" id="selection">
-            <span class="input-group-addon" style="display: none;">
-                <i class="icon wb-menu" aria-hidden="true"></i>
-            </span>
-            <select class="show-tick" data-plugin="select2" id="select">
-                <option>Skills</option>
-                <option value="php">Php</option>
-                <option value="html">Html</option>
-                <option value="css">Css</option>
-                <option value="java">Java</option>
-            </select>
-            <select class="show-tick" data-plugin="select2" id="select">
-                <option>Level</option>
-                <option value="one">1</option>
-                <option value="two">2</option>
-                <option value="three">3</option>
-                <option value="four">4</option>
-                <option value="five">5</option>
-                <option value="six">6</option>
-                <option value="seven">7</option>
-                <option value="eight">8</option>
-                <option value="nine">9</option>
-                <option value="ten">10</option>
-            </select>
-        </div>
-    </div>
-    <button class="btn btn-primary" id="add_skill" type="button" style="border-radius: 0px;"> Add more skills</button>
+    
     <button>Update</button>
+    <a href="registerUserSkills"><button class="btn btn-primary" id="add_skill" type="button" style="border-radius: 0px;"> Add Skills</button></a>
+    
 </div>

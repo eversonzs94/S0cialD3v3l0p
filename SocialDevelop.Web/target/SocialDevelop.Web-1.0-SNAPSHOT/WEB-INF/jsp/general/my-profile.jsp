@@ -14,7 +14,7 @@
 <!-- Page Container -->
 <div class="w3-content w3-margin-top" style="max-width:1400px;">
 
-    <!-- The Grid -->
+<!-- The Grid -->
     <div class="w3-row-padding">
 
         <!-- Left Column -->
@@ -50,17 +50,18 @@
                 </div><br>
 
                 <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Skills</b></p>
-                <p>Adobe Photoshop</p>
+                <p></p>
                 <div class="w3-light-grey w3-round-xlarge w3-small">
-                    <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:90%">90%</div>
+                  <c:forEach items="${skillsList}" var="item">
+                            <tr>
+                                <td><c:out value="${item.getSkillName()}, " /></td>
+                                 </tr>
+                            </c:forEach>
+                  <!--  <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:90%">90%</div>-->
                 </div>
                 <br>
 
-                <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>Languages</b></p>
-                <p>English</p>
-                <div class="w3-light-grey w3-round-xlarge">
-                    <div class="w3-round-xlarge w3-teal" style="height:24px;width:100%"></div>
-                </div>
+                
 
                 <br>
             </div>
@@ -71,7 +72,7 @@
         <div class="w3-twothird" id="panel">
             
             <div class=" w3-container w3-card-2 w3-white w3-margin-bottom">
-                <a href="mytasks-projects">    <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-code fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>My Tasks & Projects</h2></a>
+                <a href="mytasks-projects">    <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-code fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>My Tasks </h2></a>
                     
             </div>
         
@@ -301,6 +302,30 @@
                     }
                 });
     }
+    
+        function insertTaskDevelopersFromProposalPanel(data) {
+
+        $.ajax(
+                {
+                    type: "GET",
+                    url: "${contextPath}/app/insertTaskDevelopersFromProposalPanel?idTask=" + data.idTask,
+
+                    success: function (data) {
+                        if (data == "1") {
+                            // $("#idTask").val("");
+                            alert("The user has been inserted");
+                        } else if (data == "0") {
+                            alert("The user has not been inserted");
+                        } else if (data == "3") {
+                            alert("Error with insertion");
+                        } else if (data == "4") {
+                            alert("One or more parameter are nopt valid");
+                        }
+                    }, error: function (a, b, c) {
+                        alert("Connection Error");
+                    }
+                });
+    }
 
     //INVITATION PANEL
     function getInvitationPanel() {
@@ -349,7 +374,7 @@
 
         $('#invitationPanel tbody').on('click', '.btnCancel', function () {
             var data = table.row($(this).parents('tr')).data();
-            alert(data['name'] + "'s salary is: ");
+            alert(data['name'] + "'s salary is: " + data['idUser']);
         });
 
     }
@@ -387,12 +412,14 @@
 
         $('#proposalPanel tbody').on('click', '.btnAccept', function () {
             var data = table.row($(this).parents('tr')).data();
-            alert(data['name'] + "'s salary is: ");
+            updateCollaborationPanel(data, 'accepted');
+            insertTaskDevelopersFromProposalPanel(data);
         });
 
         $('#proposalPanel tbody').on('click', '.btnReject', function () {
             var data = table.row($(this).parents('tr')).data();
             alert(data['name'] + "'s salary is: ");
+            updateCollaborationPanel(data, 'rejected');
         });
     }
 
@@ -408,6 +435,28 @@
                         console.log(error);
                     }
                 });
+    }
+    
+    function updateCollaborationPanel(data, status) {
+        $.ajax(
+            {
+                type: "GET",
+                url: "${contextPath}/app/updateCollaborationPanel?idUserSender=" + data.idUser + "&status=" + status+ "&idTask=" + data.idTask,
+                success: function (data) {
+                    if (data == "1") {
+                        alert("Update");
+                    } else if (data == "2") {
+                        alert("The user has not been updated");
+                    } else if (data == "3") {
+                        alert("Error with updated");
+                    } else if (data == "4") {
+                        alert("One or more parameter are nopt valid");
+                    }
+                }, error: function (a, b, c) {
+                    alert("Connection Error");
+                }
+            });
+
     }
 
 

@@ -21,7 +21,7 @@
                 <!--   <h5 class="w3-opacity"><b>Projects & Tasks</b></h5>-->
                 <p>
                     <c:forEach items="${developerProject}" var="item">
-                        <a href="projectpage?id=<c:out value="${item.getId()}" />" class="w3-text-teal"> <b>${item.getName()}</b> <br><b>Coordinator: </b> ${item.getCoordinator().getName()} ${item.getCoordinator().getName()} </a>
+                        <a href="projectpage?id=<c:out value="${item.getId()}" />" class="w3-text-teal"> <b>${item.getName()}</b> <br><b>Coordinator: </b> ${item.getCoordinator().getName()} ${item.getCoordinator().getSurname()} </a>
                     <table class="table table-hover ">
                         <thead class="w3-text-grey">
                             <tr>
@@ -32,7 +32,7 @@
                                 <th>Due Date</th>
                                 <th>Status</th>
                                 <th>Collaborators</th>
-                                <th>Skills</th>
+                            <!--    <th>Skills</th>-->
                                 <th>Finished?</th>
                                 <!-- continue the attributes-->
 
@@ -42,7 +42,7 @@
                             <c:forEach items="${item.getListTasks()}" var="tasks">
                                 <tr>  <td> 
 
-                                        ${tasks.getTaskName()}<br>
+                                        <a href=taskPage?idTask=<c:out value="${tasks.getIdTask()}"/>> ${tasks.getTaskName()}</a><br>
 
                                     </td>
                                     <td>
@@ -70,19 +70,19 @@
                                     <td>
                                         ${tasks.getCollaboratorsNum()}<br>
                                     </td>
-                                    <td>
+                                 <!--   <td>
                                         ${tasks.getSkill()}<br>
-                                    </td>
+                                    </td>-->
                                     <td><c:if test="${tasks.getStatus()=='Open'}">
                                             <form action="${contextPath}/app/finishedTask" method="POST">
                                                 <input type="hidden" name="coordinatorEmail" value=${item.getCoordinator().getEmail()} required=""/>
-                                                <button type="submit" class="btn btn-add-new-task" />Finished</button>
+                                                <button type="submit" class="btn btn-add-new-task pull-left" />Finished</button>
                                             </form>
                                         </c:if>
                                         <c:if test="${tasks.getStatus()=='Closed'}">
                                             <form action="${contextPath}/app/goCreateTask" method="POST">
                                                 <input type="hidden" name="idProject" value=${project.getId()} required=""/>
-                                                <button type="submit" class="btn btn-add-new-task" />+ Add new task</button>
+                                                <button type="" class="btn btn-add-new-task" />+ Add new task</button>
                                             </form>
                                         </c:if>
                                     </td>

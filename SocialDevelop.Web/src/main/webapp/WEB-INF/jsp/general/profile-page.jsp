@@ -56,7 +56,12 @@
                 <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Skills</h2>
                 <div class="w3-container">
                     <h5 class="w3-opacity"><b>Skills</b></h5>
-                    <p> List of developer's skills</p>        
+                    <!--<p> List of developer's skills</p>   -->
+                     <c:forEach items="${skillsList}" var="item">
+                            <tr>
+                                <td><c:out value="${item.getSkillName()}, " /></td>
+                                 </tr>
+                            </c:forEach>
                     <hr>
                 </div>
             </div>

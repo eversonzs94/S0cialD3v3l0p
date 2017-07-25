@@ -164,6 +164,16 @@ public class UserService {
         }
     }
 
+    public Integer insertTaskDevelopersFromProposalPanel(Integer idUser, Integer idTask) {
+        //insert to tblCollaborationDocs
+        try {
+            return mapper.insertTaskDevelopersFromProposalPanel(idUser,idTask);
+        } catch (DataAccessException ex) {
+            System.out.println(ex.getMessage());
+            return -1;
+        }
+    }
+    
     public Integer insertOfferPanelToApplication(Users user) {
         //insert to tblCollaborationDocs
         try {
@@ -173,14 +183,53 @@ public class UserService {
         }
     }
 
-    public String updateCollaborationPanel(Users user) {
+    public Integer updateCollaborationPanel(Users user) {
         try {
             return mapper.updateCollaborationPanel(user);
         } catch (DataAccessException ex) {
-            return null;
+            return 0;
         }
     }
     
     /* --------------- End Hilda -------------------- */
 
+    /* --------------- Deyanira -------------------- */
+   
+    public int insertUserSkills(int[] idSkills, int[] levels){
+        int idUser = lastUserInserted();
+        for (int i = 0; i < idSkills.length; i++){
+            if (!"".equals(idSkills[i])){
+                try{
+                   mapper.insertUserSkills(idSkills[i], idUser, levels[i]);
+                }catch(DataAccessException ex){
+                    System.out.println("Error: ---> " + ex.getMessage());
+                    return 0;
+                } 
+            }
+        }
+        return 1;
+    }
+    public int lastUserInserted(){
+        try{
+            return mapper.lastUserInserted();
+        }catch(DataAccessException ex){
+            return 0;
+        }
+    }
+    
+    public Users viewUserInfo(int id) {
+        return mapper.viewUserInfo(id);
+    }
+    
+    /* --------------- End Deyanira -------------------- */
+    
+    public List<Integer> checkCoord(){
+    try {
+            return mapper.checkCoord();
+        } catch (DataAccessException ex) {
+            System.out.println("errorrrrrr" + ex.getMessage());
+        }
+        return null;
+    }
+    
 }

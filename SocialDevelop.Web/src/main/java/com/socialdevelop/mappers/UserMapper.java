@@ -184,7 +184,7 @@ public interface UserMapper {
 "			on B.idTask = E.idTask\n" +
 "			INNER JOIN tblProjects F\n" +
 "			ON E.idProject=F.idProject\n" +
-"			where B.idUserReciver=#{idUserReceiver}")
+"			where B.idUserReciver=#{idUserReceiver} AND B.status=\"waiting\"")
     @Results(value = {
         @Result(property = "projectName", column = "B.projectName")
         ,
@@ -204,19 +204,50 @@ public interface UserMapper {
             + "VALUES(#{idUser},#{idTask})")
     public Integer insertTaskDevelopersFromApplicationPanel(Users user) throws DataAccessException;
     
+    @Insert("INSERT INTO tbltasksdevelopers(idUser, idTask) "
+            + "VALUES(#{idUser},#{idTask})")
+    public Integer insertTaskDevelopersFromProposalPanel(@Param("idUser")Integer idUser, @Param("idTask")Integer idTask) throws DataAccessException;
+    
     @Insert("INSERT INTO tblcollaborationsdocs(idTask, idProject, idUserReciver,"
             + " tblUserSender, status, deadLine)"
             + " VALUES (#{idTask},#{idProject},#{idUserReceiver},#{idUserSender},"
             + "#{status},DATE_ADD(NOW(),INTERVAL 7 DAY))")
-    
     public Integer insertOfferPanelToApplication(Users user) throws DataAccessException;
 
     @Update("UPDATE tblcollaborationsdocs"
             + "SET status= #{status} "
             + "WHERE idUserReciver = #{idUserReceiver} and tblUserSender = #{idUserSender}")
-    public String updateCollaborationPanel(Users user) throws DataAccessException;
+    public Integer updateCollaborationPanel(Users user) throws DataAccessException;
     
     /* --------------- End Hilda -------------------- */
-
+    
+    /* --------------- Deyanira  -------------------- */
+    
+    @Insert("INSERT INTO tblskillsusers(idSkill, idUser, level) VALUES(#{idSkills}, #{idUser}, #{levels})")
+    public int insertUserSkills(@Param("idSkills")int idSkill, @Param("idUser")int idUser, @Param("levels")int level) throws DataAccessException;
+    
+    @Select("SELECT LAST_INSERT_ID(idUser) AS idUser FROM tblUsers ORDER BY idUser DESC LIMIT 1")
+    @Results(value = {
+            @Result(property = "idUser", column = "idUser")
+        }
+    )
+    public int lastUserInserted() throws DataAccessException;
+    
+    @Select("SELECT * FROM tblusers where idUser=(#{id})")
+    @Results(value = {
+            @Result(property = "name", column = "name"),
+            @Result(property = "surname", column = "surname"),
+            @Result(property = "id", column = "idUser")
+        }
+    )
+    public Users viewUserInfo(int id) throws DataAccessException;
+    
+    /* --------------- End Deyanira -------------------- */
+@Select("SELECT * FROM tblusersprojects")
+    @Results(value={
+    @Result(property = "idUser", column="idUser")
+    })
+    public List <Integer> checkCoord() throws DataAccessException;
+    
     
 }
