@@ -71,7 +71,6 @@ public interface UserMapper {
     @Update("UPDATE tblUsers SET name = #{name}, surname = #{surname},email=#{email}, phoneNumber=#{phoneNumber},gender=#{gender},aboutMe=#{aboutMe},address=#{address}  WHERE idUser=#{idUser}")
     public int updateMyProfile(Users user) throws DataAccessException;
     
-
     @Select("SELECT * FROM tblUsers")
     @Results(value = {
         @Result(property = "nickname", column = "nickname"),}
@@ -138,7 +137,8 @@ public interface UserMapper {
 "            on B.tblUserSender = D.idUser\n" +
 "            inner join tbltasks E\n" +
 "            on B.idTask = E.idTask\n" +
-"            where B.idUserReciver = #{idUserReciver}")
+"            where B.idUserReciver = #{idUserReciver}\n" +
+             "AND B.status='waiting'")
     @Results(value = {
         @Result(property = "name", column = "d.name")
         ,
@@ -150,7 +150,7 @@ public interface UserMapper {
     })
     public ArrayList<Users> applicationPanel(@Param("idUserReciver") Integer idUserReciver) throws DataAccessException;
 
-    @Select("SELECT DISTINCT A.idUser, E.taskName, B.status, E.description, D.name, D.surname, B.submissionDate \n"
+    @Select("SELECT DISTINCT A.idUser, B.idTask, E.taskName, B.status, E.description, D.name, D.surname, B.submissionDate \n"
             + "           FROM tblcollaborationsdocs B\n"
             + "            inner JOIN tblusersprojects A\n"
             + "            on A.idUser = B.idUserReciver\n"
@@ -214,10 +214,11 @@ public interface UserMapper {
             + "#{status},DATE_ADD(NOW(),INTERVAL 7 DAY))")
     public Integer insertOfferPanelToApplication(Users user) throws DataAccessException;
 
-    @Update("UPDATE tblcollaborationsdocs"
-            + "SET status= #{status} "
-            + "WHERE idUserReciver = #{idUserReceiver} and tblUserSender = #{idUserSender}")
+    @Update("UPDATE tblCollaborationsDocs SET status= #{status} WHERE idUserReciver = #{idUserReceiver} AND tblUserSender = #{idUserSender} AND idTask = #{idTask}")
     public Integer updateCollaborationPanel(Users user) throws DataAccessException;
+    
+    @Update("UPDATE tblCollaborationsDocs SET status= #{status} WHERE idUserReciver = #{idUserReceiver} AND tblUserSender = #{idUserSender} AND idTask = #{idTask}")
+    public Integer updateCollaborationPanelFromInvitation(Users user) throws DataAccessException;
     
     /* --------------- End Hilda -------------------- */
     
@@ -248,6 +249,5 @@ public interface UserMapper {
     @Result(property = "idUser", column="idUser")
     })
     public List <Integer> checkCoord() throws DataAccessException;
-    
     
 }

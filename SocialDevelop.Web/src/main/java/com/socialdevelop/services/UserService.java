@@ -156,7 +156,6 @@ public class UserService {
     }
     
     public Integer insertTaskDevelopersFromApplicationPanel(Users user) {
-        //insert to tblCollaborationDocs
         try {
             return mapper.insertTaskDevelopersFromApplicationPanel(user);
         } catch (DataAccessException ex) {
@@ -186,6 +185,14 @@ public class UserService {
     public Integer updateCollaborationPanel(Users user) {
         try {
             return mapper.updateCollaborationPanel(user);
+        } catch (DataAccessException ex) {
+            return 0;
+        }
+    }
+
+    public Integer updateCollaborationPanelFromInvitation(Users user) {
+        try {
+            return mapper.updateCollaborationPanelFromInvitation(user);
         } catch (DataAccessException ex) {
             return 0;
         }

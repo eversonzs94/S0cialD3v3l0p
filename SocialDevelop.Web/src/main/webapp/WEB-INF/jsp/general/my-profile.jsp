@@ -69,6 +69,37 @@
         </div>
 
         <!-- Right Column -->
+        <!-- Tabs part
+        <div id="container">
+	    <input id="tab-1" type="radio" name="tab-group" checked="checked" />
+	    <label for="tab-1">Tab 1</label>
+	    <input id="tab-2" type="radio" name="tab-group" />
+	    <label for="tab-2">Tab 2</label>
+	    <input id="tab-3" type="radio" name="tab-group" />
+	    <label for="tab-3">Tab 3</label>
+	    <div id="content">
+	        <div id="content-1">
+	            <p class="left"><img src="http://ximg.es/160x120" alt="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum sit reprehenderit iusto harum minima. Assumenda, accusamus, perspiciatis inventore tempora qui pariatur quisquam? Deleniti, placeat ea nostrum officiis obcaecati temporibus quod. Ullam, in, adipisci autem at fugit ab tempore enim ratione nesciunt alias corporis vitae quo quod nostrum itaque vero iure?</p>
+	            <p class="left last"><img src="http://ximg.es/160x120" alt="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, id blanditiis deserunt in molestiae excepturi incidunt molestias dolor sunt dolore obcaecati non repellat mollitia error placeat est exercitationem sit voluptates iure autem saepe voluptas harum unde perferendis modi provident labore voluptatum. Repudiandae, aspernatur sit harum quod vero quos sequi voluptas!</p>
+	        </div>
+	        <div id="content-2">
+	            <p class="column-left"><img src="http://ximg.es/200x150" alt="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, est, nisi enim voluptates dicta quibusdam recusandae eveniet provident non at nostrum nesciunt laudantium omnis aliquam debitis magni expedita cumque tempore.</p>
+            	<p class="column-right"><img src="http://ximg.es/200x150" alt="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, molestiae, officia repellendus quasi cumque dolor eius deserunt possimus aliquid neque nam assumenda veniam soluta enim commodi aperiam reprehenderit quia incidunt.</p>
+	        </div>
+	        <div id="content-3">
+	        	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, aperiam, enim odit placeat minus ab vero molestiae ad fugit maiores eaque saepe debitis assumenda ut ipsam eius sit repellendus dolore.</p>
+	        	<ul>
+	        		<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, in magni illo dolore dicta vero.</li>
+	        		<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti, minus, aspernatur voluptatem doloribus labore modi.</li>
+	        		<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora, exercitationem quia id accusamus beatae sunt? Dolorum mollitia sint debitis delectus.</li>
+	        	</ul>
+	        	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, accusantium, provident ab quo sed blanditiis perspiciatis distinctio aut voluptatibus cum odio quaerat iure vel dolorum fugit explicabo suscipit tenetur. Sed!</p>
+	        </div>
+	    </div>
+	</div>
+        
+        -->
+                        
         <div class="w3-twothird" id="panel">
             
             <div class=" w3-container w3-card-2 w3-white w3-margin-bottom">
@@ -209,7 +240,7 @@
                     title: "Developer",
                     data: 'name'
                 },
-                {title: "apply",
+                {title: "Accept or Reject",
                     "targets": -1,
                     "data": null,
                     "defaultContent": "<small><button class='btnAccept w3-button w3-black w3-padding-small' style='width:35%'>✔</button><button class='btnReject w3-button w3-teal w3-padding-small' style='width:35%'>X</button></small>"
@@ -227,14 +258,14 @@
             ]});
         $('#applicationPanel tbody').on('click', '.btnAccept', function () {
             var data = table.row($(this).parents('tr')).data();
-            alert(data['name'] + "'s salary is: ");
-            // $(".btnAccept").attr("disabled", "disabled");
             insertTaskDevelopersFromApplicationPanel(data);
+            alert("The user: " + data['name'] + " is enrolled in the task.");
         });
 
         $('#applicationPanel tbody').on('click', '.btnReject', function () {
             var data = table.row($(this).parents('tr')).data();
-            alert(data['name'] + "'s salary is: ");
+            updateCollaborationPanel(data, "rejected");
+            alert("The user " + data['name'] + " will not work on this task.");
         });
 
 
@@ -308,7 +339,7 @@
         $.ajax(
                 {
                     type: "GET",
-                    url: "${contextPath}/app/insertTaskDevelopersFromProposalPanel?idTask=" + data.idTask,
+                    url: "${contextPath}/app/insertTaskDevelopersFromProposalPanel?idTask=" + data.idTask + "&idUser=" + data.idUser,
 
                     success: function (data) {
                         if (data == "1") {
@@ -374,7 +405,8 @@
 
         $('#invitationPanel tbody').on('click', '.btnCancel', function () {
             var data = table.row($(this).parents('tr')).data();
-            alert(data['name'] + "'s salary is: " + data['idUser']);
+            updateCollaborationPanelFromInvitation(data, "canceled");
+            alert("The user " + data['name'] + " has been removed from this task.");
         });
 
     }
@@ -418,7 +450,6 @@
 
         $('#proposalPanel tbody').on('click', '.btnReject', function () {
             var data = table.row($(this).parents('tr')).data();
-            alert(data['name'] + "'s salary is: ");
             updateCollaborationPanel(data, 'rejected');
         });
     }
@@ -442,6 +473,28 @@
             {
                 type: "GET",
                 url: "${contextPath}/app/updateCollaborationPanel?idUserSender=" + data.idUser + "&status=" + status+ "&idTask=" + data.idTask,
+                success: function (data) {
+                    if (data == "1") {
+                        alert("Update");
+                    } else if (data == "2") {
+                        alert("The user has not been updated");
+                    } else if (data == "3") {
+                        alert("Error with updated");
+                    } else if (data == "4") {
+                        alert("One or more parameter are nopt valid");
+                    }
+                }, error: function (a, b, c) {
+                    alert("Connection Error");
+                }
+            });
+
+    }
+
+    function updateCollaborationPanelFromInvitation(data, status) {
+        $.ajax(
+            {
+                type: "GET",
+                url: "${contextPath}/app/updateCollaborationPanelFromInvitation?idUserReceiver=" + data.idUser + "&status=" + status+ "&idTask=" + data.idTask,
                 success: function (data) {
                     if (data == "1") {
                         alert("Update");

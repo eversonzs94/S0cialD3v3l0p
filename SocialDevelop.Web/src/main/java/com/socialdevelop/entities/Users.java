@@ -7,7 +7,6 @@ package com.socialdevelop.entities;
 
 import java.util.Date;
 import org.apache.ibatis.type.Alias;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -118,9 +117,16 @@ public class Users {
         this.idProject = idProject;
     }
     
-    public Users(Integer idUser, Integer idTask) {
+    public Users(int idUser, Integer idTask) {
         this.idUser = idUser;
         this.idTask = idTask;
+    }
+    
+    public Users(int idUserReceiver, Integer idTask, Integer idUserSender, String status) {
+        this.idUserReceiver = idUserReceiver;
+        this.idTask = idTask;
+        this.idUserSender = idUserSender;
+        this.status = status;
     }
     
     public String getBirthDate() {
@@ -315,5 +321,6 @@ public class Users {
     public void setIdProject(Integer idProject) {
         this.idProject = idProject;
     }
+    
 
 }

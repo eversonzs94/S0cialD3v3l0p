@@ -35,7 +35,6 @@ import com.socialdevelop.services.TypeService;
 import java.io.File;
 import java.util.Calendar;
 import java.util.Properties;
-//import javax.websocket.Session;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -887,8 +886,10 @@ public class AppController {
 
         if (idTask != 0 && idUser != 0) {
 
-            Users taskDeveloper = new Users(idTask, idUser);
+            Users taskDeveloper = new Users(idUser, idTask);
+            Users updateDev = new Users(utilities.UserSession.getUserData().getIdUser(), idTask, idUser, "accepted");
 
+            service_user.updateCollaborationPanel(updateDev);
             response = service_user.insertTaskDevelopersFromApplicationPanel(taskDeveloper);
 
             if (response == 1) {
@@ -933,13 +934,26 @@ public class AppController {
 
     @RequestMapping(value = "/updateCollaborationPanel", method = RequestMethod.GET)
     public String updateCollaborationPanel(
-            @RequestParam("idUser") Integer idUserSender,
+            @RequestParam("idUserSender") Integer idUserSender,
             @RequestParam("status") String status,
             @RequestParam("idTask") Integer idTask,
             ModelMap model) {
             
         Users user = new Users(status, idTask, idUserSender, utilities.UserSession.getUserData().getIdUser());
         service_user.updateCollaborationPanel(user);
+        
+        return "my-profile";
+    }
+    
+    @RequestMapping(value = "/updateCollaborationPanelFromInvitation", method = RequestMethod.GET)
+    public String updateCollaborationPanelFromInvitation(
+            @RequestParam("idUserReceiver") Integer idUserReceiver,
+            @RequestParam("status") String status,
+            @RequestParam("idTask") Integer idTask,
+            ModelMap model) {
+            
+        Users user = new Users(status, idTask, utilities.UserSession.getUserData().getIdUser(), idUserReceiver);
+        service_user.updateCollaborationPanelFromInvitation(user);
         
         return "my-profile";
     }
