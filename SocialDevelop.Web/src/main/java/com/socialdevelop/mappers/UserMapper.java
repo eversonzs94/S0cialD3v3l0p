@@ -104,18 +104,22 @@ public interface UserMapper {
 
     /* --------------- Start Hilda -------------------- */
     
-    @Select("SELECT *\n"
-            + "FROM tblprojects P INNER JOIN tblusersprojects UP ON P.idProject=UP.idProject \n"
-            + "INNER JOIN tblusers US ON US.idUser=UP.idUser INNER JOIN \n"
-            + "(SELECT COUNT(C.idTask),C.* FROM (SELECT T.idTask,T.taskName,T.idProject from tbltasks T INNER Join tbltasksskillslevel L on T.idTask=l.idTask \n"
-            + "INNER JOIN tblskills S on S.idSkill=L.idSkill\n"
-            + "INNER JOIN tblskillsusers U on U.idSkill= S.idSkill \n"
-            + "WHERE U.idUser=1 and t.status='open' and (U.skillLevel>=L.level or L.level=0))C\n"
-            + "GROUP BY C.idTask HAVING COUNT(C.idTask)= (SELECT COUNT(tbltasksskillslevel.idTask) FROM tbltasksskillslevel INNER JOIN tbltasks WHERE tbltasksskillslevel.idTask=tbltasks.idTask AND tbltasks.idTask=c.idTask GROUP BY (tbltasksskillslevel.idTask))) A\n"
-            + "ON A.idProject=P.idProject \n"
-            + "and UP.idRole=\"1\" and UP.idUser!=2")
+    @Select("SELECT *    FROM tblprojects P INNER JOIN tblusersprojects UP ON P.idProject=UP.idProject \n" +
+"            INNER JOIN tblusers US ON US.idUser=UP.idUser INNER JOIN \n" +
+"            (SELECT COUNT(C.idTask),C.* FROM (SELECT T.idTask,T.taskName,T.idProject from tbltasks T INNER Join tbltasksskillslevel L on T.idTask=l.idTask\n" +
+"            INNER JOIN tblskills S on S.idSkill=L.idSkill\n" +
+"            INNER JOIN tblskillsusers U on U.idSkill= S.idSkill\n" +
+"            WHERE U.idUser=#{idUserLogged} and t.status='Open' and (U.skillLevel>=L.level or L.level=0))C\n" +
+"            GROUP BY C.idTask HAVING COUNT(C.idTask)= (SELECT COUNT(tbltasksskillslevel.idTask) FROM tbltasksskillslevel \n" +
+"            INNER JOIN tbltasks WHERE tbltasksskillslevel.idTask=tbltasks.idTask AND tbltasks.idTask=c.idTask GROUP BY (tbltasksskillslevel.idTask))) A\n" +
+"            ON A.idProject=P.idProject\n" +
+"            and UP.idRole=\"1\" and UP.idUser!=#{idUserLogged}")
     @Results(value = {
         @Result(property = "taskName", column = "B.taskName")
+        ,
+        @Result(property = "idTask", column = "T.idTask")
+        ,
+        @Result(property = "idProject", column = "P.idProject")
         ,
         @Result(property = "projectName", column = "D.projectName")
         ,
@@ -124,12 +128,12 @@ public interface UserMapper {
         @Result(property = "surname", column = "C.surname")
         ,
         
-        @Result(property = "skillName", column = "G.skillName")
+        @Result(property = "skill", column = "G.skillName")
         ,
         @Result(property = "status", column = "B.status")
-
+    
     })
-    public ArrayList<Users> offerPanelCoodinator() throws DataAccessException;
+    public ArrayList<Users> offerPanelCoodinator(@Param("idUserLogged") Integer idUserLogged) throws DataAccessException;
 
     @Select("SELECT *\n" +
 "            FROM tblcollaborationsdocs B\n" +
@@ -150,7 +154,7 @@ public interface UserMapper {
     })
     public ArrayList<Users> applicationPanel(@Param("idUserReciver") Integer idUserReciver) throws DataAccessException;
 
-    @Select("SELECT DISTINCT A.idUser, B.idTask, E.taskName, B.status, E.description, D.name, D.surname, B.submissionDate \n"
+    @Select("SELECT DISTINCT A.idUser, B.idTask, E.taskName, B.status, E.description, D.name, D.surname, D.nickname, B.submissionDate \n"
             + "           FROM tblcollaborationsdocs B\n"
             + "            inner JOIN tblusersprojects A\n"
             + "            on A.idUser = B.idUserReciver\n"
@@ -166,6 +170,8 @@ public interface UserMapper {
         @Result(property = "taskName", column = "E.taskName")
         ,
          @Result(property = "description", column = "E.description")
+        ,
+         @Result(property = "nickname", column = "D.nickname")
         ,
         @Result(property = "name", column = "D.name")
         ,

@@ -60,3 +60,10 @@ LOCK TABLES `tblusersprojects` WRITE;
 INSERT INTO `tblusersprojects` VALUES (2,11,1),(1,1,1),(2,2,1),(3,3,1),(4,4,1),(1,5,1),(2,6,1),(3,7,1),(4,8,1),(2,9,1),(1,13,1),(1,14,1),(3,15,1);
 /*!40000 ALTER TABLE `tblusersprojects` ENABLE KEYS */;
 UNLOCK TABLES;
+
+INSERT INTO `socialdevelop`.`tblcollaborationsdocs` (`idTask`, `idProject`, `idUserReciver`, `tblUserSender`, `status`, `deadLine`, `submissionDate`) VALUES ('20', '11', '2', '1', 'waiting', '2017-09-19', '2017-09-12');
+INSERT INTO `socialdevelop`.`tblcollaborationsdocs` (`idTask`, `idProject`, `idUserReciver`, `tblUserSender`, `status`, `deadLine`, `submissionDate`) VALUES ('16', '9', '1', '2', 'waiting', '2017-09-19', '2017-09-12');
+
+INSERT INTO `socialdevelop`.`tbltasksskillslevel` (`idSkill`, `idTask`, `level`) VALUES ('1', '20', '5');
+
+

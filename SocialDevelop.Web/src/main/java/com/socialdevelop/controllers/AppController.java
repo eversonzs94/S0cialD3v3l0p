@@ -562,7 +562,7 @@ public class AppController {
         ArrayList<Users> applicationPanel = new ArrayList<>();
         ArrayList<Users> invitationPanel = new ArrayList<>();
 
-        panel = service_user.offerPanelCoodinator();
+        panel = service_user.offerPanelCoodinator(utilities.UserSession.getUserData().getIdUser());
         applicationPanel = service_user.applicationPanel(utilities.UserSession.getUserData().getIdUser());
         invitationPanel = service_user.invitationPanel(utilities.UserSession.getUserData().getIdUser());
 
@@ -789,7 +789,7 @@ public class AppController {
         ArrayList<Users> applicationPanel = new ArrayList<>();
         ArrayList<Users> invitationPanel = new ArrayList<>();
 
-        panel = service_user.offerPanelCoodinator();
+        panel = service_user.offerPanelCoodinator(utilities.UserSession.getUserData().getIdUser());
         applicationPanel = service_user.applicationPanel(utilities.UserSession.getUserData().getIdUser());
         invitationPanel = service_user.invitationPanel(utilities.UserSession.getUserData().getIdUser());
 
@@ -804,7 +804,7 @@ public class AppController {
     public @ResponseBody
     String getOfferPanel() {
         ArrayList<Users> panel = new ArrayList<>();
-        panel = service_user.offerPanelCoodinator();
+        panel = service_user.offerPanelCoodinator(utilities.UserSession.getUserData().getIdUser());
         return new Gson().toJson(panel);
     }
 
@@ -840,17 +840,16 @@ public class AppController {
             @RequestParam("idTask") Integer idTask,
             @RequestParam("idProject") Integer idProject,
             @RequestParam("idUserReceiver") Integer idUserReceiver,
-            @RequestParam("idUserSender") Integer idUserSender,
             @RequestParam("status") String status,
             ModelMap model) {
 
         int response;
 
-        if (idTask != 0 && idProject != 0 && idUserReceiver != 0 && idUserSender != 0) {
+        if (idTask != 0 && idProject != 0 && idUserReceiver != 0) {
 
             status = "waiting";
 
-            Users collaborationUser = new Users(idTask, idProject, idUserReceiver, idUserSender, status);
+            Users collaborationUser = new Users(idTask, idProject, utilities.UserSession.getUserData().getIdUser(), idUserReceiver, status);
 
             response = service_user.insertOfferPanelToApplication(collaborationUser);
 

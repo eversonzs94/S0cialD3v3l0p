@@ -121,9 +121,9 @@ public class UserService {
     
     /* --------------- Start Hilda -------------------- */
     
-    public ArrayList<Users> offerPanelCoodinator() {
+    public ArrayList<Users> offerPanelCoodinator(Integer idUserLogged) {
         try {
-            return mapper.offerPanelCoodinator();
+            return mapper.offerPanelCoodinator(idUserLogged);
         } catch (DataAccessException ex) {
             return null;
         }
@@ -174,7 +174,6 @@ public class UserService {
     }
     
     public Integer insertOfferPanelToApplication(Users user) {
-        //insert to tblCollaborationDocs
         try {
             return mapper.insertOfferPanelToApplication(user);
         } catch (DataAccessException ex) {

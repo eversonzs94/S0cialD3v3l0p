@@ -113,7 +113,7 @@
             </div>
 
             <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
-                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>INVITATION PANEL</h2>
+                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>COORDINATOR: INVITATION PANEL</h2>
                 <div class="w3-container">
 
                     <table id="invitationPanel" class="table table-bordred table-striped"></table>
@@ -123,7 +123,7 @@
             </div>
 
             <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
-                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>APPLICATION PANEL</h2>
+                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>COORDINATOR: APPLICATION PANEL</h2>
                 <div class="w3-container">
 
                     <table id="applicationPanel" class="table table-bordred table-striped"></table>
@@ -132,7 +132,7 @@
             </div>
 
             <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
-                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>PROPOSAL PANEL</h2>
+                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>DEVELOPER: PROPOSAL PANEL</h2>
                 <div class="w3-container">
                     <div class="form-group">
                         <table id="proposalPanel" class="table table-bordred table-striped"></table>
@@ -142,7 +142,7 @@
             </div>
 
             <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
-                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>OFFERS PANEL</h2>
+                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>DEVELOPER: OFFERS PANEL</h2>
                 <div class="w3-container">
 
                     <table id="offerPanel" class="table table-bordred table-striped" width="100%"></table>
@@ -174,15 +174,24 @@
             columns: [
                 {
                     title: "Task",
-                    data: 'taskName'
+                    data: 'taskName', 
+                    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol){
+                        $(nTd).html("<a href='taskPage?idTask="+oData.idTask+"'>"+oData.taskName+"</a>");
+                    }
                 },
                 {
                     title: "Project",
-                    data: 'projectName'
+                    data: 'projectName',
+                    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol){
+                        $(nTd).html("<a href='projectpage?id="+oData.idProject+"'>"+oData.projectName+"</a>");
+                    }
                 },
                 {
                     title: "Coordinator",
-                    data: 'name'
+                    data: 'name',
+                    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol){
+                        $(nTd).html("<a href='profilepage?nickname="+oData.nickname+"'>"+oData.nickname+"</a>");
+                    }
                 },
                 {
                     title: "Status",
@@ -191,7 +200,7 @@
                 {title: "apply",
                     "targets": -1,
                     "data": null,
-                    "defaultContent": "<small><button class='btnAccept w3-button w3-black w3-padding-small' style='width:40%'>Accept</button><button class='btnRejected w3-button w3-teal w3-padding-small' style='width:40%'>Rejected</button></small>"
+                    "defaultContent": "<small><button class='btnAccept w3-button w3-black w3-padding-small' style='width:40%'>Apply</button>"
                 }
 
             ]
@@ -199,14 +208,8 @@
 
         $('#offerPanel tbody').on('click', '.btnAccept', function () {
             var data = table.row($(this).parents('tr')).data();
-            alert(data['name'] + "'s salary is: ");
-            insertOfferPanelToApplication($("#idTask").val(), $("#idProject").val(), $("#idUserReciver").val(), $("#idUserSender").val());
+            insertOfferPanelToApplication(data['idTask'], data['idProject'], data['idUser'], "applied");
             $('.btnAccept').attr("disabled", true);
-        });
-
-        $('#offerPanel tbody').on('click', '.btnRejected', function () {
-            var data = table.row($(this).parents('tr')).data();
-            alert(data['surname'] + "'s salary is: ");
         });
     }
 
@@ -234,11 +237,17 @@
             columns: [
                 {
                     title: "Task",
-                    data: 'taskName'
+                    data: 'taskName',
+                    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol){
+                        $(nTd).html("<a href='taskPage?idTask="+oData.idTask+"'>"+oData.taskName+"</a>");
+                    }
                 },
                 {
                     title: "Developer",
-                    data: 'name'
+                    data: 'name',
+                    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol){
+                        $(nTd).html("<a href='profilepage?nickname="+oData.nickname+"'>"+oData.name+"</a>");
+                    }
                 },
                 {title: "Accept or Reject",
                     "targets": -1,
@@ -285,11 +294,11 @@
                 });
     }
     // here offer(developer)--> show in application panel(coordinator) CollaborationDocs-->insert
-    function insertOfferPanelToApplication(idTask, idProject, idUserReceiver, idUserSender) {
+    function insertOfferPanelToApplication(idTask, idProject, idUserReceiver, status) {
         $.ajax(
                 {
                     type: "GET",
-                    url: "${contextPath}/app/insertOfferPanelToApplication?idTask=" + idTask + "&idProject=" + idProject + "&idUserReceiver=" + idUserReceiver + "&idUserSender=" + idUserSender,
+                    url: "${contextPath}/app/insertOfferPanelToApplication?idTask=" + idTask + "&idProject=" + idProject + "&idUserReceiver=" + idUserReceiver + "&status=" + status,
                     data: null,
                     success: function (data) {
                         if (data == "1") {
@@ -380,11 +389,17 @@
             columns: [
                 {
                     title: "Developer",
-                    data: 'name'
+                    data: 'name',
+                    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol){
+                        $(nTd).html("<a href='profilepage?nickname="+oData.nickname+"'>"+oData.nickname+"</a>");
+                    }
                 },
                 {
                     title: "Task",
-                    data: 'taskName'
+                    data: 'taskName',
+                    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol){
+                        $(nTd).html("<a href='taskPage?idTask="+oData.idTask+"'>"+oData.taskName+"</a>");
+                    }
                 },
                 {
                     title: "Status",
@@ -418,16 +433,25 @@
             columns: [
                 {
                     title: "Project",
-                    data: 'projectName'
+                    data: 'projectName',
+                    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol){
+                        $(nTd).html("<a href='projectpage?id="+oData.idProject+"'>"+oData.projectName+"</a>");
+                    }
 
                 },
                 {
                     title: "Task",
-                    data: 'taskName'
+                    data: 'taskName',
+                    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol){
+                        $(nTd).html("<a href='taskPage?idTask="+oData.idTask+"'>"+oData.taskName+"</a>");
+                    }
                 },
                 {
                     title: "Coordinator",
-                    data: 'nickname'
+                    data: 'nickname',
+                    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol){
+                        $(nTd).html("<a href='profilepage?nickname="+oData.nickname+"'>"+oData.nickname+"</a>");
+                    }
                 },
                 {
                     title: "Submission Date",
